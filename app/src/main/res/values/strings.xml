@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">all-UiTest</string>
+    <string name="bottomnav_menu_title">BottomNav</string>
+    <string name="info_menu_title">Info</string>
+    <string name="bottom_nav_title_home">Hourly GridView</string>
+    <string name="bottom_nav_title_two">Page2</string>
+    <string name="bottom_nav_title_three">Page3</string>
+    <string name="bottom_nav_title_4">Page4</string>
+    <string name="bottom_nav_title_5">Page5</string>
+    <string name="bottom_nav_title_6">Page6</string>
+
+    <string name="info_text">Sample app showcasing use of NavigationUI library to hook two material components BottomNavigationView and NavigationView with nav graph.\n\nFind the source code on github at https://github.com/sagar-viradiya/NavigationUIDemo</string>
+    <string name="side_nav_header_1">All Demo</string>
+    <string name="nav_header_2">Navigation</string>
+    <string name="setting_menu_1">Settings Menu 1</string>
+    <string name="setting_menu_2">Settings Menu 2</string>
+    <string name="setting_menu_3">Settings Menu 3</string>
+</resources>

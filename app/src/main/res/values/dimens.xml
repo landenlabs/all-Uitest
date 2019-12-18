@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="page_row_height">60dp</dimen>
+
+    <dimen name="grid_v_divider">3dp</dimen>
+    <dimen name="grid_h_divider">3dp</dimen>
+    <dimen name="grid_v_divider_pad_top">10dp</dimen>
+
+</resources>
