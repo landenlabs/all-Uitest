@@ -17,6 +17,7 @@ package com.landenlabs.all_uiTest;
  */
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.BitmapShader;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -80,11 +81,23 @@ public class FragBottomNav1 extends FragBottomNavBase {
         return root;
     }
 
+    ColorStateList colorRed = new ColorStateList(
+            new int[][]{ new int[]{}},
+            new int[]{  0xffff0000 }    // RED
+    );
+    ColorStateList colorGreen = new ColorStateList(
+            new int[][]{ new int[]{}},
+            new int[]{  0xff00ff00 }    // GREEN
+    );
+
     private void doAction(View view, int pos) {
+        overlay.removeAllViews();;
         switch (rg.getCheckedRadioButtonId()) {
             case R.id.page1_tagRB:
                 if (view.getBackground() == null) {
+                    // Draw animated gradient of two possible colors.
                     view.setBackgroundResource(R.drawable.anim_grady1);
+                    view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
                     ((AnimatedVectorDrawable) view.getBackground()).start();
                 } else {
                     view.setBackground(null);
@@ -175,11 +188,13 @@ public class FragBottomNav1 extends FragBottomNavBase {
         detailTv.setText(WxHourlyData.WXDATA[row].getDetails(col));
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
-        // detailTv.setBackgroundColor(0xc0000000);
-        // detailTv.setBackgroundResource(R.drawable.black_with_varrow3);
-        int padPx = 10;
-        detailTv.setPadding(padPx, padPx*4, padPx, padPx);
 
+        Drawable icon = detailTv.getContext().getDrawable(R.drawable.wx_sun_30d);
+        detailTv.setForeground(icon);
+        detailTv.setForegroundGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+
+        int padPx = 20;
+        detailTv.setPadding(padPx, 40, padPx, 150);
 
         int detailWidthPx = 500;
         int detailHeightPx = ViewGroup.LayoutParams.WRAP_CONTENT;

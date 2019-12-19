@@ -17,6 +17,7 @@
        app:defaultNavHost="true"
        app:navGraph="@navigation/nav_bottom"/>
 
+    <!-- TODO replace with custom tab bar which scrolls -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_alignParentBottom="true"
         android:id="@+id/bottomNavigation"

@@ -1,11 +1,11 @@
-# a LanDen Labs - UI Test
+# LanDen Labs - UI Test
 Android UI Test
 
 Demonstrate various Ui Components 
 
 <a name="table"></a>
 #Table of Contents
-1. [GridView Layout] (#switches)
+1. [GridView Layout] Expand cell transition animation
 
 
 more

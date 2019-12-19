@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +13,9 @@
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp"
        -->
+    <!--
+    TODO add attributes to contro beg/mid/end vertical and horizontal dividers
+    stroke width and color, drawable  -->
     <utils.GridViewExt1
         android:id="@+id/page1_gridview"
         android:layout_width="match_parent"
@@ -22,21 +26,31 @@
         android:padding="10dp"
         android:stretchMode="columnWidth" />
 
-    <FrameLayout
-        android:id="@+id/page1_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+
+    <TextView
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_below="@+id/page1_gridview"
+        android:id="@+id/page1_btn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Action performed when tapping on grid cells"
+        />
     <RadioGroup
         android:id="@+id/page1_rg"
         android:background="@color/white"
-        android:gravity="center"
-        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/page1_btn_title"
         android:orientation="horizontal">
 
         <RadioButton
+            android:layout_gravity="clip_vertical"
             android:id="@+id/page1_tagRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,28 +58,37 @@
             android:text="tag" />
 
         <RadioButton
+            android:layout_gravity="clip_vertical"
             android:id="@+id/page1_grow1RB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Grow\nSize" />
 
         <RadioButton
+            android:layout_gravity="clip_vertical"
             android:id="@+id/page1_grow2RB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Grow\nScale" />
 
         <RadioButton
+            android:layout_gravity="clip_vertical"
             android:id="@+id/page1_detailsRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details" />
 
         <RadioButton
+            android:layout_gravity="clip_vertical"
             android:id="@+id/page1_resetRB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="reset" />
     </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/page1_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

@@ -24,7 +24,7 @@ public class WxHourlyData {
             this.rainPercent = rainPercent;
         }
         String getDetails(int col) {
-            return String.format(Locale.US, "Details for column %d\nStuff\nStuff\nLast Line", col);
+            return String.format(Locale.US, "Details for column %d\nWeather\nStuff\nLast Line", col);
         }
         static int columns() { return 4; }
     }

@@ -1,14 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/page1_bg"
     tools:context=".FragBottomNav2">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/jetpack_logo_1"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</FrameLayout>
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TableLayout with TableRow and LinearLayout row with auto dividers" />
+
+            <!--
+              android:stretchColumns="*"
+            -->
+            <TableLayout
+                android:id="@+id/other_tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/round_border3"
+                android:divider="@drawable/hline"
+                android:padding="10dp"
+                android:showDividers="middle|end">
+
+                <TableRow
+                    android:baselineAligned="false"
+                    android:divider="@drawable/vline"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:gravity="bottom"
+                        android:singleLine="true"
+                        android:text="longertext0" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/scr_hourly" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:src="@drawable/scr_hourly" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:src="@drawable/scr_hourly" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:singleLine="true"
+                        android:text="text2"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:baselineAligned="false"
+                    android:divider="@drawable/vline"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="longtext1" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/scr_hourly" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="text3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="text4444"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:text="text5" />
+                </LinearLayout>
+
+            </TableLayout>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Custom Grid Layout (4 columns) with random cell dimensions with dividers" />
+
+            <!--
+            TODO add attributes to contro beg/mid/end vertical and horizontal dividers
+            stroke width and color, drawable  -->
+            <utils.GridLayoutExt1
+                android:background="@drawable/round_border3"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:alignmentMode="alignBounds"
+                android:columnCount="4"
+                android:padding="10dp">
+
+                <TextView
+                    android:background="#cfc"
+                    android:layout_gravity="fill_horizontal"
+                    android:text="longtext0" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="text1" />
+
+                <TextView
+                    android:background="#cfc"
+                    android:text="text2"
+                    android:textSize="30sp" />
+
+                <TextView android:text="text3" />
+
+                <TextView android:text="text4" />
+
+                <TextView
+                    android:background="#cfc"
+                    android:text="text5"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:text="text6" />
+
+                <TextView android:text="text7"
+                    android:background="#cfc"
+                    />
+                <TextView android:text="text8"
+                    android:background="#cfc" />
+                <TextView android:text="text9"
+                    />
+                <TextView android:text="text10"
+                    android:background="#cfc"/>
+
+            </utils.GridLayoutExt1>
+
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Custom Grid Layout (4 columns) with similar cell dimensions with dividers" />
+
+
+            <!--
+            TODO add attributes to contro beg/mid/end vertical and horizontal dividers
+            stroke width and color, drawable  -->
+            <utils.GridLayoutExt1
+                android:background="@drawable/round_border3"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:columnCount="4"
+                android:padding="10dp">
+
+                <TextView style="@style/gridText" android:text="text0" />
+                <TextView style="@style/gridText" android:text="text1" />
+                <TextView style="@style/gridText" android:text="text2"  />
+                <TextView style="@style/gridText" android:text="text3" />
+
+                <TextView style="@style/gridText" android:text="text4" />
+                <TextView style="@style/gridText" android:text="text5"  />
+                <TextView style="@style/gridText" android:text="text6" />
+                <TextView style="@style/gridText" android:text="text7" />
+
+                <TextView style="@style/gridText" android:text="text8" />
+                <TextView style="@style/gridText" android:text="text9" />
+                <TextView style="@style/gridText"  android:text="text10" />
+
+            </utils.GridLayoutExt1>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

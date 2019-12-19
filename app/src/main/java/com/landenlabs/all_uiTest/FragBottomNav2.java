@@ -21,7 +21,7 @@ public class FragBottomNav2 extends FragBottomNavBase {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, R.layout.frag_bottom_nav_2);
         this.setHasOptionsMenu(true);
-        setBarTitle("Two");
+        setBarTitle("Layouts with Dividers");
         return root;
     }
 

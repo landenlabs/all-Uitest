@@ -20,8 +20,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
@@ -33,10 +35,21 @@ import com.landenlabs.all_uiTest.R;
 
 /**
  * Custom TextView which has a background image which can be shifted left or right.
+ * Draws a show and adds and icon to the bottom.
  */
 @SuppressLint("AppCompatCustomView")
 public class TextViewExt1 extends TextView {
 
+    private BitmapShader bgShader;
+    private int bgWidthPx = 0;
+    private int bgHeightPx = 0;
+    private float shadowSize = 20f;
+
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Matrix mMatrix = new Matrix();
+    private float xOffsetPx = -1;
+
+    // ---------------------------------------------------------------------------------------------
     public TextViewExt1(Context context) {
         super(context);
     }
@@ -60,16 +73,12 @@ public class TextViewExt1 extends TextView {
         this.xOffsetPx = xOffsetPx;
     }
 
-    BitmapShader bgShader;
-    int bgWidthPx = 0;
-    int bgHeightPx = 0;
-
     /**
      * Create a clamped texture bitmap which can be shifted to fill view's background.
      */
     void init() {
         BitmapDrawable bgBitmap = (BitmapDrawable)
-                getResources().getDrawable(R.drawable.black_with_varrow, getContext().getTheme());
+                getResources().getDrawable(R.drawable.white_with_varrow3, getContext().getTheme());
         bgWidthPx = bgBitmap.getBitmap().getWidth();
         bgHeightPx = bgBitmap.getBitmap().getHeight();
         bgShader = new BitmapShader(bgBitmap.getBitmap(), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -80,10 +89,6 @@ public class TextViewExt1 extends TextView {
         drawBg(canvas);
         super.onDraw(canvas);
     }
-
-    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Matrix mMatrix = new Matrix();
-    private float xOffsetPx = -1;
 
     void drawBg(Canvas canvas) {
         if (bgShader == null) {
@@ -97,10 +102,56 @@ public class TextViewExt1 extends TextView {
         float xViewOffsetPx =  (xOffsetPx >= 0) ? (xOffsetPx - getWidth()/2f) : 0;
         float xShiftToCenterBg = (getWidth() - bgWidthPx)/2f;
         mMatrix.postTranslate(xShiftToCenterBg + xViewOffsetPx, 0);
-
+        mMatrix.postTranslate(shadowSize, shadowSize);
         bgShader.setLocalMatrix(mMatrix);
+
+        // paint.setStyle(Paint.Style.FILL);
         paint.setShader(bgShader);
-        canvas.drawPaint(paint);
+
+        RectF shadoeCoverage = new RectF(0, 0, getRight(), getBottom()-50);
+        setShadowTint(paint);
+        canvas.drawRect(shadoeCoverage, paint);
+
+        // Tint the background.
+        setBlueTint(paint);
+        RectF bgCoverage = new RectF(0, 0, getRight()-shadowSize, getBottom()-50-shadowSize);
+        mMatrix.postTranslate(-shadowSize, -shadowSize);
+        bgShader.setLocalMatrix(mMatrix);
+        canvas.drawRect(bgCoverage, paint);
         paint.setShader(null);
+    }
+
+    void setBlueTint(Paint paint) {
+        // Blue tint (red=.1, green=.3, blue=.6, alpha=1)
+        // Matrix single array, as follows: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t ]
+        // When applied to a color [r, g, b, a], the resulting color is computed as (after clamping) ;
+        //   R' = a*R + b*G + c*B + d*A + e;
+        //   G' = f*R + g*G + h*B + i*A + j;
+        //   B' = k*R + l*G + m*B + n*A + o;
+        //   A' = p*R + q*G + r*B + s*A + t;
+        float[] matrix = {
+                .1f, 0, 0, 0, 0,  // red
+                0, .3f, 0, 0, 0,  // green
+                0, 0, .6f, 0, 0,  // blue
+                1, 1, 1, 1, 1     // alpha
+        };
+        paint.setColorFilter(new ColorMatrixColorFilter(matrix));
+    }
+
+    void setShadowTint(Paint paint) {
+        // Blue tint (red=.1, green=.3, blue=.6, alpha=1)
+        // Matrix single array, as follows: [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t ]
+        // When applied to a color [r, g, b, a], the resulting color is computed as (after clamping) ;
+        //   R' = a*R + b*G + c*B + d*A + e;
+        //   G' = f*R + g*G + h*B + i*A + j;
+        //   B' = k*R + l*G + m*B + n*A + o;
+        //   A' = p*R + q*G + r*B + s*A + t;
+        float[] matrix = {
+                .3f, 0, 0, 0, 0,  // red
+                0, .3f, 0, 0, 0,  // green
+                0, 0, .3f, 0, 0,  // blue
+                0, 0, 0, .7f, 0   // alpha
+        };
+        paint.setColorFilter(new ColorMatrixColorFilter(matrix));
     }
 }

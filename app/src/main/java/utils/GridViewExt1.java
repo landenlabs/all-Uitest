@@ -90,11 +90,9 @@ public class GridViewExt1 extends GridView {
 
             paint.setStrokeWidth(vDividerWidthPx);
             int col = idx % columns;
-            if ((vDividers & BEG) == BEG) {
-                if (col == 0) {
-                    float vColumn = left - vDividerWidthPx/2;
-                    canvas.drawLine(vColumn, top+vOffsetTopPx, vColumn , bottom, paint);
-                }
+            if ((vDividers & BEG) == BEG && col == 0) {
+                float vColumn = left - vDividerWidthPx/2;
+                canvas.drawLine(vColumn, top+vOffsetTopPx, vColumn , bottom, paint);
             }
             if ((vDividers & MID) == MID) {
                 float vColumn = right - vDividerWidthPx/2;
@@ -102,11 +100,9 @@ public class GridViewExt1 extends GridView {
                     canvas.drawLine(vColumn, top+vOffsetTopPx, vColumn , bottom, paint);
                 }
             }
-            if ((vDividers & END) == END) {
-                if (col == columns-1) {
-                    float vColumn = right - vDividerWidthPx/2;
-                    canvas.drawLine(vColumn, top+vOffsetTopPx, vColumn , bottom, paint);
-                }
+            if ((vDividers & END) == END && col == columns-1) {
+                float vColumn = right - vDividerWidthPx/2;
+                canvas.drawLine(vColumn, top+vOffsetTopPx, vColumn , bottom, paint);
             }
         }
         super.dispatchDraw(canvas);
