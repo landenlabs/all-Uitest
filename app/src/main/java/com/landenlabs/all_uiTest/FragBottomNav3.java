@@ -202,7 +202,10 @@ public class FragBottomNav3 extends FragBottomNavBase implements View.OnTouchLis
     private void expandView(View view, ViewGroup parent, int expandStyle) {
         View rootView = view.getRootView();
 
-        gridLayout.setLock(true);
+        if (parent.getId() == gridLayout.getId()) {
+            // Prevent gridlayout from updating when children are expanded.
+            gridLayout.setLock(true);
+        }
         setClipChildren(parent, false);
 
         int numCol = WxHourlyData.WxData.columns();
