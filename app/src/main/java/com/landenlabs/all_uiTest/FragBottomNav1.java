@@ -18,14 +18,12 @@ package com.landenlabs.all_uiTest;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.BitmapShader;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -62,7 +60,6 @@ public class FragBottomNav1 extends FragBottomNavBase {
     private RadioGroup rg;
     private int nextElevation = 1;
     private static final long ANIM_MILLI = 2000;
-    private BitmapShader bgShader;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,12 +69,9 @@ public class FragBottomNav1 extends FragBottomNavBase {
         gridview = root.findViewById(R.id.page1_gridview);
         gridview.setClipChildren(false);
         gridview.setAdapter(new Page1Adapter(getActivitySafe()));
-        gridview.setClipChildren(false);
 
         overlay = root.findViewById(R.id.page1_overlay);
         rg = root.findViewById(R.id.page1_rg);
-
-
         return root;
     }
 
@@ -173,17 +167,23 @@ public class FragBottomNav1 extends FragBottomNavBase {
         view.invalidate();
     }
 
-    ViewGroup detailContainer;
     private void  openDetailView(View view, int pos) {
         int numCol = WxHourlyData.WxData.columns();
-        int numRow = WxHourlyData.WXDATA.length;
         int col = pos % numCol;
         int row = pos / numCol;
 
-        Rect hitRect = new Rect();
-        view.getHitRect(hitRect);
+        Rect viewRect = new Rect();
+        view.getGlobalVisibleRect(viewRect);
 
         overlay.removeAllViews();
+        Rect overlayRect = new Rect();
+        overlay.getGlobalVisibleRect(overlayRect);
+
+        Rect detailRect = new Rect(viewRect.left - overlayRect.left,
+                viewRect.top - overlayRect.top,
+                viewRect.right - overlayRect.left,
+                viewRect.bottom - overlayRect.top);
+
         TextViewExt1 detailTv = new TextViewExt1(getContext());
         detailTv.setText(WxHourlyData.WXDATA[row].getDetails(col));
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
@@ -200,21 +200,16 @@ public class FragBottomNav1 extends FragBottomNavBase {
         int detailHeightPx = ViewGroup.LayoutParams.WRAP_CONTENT;
         overlay.addView(detailTv, detailWidthPx, detailHeightPx);
 
-
-        if (col < numCol / 2) {
-            // Left side
-            detailTv.setX(gridview.getX() + hitRect.left);
-            detailTv.setY(gridview.getY() + hitRect.bottom - padPx);
-        } else {
-            // Right side
-            detailTv.setX(gridview.getX() + view.getRight() - detailWidthPx);
-            detailTv.setY(gridview.getY() + hitRect.bottom - padPx);
+        int margin = 10;
+        int detailLeft = Math.max(margin,  detailRect.centerX() - detailWidthPx / 2);
+        if (detailLeft + detailHeightPx > overlayRect.width() - margin) {
+            detailLeft = overlayRect.width() - detailHeightPx - margin;
         }
+        detailTv.setX(detailLeft);
+        detailTv.setY(detailRect.bottom - padPx);
 
-        float viewPosX = hitRect.centerX() + gridview.getX() - detailTv.getX();
-        Log.d("den", String.format("ViewX=%d + gridX=%.0f - detailX=%.0f == %.0f",
-                hitRect.centerX(),  gridview.getX(),  detailTv.getX(), viewPosX));
-        detailTv.setPointer(viewPosX);
+        float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2 + overlayRect.left);
+        detailTv.setPointer(markerCenterShiftX);
     }
 
     // =============================================================================================

@@ -22,6 +22,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
 
 import com.landenlabs.all_uiTest.R;
@@ -53,6 +54,8 @@ public class GridLayoutExt1 extends GridLayout {
     int vDividers = MID;
     int hDividers = MID;
 
+    boolean locked = false;
+
     // ---------------------------------------------------------------------------------------------
     public GridLayoutExt1(Context context) {
         this(context, null);
@@ -67,10 +70,39 @@ public class GridLayoutExt1 extends GridLayout {
         init();
     }
 
+    /**
+     * Lock to prevent layout changes while expanding a cell.
+     */
+    public void setLock(boolean lock) {
+        this.locked = lock;
+    }
+
+    @Override
+    protected void onMeasure(int widthSpec, int heightSpec) {
+        if (!locked) {
+            super.onMeasure(widthSpec, heightSpec);
+        }
+    }
+
+    @Override
+    public void requestLayout() {
+        if (!locked) {
+            super.requestLayout();
+        }
+    }
+
+    @Override
+    public void updateViewLayout(View view, ViewGroup.LayoutParams params) {
+        if (!locked) {
+            super.updateViewLayout(view, params);
+        }
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
+        // Draw dividers first, draw cells last (on top).
         drawMaxCellDividers(canvas);
+        super.dispatchDraw(canvas);
     }
 
     /**

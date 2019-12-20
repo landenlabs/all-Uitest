@@ -1,23 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/page1_bg"
     tools:context=".FragBottomNav3">
 
-   <ImageView
-       android:layout_width="200dp"
-       android:layout_height="200dp"
-       android:layout_gravity="center"
-       app:srcCompat="@drawable/ic_android_black_24dp"/>
+    <TextView
+        android:id="@+id/page3_btn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Action performed when tapping on grid cells"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
-   <com.google.android.material.floatingactionbutton.FloatingActionButton
-       android:id="@+id/fab"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="bottom|end"
-       android:layout_margin="16dp"
-       app:srcCompat="@android:drawable/ic_dialog_email" />
+    <RadioGroup
+        android:id="@+id/page3_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/page3_btn_title"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-</FrameLayout>
+        <RadioButton
+            android:id="@+id/page1_tagRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:checked="true"
+            android:text="tag" />
+
+        <RadioButton
+            android:id="@+id/page1_grow1RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="Grow\nSize" />
+
+        <RadioButton
+            android:id="@+id/page1_grow2RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="Grow\nScale" />
+
+        <RadioButton
+            android:id="@+id/page1_detailsRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="Details" />
+
+        <RadioButton
+            android:id="@+id/page1_resetRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="reset" />
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/page3_rg"
+        android:layout_marginTop="10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/page3_scroll_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TableLayout with TableRow and LinearLayout row with auto dividers"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <!--
+                  android:stretchColumns="*"
+                -->
+                <TableLayout
+                    android:id="@+id/page3_tableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_border3"
+                    android:divider="@drawable/hline"
+                    android:padding="10dp"
+                    android:showDividers="middle|end">
+
+                    <TableRow
+                        android:baselineAligned="false"
+                        android:divider="@drawable/vline"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:ellipsize="none"
+                            android:gravity="bottom"
+                            android:singleLine="true"
+                            android:text="longertext0" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/scr_hourly" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:src="@drawable/scr_hourly" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:src="@drawable/scr_hourly" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:ellipsize="none"
+                            android:singleLine="true"
+                            android:text="text2"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:baselineAligned="false"
+                        android:divider="@drawable/vline"
+                        android:orientation="horizontal"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:text="longtext1" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/scr_hourly" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:text="text3" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:text="text4444"
+                            android:textSize="30sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:text="text5" />
+                    </LinearLayout>
+
+                </TableLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white" />
+
+                <TextView
+                    android:id="@+id/gridlayoutTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Custom Grid Layout (4 columns) with similar cell dimensions with dividers"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+
+                <!--
+                TODO add attributes to contro beg/mid/end vertical and horizontal dividers
+                stroke width and color, drawable  -->
+                <utils.GridLayoutExt1
+                    android:id="@+id/page3_gridlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_border3"
+                    android:columnCount="4"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text0" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text1" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text2" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text3" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text4" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text5" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text6" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text7" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text8" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text9" />
+
+                    <TextView
+                        style="@style/gridText"
+                        android:text="text10" />
+
+                </utils.GridLayoutExt1>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp" />
+
+            </LinearLayout>
+
+            <!-- Last item so it is on top  -->
+            <FrameLayout
+                android:id="@+id/page3_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

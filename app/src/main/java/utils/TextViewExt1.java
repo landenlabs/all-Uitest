@@ -47,7 +47,7 @@ public class TextViewExt1 extends TextView {
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Matrix mMatrix = new Matrix();
-    private float xOffsetPx = -1;
+    private float xOffsetPx = Float.NaN;
 
     // ---------------------------------------------------------------------------------------------
     public TextViewExt1(Context context) {
@@ -67,7 +67,9 @@ public class TextViewExt1 extends TextView {
     }
 
     /**
-     * Set the relative X pixel position where pointer (horzonatal shift of backbround) should appear.
+     * Set the relative X pixel position where pointer (horizonatal shift of background) should appear.
+     * Offset zero assumes center background.
+     * Value is -width/2 ... width/2
      */
     public void setPointer(float xOffsetPx) {
         this.xOffsetPx = xOffsetPx;
@@ -99,7 +101,8 @@ public class TextViewExt1 extends TextView {
         // views bounds and then shift the background by the optional user provided
         // view x pixel offset.
         mMatrix.reset();
-        float xViewOffsetPx =  (xOffsetPx >= 0) ? (xOffsetPx - getWidth()/2f) : 0;
+     //   float xViewOffsetPx =  (xOffsetPx != Float.NaN) ? (xOffsetPx - getWidth()/2f) : 0;
+        float xViewOffsetPx =  (xOffsetPx != Float.NaN) ? xOffsetPx : 0;
         float xShiftToCenterBg = (getWidth() - bgWidthPx)/2f;
         mMatrix.postTranslate(xShiftToCenterBg + xViewOffsetPx, 0);
         mMatrix.postTranslate(shadowSize, shadowSize);

@@ -8,11 +8,10 @@
             android:viewportWidth="100">
 
             <garoup android:name="grad">
-                <path
-                    android:pathData="M1,1 H99 V99 H1Z">
+                <path android:pathData="M1,1 H99 V99 H1Z">
                     <aapt:attr name="android:fillColor">
                         <gradient
-                            android:endColor="#ff00"
+                            android:endColor="#ffff"
                             android:endX="0"
                             android:endY="99"
                             android:startColor="#0fff"
