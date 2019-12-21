@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
-                addShortcut(bottomNavigationView);
+                if (bottomNavigationView != null) {
+                    addShortcut(bottomNavigationView);
+                }
             }
         });
 
