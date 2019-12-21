@@ -35,7 +35,7 @@ import com.landenlabs.all_uiTest.R;
 
 /**
  * Custom TextView which has a background image which can be shifted left or right.
- * Draws a show and adds and icon to the bottom.
+ * Draws a shadow and adds and icon to the bottom.
  */
 @SuppressLint("AppCompatCustomView")
 public class TextViewExt1 extends TextView {
@@ -101,8 +101,7 @@ public class TextViewExt1 extends TextView {
         // views bounds and then shift the background by the optional user provided
         // view x pixel offset.
         mMatrix.reset();
-     //   float xViewOffsetPx =  (xOffsetPx != Float.NaN) ? (xOffsetPx - getWidth()/2f) : 0;
-        float xViewOffsetPx =  (xOffsetPx != Float.NaN) ? xOffsetPx : 0;
+        float xViewOffsetPx =  Float.isNaN(xOffsetPx) ? 0 : xOffsetPx;
         float xShiftToCenterBg = (getWidth() - bgWidthPx)/2f;
         mMatrix.postTranslate(xShiftToCenterBg + xViewOffsetPx, 0);
         mMatrix.postTranslate(shadowSize, shadowSize);
@@ -133,10 +132,10 @@ public class TextViewExt1 extends TextView {
         //   B' = k*R + l*G + m*B + n*A + o;
         //   A' = p*R + q*G + r*B + s*A + t;
         float[] matrix = {
-                .1f, 0, 0, 0, 0,  // red
-                0, .3f, 0, 0, 0,  // green
-                0, 0, .6f, 0, 0,  // blue
-                1, 1, 1, 1, 1     // alpha
+                0, 0, 0, 0, 0,          // red
+                0, 0, 0, 0, 0,          // green
+                .1f, .3f, .6f, 0, 0,    // blue
+                1, 1, 1, 1, 1           // alpha
         };
         paint.setColorFilter(new ColorMatrixColorFilter(matrix));
     }

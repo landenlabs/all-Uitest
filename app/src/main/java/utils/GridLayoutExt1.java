@@ -37,6 +37,7 @@ import com.landenlabs.all_uiTest.R;
  * <p>
  * </com.landenlabs.all_UiDemo.Util.GridLayoutExt1>
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class GridLayoutExt1 extends GridLayout {
 
     private Paint vPaint;
@@ -144,7 +145,6 @@ public class GridLayoutExt1 extends GridLayout {
                 }
             }
             for (int col = 0; col < colCnt; col++) {
-                int idx = row * colCnt + col;
                 Rect colRect = cell[col];
 
                 // Vertical

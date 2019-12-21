@@ -40,8 +40,6 @@ import androidx.transition.ChangeTransform;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import utils.GridLayoutExt1;
 import utils.TextViewExt1;
 import utils.Translation;
@@ -49,22 +47,21 @@ import utils.Translation;
 /**
  * A simple [Fragment] subclass.
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchListener {
-    FloatingActionButton fab;
-
-    ViewGroup scrollHolder;
-    TableLayout tableLayout;
-    GridLayoutExt1 gridLayout;
+    private ViewGroup scrollHolder;
+    private TableLayout tableLayout;
+    private GridLayoutExt1 gridLayout;
 
     private FrameLayout overlay;
     private RadioGroup rg;
     private int nextElevation = 1;
     private static final long ANIM_MILLI = 2000;
-    ColorStateList colorRed = new ColorStateList(
+    private ColorStateList colorRed = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xffff0000 }    // RED
     );
-    ColorStateList colorGreen = new ColorStateList(
+    private ColorStateList colorGreen = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
@@ -91,7 +88,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
     private void resetUI() {
         ViewGroup parent = (ViewGroup)root.getParent();
         parent.removeAllViews();
-        root = (ViewGroup)parent.inflate(getContext(), R.layout.frag_bottom_nav_3, parent);
+        root = (ViewGroup) View.inflate(getContext(), R.layout.frag_bottom_nav_3, parent);
 
         nextElevation = 0;
         initUI();
@@ -161,7 +158,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
     }
 
     private void doAction(View view, ViewGroup parent) {
-        overlay.removeAllViews();;
+        overlay.removeAllViews();
         switch (rg.getCheckedRadioButtonId()) {
             case R.id.page1_tagRB:
                 if (view.getBackground() == null) {
@@ -292,10 +289,9 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         detailTv.setX(detailLeft);
         detailTv.setY(detailRect.bottom - padPx);
 
-        float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2 + overlayRect.left);
+        float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2f + overlayRect.left);
         detailTv.setPointer(markerCenterShiftX);
     }
-    static int foo = -400;
 
     private int getNumCol(ViewGroup parent) {
         if (parent instanceof TableLayout) {

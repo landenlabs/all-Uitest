@@ -52,7 +52,6 @@ import utils.Translation;
 /**
  * Sample fragment demonstrate GridView with expanding cell and callouts.
  */
-@SuppressWarnings("FieldCanBeLocal")
 public class FragGridViewDemo extends FragBottomNavBase {
 
     private GridView gridview;
@@ -75,17 +74,17 @@ public class FragGridViewDemo extends FragBottomNavBase {
         return root;
     }
 
-    ColorStateList colorRed = new ColorStateList(
+    private ColorStateList colorRed = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xffff0000 }    // RED
     );
-    ColorStateList colorGreen = new ColorStateList(
+    private ColorStateList colorGreen = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
 
     private void doAction(View view, int pos) {
-        overlay.removeAllViews();;
+        overlay.removeAllViews();
         switch (rg.getCheckedRadioButtonId()) {
             case R.id.page1_tagRB:
                 if (view.getBackground() == null) {
@@ -208,7 +207,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
         detailTv.setX(detailLeft);
         detailTv.setY(detailRect.bottom - padPx);
 
-        float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2 + overlayRect.left);
+        float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2f + overlayRect.left);
         detailTv.setPointer(markerCenterShiftX);
     }
 

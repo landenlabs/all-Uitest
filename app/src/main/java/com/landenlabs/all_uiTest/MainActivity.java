@@ -42,6 +42,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {
 
     androidx.appcompat.widget.Toolbar toolbar;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         String action = getIntent() != null ? getIntent().getAction() : null;
         if (action1.equals(action)) {
-            // Show the correct fragment
+            // TODO - Implement shortcut intent launching.
         }
     }
 
