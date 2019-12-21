@@ -80,7 +80,7 @@ public class TextViewExt1 extends TextView {
      */
     void init() {
         BitmapDrawable bgBitmap = (BitmapDrawable)
-                getResources().getDrawable(R.drawable.white_with_varrow3, getContext().getTheme());
+                getResources().getDrawable(R.drawable.white_varrow, getContext().getTheme());
         bgWidthPx = bgBitmap.getBitmap().getWidth();
         bgHeightPx = bgBitmap.getBitmap().getHeight();
         bgShader = new BitmapShader(bgBitmap.getBitmap(), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);

@@ -30,7 +30,7 @@ import androidx.core.view.MenuCompat;
 /**
  * A simple [Fragment] subclass.
  */
-public class FragBottomNav2 extends FragBottomNavBase {
+public class FragDividerDemo extends FragBottomNavBase {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

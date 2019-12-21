@@ -11,7 +11,7 @@
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/jetpack_logo"/>
+        android:src="@drawable/ic_launcher_foreground"/>
 
     <TextView
         android:layout_width="match_parent"

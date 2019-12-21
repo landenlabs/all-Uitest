@@ -18,7 +18,11 @@ package com.landenlabs.all_uiTest;
 
 import java.util.Locale;
 
-public class WxHourlyData {
+
+/**
+ * Test data for GridView
+ */
+class TestData {
 
     //  3PM | 2° | icon | drop none
     static final int COL_TIME = 0;
@@ -40,7 +44,7 @@ public class WxHourlyData {
             this.rainPercent = rainPercent;
         }
         String getDetails(int col) {
-            return String.format(Locale.US, "Details for column %d\nWeather\nStuff\nLast Line", col);
+            return String.format(Locale.US, "Details for col %d\nSome\ninformation\nabout cell", col);
         }
         static int columns() { return 4; }
     }

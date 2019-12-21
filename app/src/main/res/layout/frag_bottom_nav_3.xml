@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/page1_bg"
-    tools:context=".FragBottomNav3">
+    tools:context=".FragExpandDemo">
 
     <TextView
         android:id="@+id/page3_btn_title"

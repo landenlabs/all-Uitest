@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         = new ShortcutInfo.Builder(this, navDestination.getLabel().toString())
                         .setShortLabel(navDestination.getLabel())
                         .setLongLabel(navDestination.getLabel())
-                        .setIcon(Icon.createWithResource(this, R.drawable.ic_android_black_24dp))
+                        .setIcon(Icon.createWithResource(this, R.drawable.scr_hourly))
                         .setIntent(newTaskIntent)
                         .build();
                 shortcutList.add(postShortcut);

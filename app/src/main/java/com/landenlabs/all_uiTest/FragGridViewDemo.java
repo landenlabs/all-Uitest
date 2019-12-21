@@ -53,7 +53,7 @@ import utils.Translation;
  * Sample fragment demonstrate GridView with expanding cell and callouts.
  */
 @SuppressWarnings("FieldCanBeLocal")
-public class FragBottomNav1 extends FragBottomNavBase {
+public class FragGridViewDemo extends FragBottomNavBase {
 
     private GridView gridview;
     private FrameLayout overlay;
@@ -64,7 +64,7 @@ public class FragBottomNav1 extends FragBottomNavBase {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, R.layout.frag_bottom_nav_1);
-        setBarTitle("Hourly Demo #1");
+        setBarTitle("GridView Expanding Cell Demo");
 
         gridview = root.findViewById(R.id.page1_gridview);
         gridview.setClipChildren(false);
@@ -122,8 +122,8 @@ public class FragBottomNav1 extends FragBottomNavBase {
     private void expandView(View view, int pos, int expandStyle) {
         View rootView = view.getRootView();
 
-        int numCol = WxHourlyData.WxData.columns();
-        int numRow = WxHourlyData.WXDATA.length;
+        int numCol = TestData.WxData.columns();
+        int numRow = TestData.WXDATA.length;
         int col = pos % numCol;
         int row = pos / numCol;
 
@@ -168,7 +168,7 @@ public class FragBottomNav1 extends FragBottomNavBase {
     }
 
     private void  openDetailView(View view, int pos) {
-        int numCol = WxHourlyData.WxData.columns();
+        int numCol = TestData.WxData.columns();
         int col = pos % numCol;
         int row = pos / numCol;
 
@@ -185,7 +185,7 @@ public class FragBottomNav1 extends FragBottomNavBase {
                 viewRect.bottom - overlayRect.top);
 
         TextViewExt1 detailTv = new TextViewExt1(getContext());
-        detailTv.setText(WxHourlyData.WXDATA[row].getDetails(col));
+        detailTv.setText(TestData.WXDATA[row].getDetails(col));
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
 
@@ -230,7 +230,7 @@ public class FragBottomNav1 extends FragBottomNavBase {
         }
 
         public int getCount() {
-            return WxHourlyData.size();
+            return TestData.size();
         }
 
         public Object getItem(int position) {
@@ -247,20 +247,20 @@ public class FragBottomNav1 extends FragBottomNavBase {
             GridView.LayoutParams lp = new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, rowHeightPx);
             int topCellPadPx = 0;
 
-            int row = position / WxHourlyData.WxData.columns();
-            switch (position % WxHourlyData.WxData.columns()) {
+            int row = position / TestData.WxData.columns();
+            switch (position % TestData.WxData.columns()) {
                 default:
-                case WxHourlyData.COL_TIME:
-                    view = makeText(WxHourlyData.WXDATA[row].time, position);
+                case TestData.COL_TIME:
+                    view = makeText(TestData.WXDATA[row].time, position);
                     break;
-                case WxHourlyData.COL_TEMP:
-                    view = makeText(WxHourlyData.WXDATA[row].temp, position);
+                case TestData.COL_TEMP:
+                    view = makeText(TestData.WXDATA[row].temp, position);
                     break;
-                case WxHourlyData.COL_WxICON:
-                    view = makeImage(WxHourlyData.WXDATA[row].wxicon, position);
+                case TestData.COL_WxICON:
+                    view = makeImage(TestData.WXDATA[row].wxicon, position);
                     break;
-                case WxHourlyData.COL_RAIN:
-                    view = makeRain(WxHourlyData.WXDATA[row].rainPercent, position);
+                case TestData.COL_RAIN:
+                    view = makeRain(TestData.WXDATA[row].rainPercent, position);
                     topCellPadPx = 50;  // Special case to force icon to slide down.
                     break;
             }

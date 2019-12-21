@@ -49,7 +49,7 @@ import utils.Translation;
 /**
  * A simple [Fragment] subclass.
  */
-public class FragBottomNav3 extends FragBottomNavBase implements View.OnTouchListener {
+public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchListener {
     FloatingActionButton fab;
 
     ViewGroup scrollHolder;
@@ -208,8 +208,8 @@ public class FragBottomNav3 extends FragBottomNavBase implements View.OnTouchLis
         }
         setClipChildren(parent, false);
 
-        int numCol = WxHourlyData.WxData.columns();
-        int numRow = WxHourlyData.WXDATA.length;
+        int numCol = TestData.WxData.columns();
+        int numRow = TestData.WXDATA.length;
         int col = (Integer)view.getTag(R.id.tag_col);
         int row = (Integer)view.getTag(R.id.tag_row);
 
@@ -269,7 +269,7 @@ public class FragBottomNav3 extends FragBottomNavBase implements View.OnTouchLis
                 viewRect.bottom - overlayRect.top);
 
         TextViewExt1 detailTv = new TextViewExt1(getContext());
-        detailTv.setText(WxHourlyData.WXDATA[row].getDetails(col));
+        detailTv.setText(TestData.WXDATA[row].getDetails(col));
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
 
