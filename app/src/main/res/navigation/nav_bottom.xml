@@ -6,19 +6,19 @@
     app:startDestination="@id/fragGridViewDemo">
 
     <fragment
-        android:label="Home"
+        android:label="@string/bottom_nav_frag_gridview"
         android:id="@+id/fragGridViewDemo"
         android:name="com.landenlabs.all_uiTest.FragGridViewDemo"
         tools:layout="@layout/frag_gridview_demo"/>
 
     <fragment
-        android:label="Page2"
+        android:label="@string/bottom_nav_frag_divider"
         android:id="@+id/fragDividerDemo"
         android:name="com.landenlabs.all_uiTest.FragDividerDemo"
         tools:layout="@layout/frag_divider_demo"/>
 
     <fragment
-        android:label="Page3"
+        android:label="@string/bottom_nav_expand"
         android:id="@+id/fragExpandDemo"
         android:name="com.landenlabs.all_uiTest.FragExpandDemo"
         tools:layout="@layout/frag_expand_demo"/>

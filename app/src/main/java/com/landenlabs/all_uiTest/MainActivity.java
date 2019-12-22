@@ -21,6 +21,7 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -40,32 +41,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {
 
+    static final String TAG = "UiTest";
+
     androidx.appcompat.widget.Toolbar toolbar;
-    NavController navController;
+    NavController navSideController;
+    NavController navBotController;
+    String intentAction = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navController = Navigation.findNavController(this, R.id.sideNavFragment);
+        navSideController = Navigation.findNavController(this, R.id.sideNavFragment);
+
 
         // Set up ActionBar
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+        NavigationUI.setupActionBarWithNavController(this, navSideController, drawerLayout);
 
         // Set up navigation menu
         NavigationView navigationView = findViewById(R.id.navigationView);
         NavigationMenuView navMenuView = (NavigationMenuView) navigationView.getChildAt(0);
         navMenuView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL));
-        NavigationUI.setupWithNavController(navigationView, navController);
+        NavigationUI.setupWithNavController(navigationView, navSideController);
 
         navigationView.post(new Runnable() {
             @Override
@@ -78,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        String action = getIntent() != null ? getIntent().getAction() : null;
-        if (action1.equals(action)) {
+        intentAction = getIntent() != null ? getIntent().getAction() : null;
+        Log.d(TAG, String.format(Locale.US, "indent action=%s", intentAction));
+        if (action1.equals(intentAction)) {
             // TODO - Implement shortcut intent launching.
         }
     }
@@ -111,14 +119,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ShortcutManager shortcutManager = this.getSystemService(ShortcutManager.class);
-        Iterator<NavDestination> navIT =  navController.getGraph().iterator();
+        navBotController = Navigation.findNavController(this, R.id.bottomNavFragment);
+        Iterator<NavDestination> navIT =  navBotController.getGraph().iterator();
         List<ShortcutInfo> shortcutList = new ArrayList<>();
         while (navIT.hasNext()) {
             NavDestination navDestination = navIT.next();
             MenuItem menuItem = menus.get(navDestination.getLabel());
             if (menuItem != null) {
                 Intent newTaskIntent = new Intent(this, MainActivity.class);
-                newTaskIntent.setAction(navDestination.getNavigatorName());
+                newTaskIntent.setAction(navDestination.getLabel().toString());
                 newTaskIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                 ShortcutInfo postShortcut
@@ -129,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
                         .setIntent(newTaskIntent)
                         .build();
                 shortcutList.add(postShortcut);
+
+                if (navDestination.getLabel().equals(intentAction)) {
+                    navBotController.navigate(navDestination.getId());
+                }
             }
         }
 

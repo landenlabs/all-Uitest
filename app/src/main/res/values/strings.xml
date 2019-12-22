@@ -2,9 +2,10 @@
     <string name="app_name">all-UiTest</string>
     <string name="bottomnav_menu_title">UI Test Pages</string>
     <string name="about_menu_title">About</string>
-    <string name="bottom_nav_title_home">Expanding</string>
-    <string name="bottom_nav_title_two">Dividers</string>
-    <string name="bottom_nav_title_three">More</string>
+
+    <string name="bottom_nav_frag_gridview">Expanding</string>
+    <string name="bottom_nav_frag_divider">Dividers</string>
+    <string name="bottom_nav_expand">More</string>
 
     <string name="about_text">Demonstrate Layout cell scaling animation.\n\nSource code on github at https://landenlabs.com/android\n\nCopyright Dennis Lang 2019</string>
     <string name="side_nav_header_1">All Demo</string>

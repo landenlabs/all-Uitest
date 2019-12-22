@@ -4,15 +4,15 @@
     <item
         android:id="@+id/fragGridViewDemo"
         android:icon="@drawable/tab_gridview"
-        android:title="@string/bottom_nav_title_home"/>
+        android:title="@string/bottom_nav_frag_gridview"/>
     <item
         android:id="@+id/fragDividerDemo"
         android:icon="@drawable/tab_divider"
-        android:title="@string/bottom_nav_title_two"/>
+        android:title="@string/bottom_nav_frag_divider"/>
     <item
         android:id="@+id/fragExpandDemo"
         android:icon="@drawable/tab_table"
-        android:title="@string/bottom_nav_title_three"/>
+        android:title="@string/bottom_nav_expand"/>
 
     <!-- Bottom menu only supports 5 items -->
 <!--
