@@ -144,7 +144,7 @@
                 android:textSize="20sp" />
 
             <!--
-            TODO add attributes to contro beg/mid/end vertical and horizontal dividers
+            TODO add attributes to control beg/mid/end vertical and horizontal dividers
             stroke width and color, drawable  -->
             <utils.GridLayoutExt1
                 android:layout_width="wrap_content"

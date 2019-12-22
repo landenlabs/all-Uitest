@@ -66,7 +66,7 @@ public class GridViewExt1 extends GridView {
     }
 
     private void init() {
-        // TODO - can thes properties from View attributes.
+        // TODO - get these properties from View attributes.
         paint.setColor(Color.WHITE);
         vDividerWidthPx = getResources().getDimension(R.dimen.grid_v_divider);
         hDividerWidthPx = getResources().getDimension(R.dimen.grid_h_divider);
