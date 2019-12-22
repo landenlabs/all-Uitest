@@ -26,8 +26,8 @@
         android:layout_gravity="bottom"
         android:background="@color/colorPrimary"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/text_light"
+        app:itemTextColor="@color/text_light"
         app:menu="@menu/menu_bottom" />
 
     <!-- Alternate bottom nav

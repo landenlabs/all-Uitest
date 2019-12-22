@@ -35,13 +35,13 @@
         android:id="@+id/page1_btn_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/text_on_bg"
         android:textSize="20sp"
         android:text="Action performed when tapping on grid cells"
         />
     <RadioGroup
         android:id="@+id/page1_rg"
-        android:background="@color/white"
+        android:background="@color/text_light"
         android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
