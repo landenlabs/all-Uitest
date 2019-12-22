@@ -25,13 +25,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 /**
- * A simple [Fragment] subclass.
+ * Display about information.
  */
-public class InfoFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frag_info, container, false);
+        // Inflate the layout for this fragmenta
+        return inflater.inflate(R.layout.frag_about, container, false);
     }
 }

@@ -34,7 +34,7 @@ public class FragDividerDemo extends FragBottomNavBase {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, R.layout.frag_bottom_nav_2);
+        super.onCreateView(inflater, container, R.layout.frag_divider_demo);
         this.setHasOptionsMenu(true);
         setBarTitle("Layouts with Dividers");
         return root;

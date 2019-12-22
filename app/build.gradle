@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 // apply plugin: 'kotlin-android'
-
 // apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -10,11 +9,15 @@ android {
         applicationId "com.landenlabs.all_uitest"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 101
+        versionName "1.01"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
     }
+    applicationVariants.all { variant ->
+        variant.resValue "string", "versionName", "version " + variant.versionName
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,9 +39,8 @@ dependencies {
 //    implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.kotlinNavigationVersion"
 //    implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.kotlinNavigationVersion"
 
-
-    implementation 'androidx.navigation:navigation-fragment:2.2.0-rc03'
-    implementation 'androidx.navigation:navigation-ui:2.2.0-rc03'
+    implementation 'androidx.navigation:navigation-fragment:2.2.0-rc04'
+    implementation 'androidx.navigation:navigation-ui:2.2.0-rc04'
 
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"

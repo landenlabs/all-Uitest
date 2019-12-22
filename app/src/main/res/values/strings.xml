@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">all-UiTest</string>
-    <string name="bottomnav_menu_title">BottomNav</string>
-    <string name="info_menu_title">About</string>
+    <string name="bottomnav_menu_title">UI Test Pages</string>
+    <string name="about_menu_title">About</string>
     <string name="bottom_nav_title_home">Expanding</string>
     <string name="bottom_nav_title_two">Dividers</string>
     <string name="bottom_nav_title_three">More</string>
 
-    <string name="info_text">Demonstrate Layout cell scaling animation.\n\nSource code on github at https://landenlabs.com/android\n\nCopyright Dennis Lang 2019</string>
+    <string name="about_text">Demonstrate Layout cell scaling animation.\n\nSource code on github at https://landenlabs.com/android\n\nCopyright Dennis Lang 2019</string>
     <string name="side_nav_header_1">All Demo</string>
-    <string name="nav_header_2">Navigation</string>
+    <string name="nav_header_2">v1.1 Dec-2019</string>
 
     <string name="setting_menu_1">Settings Menu 1</string>
     <string name="setting_menu_2">Settings Menu 2</string>

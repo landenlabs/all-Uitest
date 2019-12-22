@@ -12,8 +12,8 @@
         tools:layout="@layout/frag_bottom_nav_main" />
 
     <fragment
-        android:id="@+id/infoFragment"
-        android:name="com.landenlabs.all_uiTest.InfoFragment"
-        android:label="Info"
-        tools:layout="@layout/frag_info" />
+        android:id="@+id/aboutFragment"
+        android:name="com.landenlabs.all_uiTest.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/frag_about" />
 </navigation>

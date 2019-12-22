@@ -68,7 +68,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, R.layout.frag_bottom_nav_3);
+        super.onCreateView(inflater, container, R.layout.frag_expand_demo);
         setBarVisibility(View.GONE);
         initUI();
 
@@ -88,7 +88,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
     private void resetUI() {
         ViewGroup parent = (ViewGroup)root.getParent();
         parent.removeAllViews();
-        root = (ViewGroup) View.inflate(getContext(), R.layout.frag_bottom_nav_3, parent);
+        root = (ViewGroup) View.inflate(getContext(), R.layout.frag_expand_demo, parent);
 
         nextElevation = 0;
         initUI();
@@ -163,7 +163,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
             case R.id.page1_tagRB:
                 if (view.getBackground() == null) {
                     // Draw animated gradient of two possible colors.
-                    view.setBackgroundResource(R.drawable.anim_grady1);
+                    view.setBackgroundResource(R.drawable.bg_anim_gradient);
                     view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
                     ((AnimatedVectorDrawable) view.getBackground()).start();
                 } else {
@@ -240,7 +240,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         }
 
         // Change color and elevation
-        view.setBackgroundResource(R.drawable.red2);
+        view.setBackgroundResource(R.drawable.bg_red);
         view.setElevation(nextElevation);
         nextElevation += 8;
 

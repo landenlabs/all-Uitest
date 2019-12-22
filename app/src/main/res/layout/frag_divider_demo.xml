@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--suppress AndroidDomInspection -->
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidDomInspection -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_page"
     android:orientation="vertical"
-    android:background="@drawable/page1_bg"
     tools:context=".FragDividerDemo">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="TableLayout with TableRow and LinearLayout row with auto dividers" />
+                android:text="TableLayout with TableRow and LinearLayout row with auto dividers"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <!--
               android:stretchColumns="*"
@@ -32,14 +32,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@drawable/round_border3"
-                android:divider="@drawable/hline"
+                android:background="@drawable/bg_round"
+                android:divider="@drawable/divider_hline"
                 android:padding="10dp"
                 android:showDividers="middle|end">
 
                 <TableRow
                     android:baselineAligned="false"
-                    android:divider="@drawable/vline"
+                    android:divider="@drawable/divider_vline"
                     android:showDividers="middle">
 
                     <TextView
@@ -56,21 +56,21 @@
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/scr_hourly" />
+                        android:src="@drawable/cell_icon" />
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
-                        android:src="@drawable/scr_hourly" />
+                        android:src="@drawable/cell_icon" />
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
-                        android:src="@drawable/scr_hourly" />
+                        android:src="@drawable/cell_icon" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:baselineAligned="false"
-                    android:divider="@drawable/vline"
+                    android:divider="@drawable/divider_vline"
                     android:orientation="horizontal"
                     android:showDividers="middle">
 
@@ -103,7 +103,7 @@
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/scr_hourly" />
+                        android:src="@drawable/cell_icon" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -130,34 +130,35 @@
 
             </TableLayout>
 
-            <View android:layout_width="match_parent"
+            <View
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/white" />
 
             <TextView
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Custom Grid Layout (4 columns) with random cell dimensions with dividers" />
+                android:text="Custom Grid Layout (4 columns) with random cell dimensions with dividers"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <!--
             TODO add attributes to contro beg/mid/end vertical and horizontal dividers
             stroke width and color, drawable  -->
             <utils.GridLayoutExt1
-                android:background="@drawable/round_border3"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:alignmentMode="alignBounds"
+                android:background="@drawable/bg_round"
                 android:columnCount="4"
                 android:padding="10dp">
 
                 <TextView
-                    android:background="#cfc"
                     android:layout_gravity="fill_horizontal"
+                    android:background="#cfc"
                     android:text="longtext0" />
 
                 <TextView
@@ -182,57 +183,92 @@
                     android:layout_gravity="end"
                     android:text="text6" />
 
-                <TextView android:text="text7"
+                <TextView
                     android:background="#cfc"
-                    />
-                <TextView android:text="text8"
-                    android:background="#cfc" />
-                <TextView android:text="text9"
-                    />
-                <TextView android:text="text10"
-                    android:background="#cfc"/>
+                    android:text="text7" />
+
+                <TextView
+                    android:background="#cfc"
+                    android:text="text8" />
+
+                <TextView android:text="text9" />
+
+                <TextView
+                    android:background="#cfc"
+                    android:text="text10" />
 
             </utils.GridLayoutExt1>
 
 
-            <View android:layout_width="match_parent"
+            <View
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/white" />
 
             <TextView
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Custom Grid Layout (4 columns) with similar cell dimensions with dividers" />
+                android:text="Custom Grid Layout (4 columns) with similar cell dimensions with dividers"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
 
             <!--
-            TODO add attributes to contro beg/mid/end vertical and horizontal dividers
+            TODO add attributes to control beg/mid/end vertical and horizontal dividers
             stroke width and color, drawable  -->
             <utils.GridLayoutExt1
-                android:background="@drawable/round_border3"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="20dp"
+                android:background="@drawable/bg_round"
                 android:columnCount="4"
                 android:padding="10dp">
 
-                <TextView style="@style/gridText" android:text="text0" />
-                <TextView style="@style/gridText" android:text="text1" />
-                <TextView style="@style/gridText" android:text="text2"  />
-                <TextView style="@style/gridText" android:text="text3" />
+                <TextView
+                    style="@style/gridText"
+                    android:text="text0" />
 
-                <TextView style="@style/gridText" android:text="text4" />
-                <TextView style="@style/gridText" android:text="text5"  />
-                <TextView style="@style/gridText" android:text="text6" />
-                <TextView style="@style/gridText" android:text="text7" />
+                <TextView
+                    style="@style/gridText"
+                    android:text="text1" />
 
-                <TextView style="@style/gridText" android:text="text8" />
-                <TextView style="@style/gridText" android:text="text9" />
-                <TextView style="@style/gridText"  android:text="text10" />
+                <TextView
+                    style="@style/gridText"
+                    android:text="text2" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text3" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text4" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text5" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text6" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text7" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text8" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text9" />
+
+                <TextView
+                    style="@style/gridText"
+                    android:text="text10" />
 
             </utils.GridLayoutExt1>
         </LinearLayout>

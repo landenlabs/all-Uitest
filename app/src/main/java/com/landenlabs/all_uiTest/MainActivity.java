@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navController = Navigation.findNavController(this, R.id.mainNavFragment);
+        navController = Navigation.findNavController(this, R.id.sideNavFragment);
 
         // Set up ActionBar
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         return NavigationUI.navigateUp(
-                Navigation.findNavController(this, R.id.mainNavFragment), drawerLayout);
+                Navigation.findNavController(this, R.id.sideNavFragment), drawerLayout);
     }
 
     private static final String action1= "action1";
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         = new ShortcutInfo.Builder(this, navDestination.getLabel().toString())
                         .setShortLabel(navDestination.getLabel())
                         .setLongLabel(navDestination.getLabel())
-                        .setIcon(Icon.createWithResource(this, R.drawable.scr_hourly))
+                        .setIcon(Icon.createWithResource(this, R.drawable.tab_gridview))
                         .setIntent(newTaskIntent)
                         .build();
                 shortcutList.add(postShortcut);

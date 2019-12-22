@@ -4,7 +4,7 @@
     android:layout_weight="1"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:foreground="@drawable/ripple_boarderless"
+    android:foreground="@drawable/bg_ripple"
 
     android:button="@null"
     android:gravity="center"
@@ -15,8 +15,6 @@
 <!--
  android:textIsSelectable="true"
  android:background="?android:attr/selectableItemBackground"
-
  android:background="?android:attr/listChoiceIndicatorSingle"
-
  android:background="?android:attr/activatedBackgroundIndicator"
 -->

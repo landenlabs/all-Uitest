@@ -27,6 +27,8 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -62,7 +64,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, R.layout.frag_bottom_nav_1);
+        super.onCreateView(inflater, container, R.layout.frag_gridview_demo);
         setBarTitle("GridView Expanding Cell Demo");
 
         gridview = root.findViewById(R.id.page1_gridview);
@@ -72,6 +74,12 @@ public class FragGridViewDemo extends FragBottomNavBase {
         overlay = root.findViewById(R.id.page1_overlay);
         rg = root.findViewById(R.id.page1_rg);
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+        menu.clear();
+        // See setHasOptionsMen(true)
     }
 
     private ColorStateList colorRed = new ColorStateList(
@@ -89,7 +97,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
             case R.id.page1_tagRB:
                 if (view.getBackground() == null) {
                     // Draw animated gradient of two possible colors.
-                    view.setBackgroundResource(R.drawable.anim_grady1);
+                    view.setBackgroundResource(R.drawable.bg_anim_gradient);
                     view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
                     ((AnimatedVectorDrawable) view.getBackground()).start();
                 } else {
@@ -158,7 +166,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
         }
 
         // Change color and elevation
-        view.setBackgroundResource(R.drawable.red2);
+        view.setBackgroundResource(R.drawable.bg_red);
         view.setElevation(nextElevation);
         nextElevation += 8;
 
@@ -298,7 +306,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
             boolean showNone = percentRain < 5;
             TextView textView = makeText(showNone ? "None" : text, pos);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, showNone ? 16:20);
-            int iconRes = percentRain > 50 ? R.drawable.probability_mixed : R.drawable.probability_rain;
+            int iconRes = percentRain > 50 ? R.drawable.wx_mixed : R.drawable.wx_rain;
             Drawable icon = ContextCompat.getDrawable(mContext, iconRes);
             textView.setCompoundDrawablePadding(40);
             textView.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null);

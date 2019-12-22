@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_bottom"
-    app:startDestination="@id/bottomNavFragmentOne">
+    app:startDestination="@id/fragGridViewDemo">
 
     <fragment
         android:label="Home"
-        android:id="@+id/bottomNavFragmentOne"
+        android:id="@+id/fragGridViewDemo"
         android:name="com.landenlabs.all_uiTest.FragGridViewDemo"
-        tools:layout="@layout/frag_bottom_nav_1"/>
+        tools:layout="@layout/frag_gridview_demo"/>
 
     <fragment
         android:label="Page2"
-        android:id="@+id/bottomNavFragmentTwo"
+        android:id="@+id/fragDividerDemo"
         android:name="com.landenlabs.all_uiTest.FragDividerDemo"
-        tools:layout="@layout/frag_bottom_nav_2"/>
+        tools:layout="@layout/frag_divider_demo"/>
 
     <fragment
         android:label="Page3"
-        android:id="@+id/bottomNavFragmentThree"
+        android:id="@+id/fragExpandDemo"
         android:name="com.landenlabs.all_uiTest.FragExpandDemo"
-        tools:layout="@layout/frag_bottom_nav_3"/>
+        tools:layout="@layout/frag_expand_demo"/>
 
 </navigation>

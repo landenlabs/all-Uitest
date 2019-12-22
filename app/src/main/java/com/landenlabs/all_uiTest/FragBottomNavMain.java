@@ -43,7 +43,7 @@ public class FragBottomNavMain extends FragBottomNavBase
     public View onCreateView(@NonNull LayoutInflater inflater,
     ViewGroup container, Bundle savedInstanceState) {
         root =  inflater.inflate(R.layout.frag_bottom_nav_main, container, false);
-        navController = Navigation.findNavController(requireActivity(), R.id.mainNavFragment);
+        navController = Navigation.findNavController(requireActivity(), R.id.sideNavFragment);
         bottomNavGraph = navController.getNavInflater().inflate(R.navigation.nav_bottom);
         return root;
     }

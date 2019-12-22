@@ -1,13 +1,14 @@
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt" >
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
     <aapt:attr name="android:drawable">
         <vector
-            android:width="2dp"
-            android:height="100dp"
-            android:viewportHeight="100"
-            android:viewportWidth="100">
+            android:width="10dp"
+            android:height="10dp"
+            android:viewportWidth="100"
+            android:viewportHeight="100">
 
-            <garoup android:name="grad">
+            <group  android:name="grad"  android:translateY="100">
                 <path android:pathData="M1,1 H99 V99 H1Z">
                     <aapt:attr name="android:fillColor">
                         <gradient
@@ -20,19 +21,18 @@
                             android:type="linear" />
                     </aapt:attr>
                 </path>
-            </garoup>
+            </group>
         </vector>
     </aapt:attr>
 
     <target android:name="grad">
         <aapt:attr name="android:animation">
             <objectAnimator
+                android:duration="1000"
                 android:propertyName="translateY"
-                android:duration="2000"
-                android:valueFrom="0"
-                android:valueTo="100"
-                android:valueType="floatType"
-                />
+                android:valueFrom="100"
+                android:valueTo="0"
+                android:valueType="floatType" />
         </aapt:attr>
     </target>
 

@@ -20,8 +20,6 @@ import android.app.Activity;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -75,18 +73,9 @@ abstract class FragBottomNavBase extends Fragment {
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
-        // See setHasOptionsMen(true)
-    }
-
     @NonNull
     Activity getActivitySafe() {
         return Objects.requireNonNull(getActivity());
     }
-
-
-
-
 
 }

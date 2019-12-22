@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:openDrawer="end"
     tools:context=".MainActivity">
-    <!--    tools:openDrawer="end" -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
         <!-- Fragment is under bottom nav bar -->
         <!-- Fragment changed using Side menu -->
         <fragment
-            android:id="@+id/mainNavFragment"
+            android:id="@+id/sideNavFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
