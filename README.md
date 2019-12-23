@@ -1,5 +1,6 @@
 # LanDen Labs - UI Test
 Android UI Test
+<br>[Home website](http://landenlabs.com/android/index.html)
 
 Demonstrate various Ui Components 
 
@@ -8,6 +9,10 @@ Demonstrate various Ui Components
 1. [GridView Layout] Expand cell transition animation
 2. [Layout Dividers] TableLayout, LinearLayout and GridLayout with automatic divdirs
 3. [TableLayout and GridLayout] Expand cell transition animation
+
+***
+
+[Wiki link](http://landenlabs.com/android/all-uitest/index.html) for detailed information.
 
 ---
 <a name="page1"></a>
@@ -34,14 +39,16 @@ Demonstrate various Ui Components
 <a name="page2"></a>
 **TableLayout and LinearLayout built-in dividers** 
 
-![picture](http://landenlabs.com/android/all-uitest/page2-dividers1.jpg)
+![picture](http://landenlabs.com/android/all-uitest/page2-divider1.jpg)
 
 [To Top](#table)
 
-<a name="page2"></a>
-**TableLayout and LinearLayout built-in dividers** 
+ 
+**Custom GridLayout built-in dividers** 
 
-![picture](http://landenlabs.com/android/all-uitest/page2-dividers2.jpg)
+![picture](http://landenlabs.com/android/all-uitest/page2-divider2.jpg)
+
+![picture](http://landenlabs.com/android/all-uitest/page2-divider3.jpg)
 
 [To Top](#table)
 
@@ -93,3 +100,4 @@ limitations under the License.
 
 
 [To Top](#table)
+<br>[Home website](http://landenlabs.com/android/index.html)

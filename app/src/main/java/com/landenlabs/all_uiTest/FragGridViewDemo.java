@@ -114,8 +114,6 @@ public class FragGridViewDemo extends FragBottomNavBase {
                 openDetailView(view, pos);
                 break;
             case R.id.page1_resetRB:
-                // gridview.invalidate();
-                // gridview.forceLayout();
                 gridview.setAdapter(new Page1Adapter(getActivitySafe()));
                 gridview.requestLayout();
                 nextElevation = 0;
