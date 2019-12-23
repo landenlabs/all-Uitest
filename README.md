@@ -31,7 +31,7 @@ Android UI Test
 
 **GridView Layout Cell detail floater** 
 
-![picture](http://landenlabs.com/android/all-uitest/page1-details.gif)
+<img src="http://landenlabs.com/android/all-uitest/page1-details.gif">
 
 [To Top](#table)
 
@@ -39,16 +39,16 @@ Android UI Test
 <a name="page2"></a>
 **TableLayout and LinearLayout built-in dividers** 
 
-![picture](http://landenlabs.com/android/all-uitest/page2-divider1.jpg)
+<img src="http://landenlabs.com/android/all-uitest/page2-divider1.jpg" width="400">
 
 [To Top](#table)
 
  
 **Custom GridLayout built-in dividers** 
 
-![picture](http://landenlabs.com/android/all-uitest/page2-divider2.jpg)
+<img src="http://landenlabs.com/android/all-uitest/page2-divider2.jpg" width="400">
 
-![picture](http://landenlabs.com/android/all-uitest/page2-divider3.jpg)
+<img src="http://landenlabs.com/android/all-uitest/page2-divider3.jpg" width="400">
 
 [To Top](#table)
 
