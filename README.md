@@ -2,10 +2,10 @@
 Android UI Test
 <br>[Home website](http://landenlabs.com/android/index.html)
 
-Demonstrate various Ui Components 
+**Demonstrate various Ui Features**
 
 <a name="table"></a>
-#Table of Contents
+### Table of Contents
 1. [GridView Layout] Expand cell transition animation
 2. [Layout Dividers] TableLayout, LinearLayout and GridLayout with automatic divdirs
 3. [TableLayout and GridLayout] Expand cell transition animation
