@@ -6,10 +6,10 @@
     <string name="bottom_nav_frag_gridview">Expanding</string>
     <string name="bottom_nav_frag_divider">Dividers</string>
     <string name="bottom_nav_expand">More</string>
+    <string name="bottom_nav_group">Group</string>
 
     <string name="about_text">Demonstrate Layout cell scaling animation.\n\nSource code on github at https://landenlabs.com/android\n\nCopyright Dennis Lang 2019</string>
     <string name="side_nav_header_1">All Demo</string>
-    <string name="nav_header_2">v1.1 Dec-2019</string>
 
     <string name="setting_menu_1">Settings Menu 1</string>
     <string name="setting_menu_2">Settings Menu 2</string>

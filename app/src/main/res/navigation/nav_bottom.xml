@@ -23,4 +23,10 @@
         android:name="com.landenlabs.all_uiTest.FragExpandDemo"
         tools:layout="@layout/frag_expand_demo"/>
 
+    <fragment
+        android:label="@string/bottom_nav_group"
+        android:id="@+id/fragExpandGroupDemo"
+        android:name="com.landenlabs.all_uiTest.FragExpandGroupDemo"
+        tools:layout="@layout/frag_expand_group_demo"/>
+
 </navigation>

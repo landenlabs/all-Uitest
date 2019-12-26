@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_page"
+    tools:context=".FragExpandGroupDemo">
+
+    <TextView
+        android:id="@+id/page4_btn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_round_3t"
+        android:padding="20dp"
+        android:text="Action when tapping on grid cells"
+        android:textColor="@color/text_on_bg"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:id="@+id/page4_rg"
+        android:background="@color/text_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/page4_btn_title"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <RadioButton
+            android:id="@+id/page1_tagRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:checked="true"
+            android:text="tag"
+            android:textColor="@color/text_dark" />
+
+        <RadioButton
+            android:id="@+id/page1_grow2RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="Grow\nScale"
+            android:textColor="@color/text_dark" />
+
+        <RadioButton
+            android:id="@+id/page1_detailsRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="Details"
+            android:textColor="@color/text_dark" />
+
+        <RadioButton
+            android:id="@+id/page1_resetRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_vertical"
+            android:text="reset"
+            android:textColor="@color/text_dark" />
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/page4_rg"
+        android:layout_marginTop="10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--
+              android:stretchColumns="*"
+            -->
+            <TableLayout
+                android:id="@+id/page4_tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_round"
+                android:divider="@drawable/divider_hline"
+                android:padding="10dp"
+                android:showDividers="middle|end">
+
+                <TableRow
+                    android:baselineAligned="false"
+                    android:divider="@drawable/divider_vline"
+                    android:showDividers="middle">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="12.1°" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wx_sun_32d" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="Mon"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/cell_icon" />
+
+                </TableRow>
+
+                <TableRow
+                    android:baselineAligned="false"
+                    android:divider="@drawable/divider_vline"
+                    android:showDividers="middle">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="21.2°"
+                        android:textSize="30sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wx_sun_34d" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="Tue"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/cell_icon"
+                        android:tint="#f88" />
+
+                </TableRow>
+
+                <TableRow
+                    android:baselineAligned="false"
+                    android:divider="@drawable/divider_vline"
+                    android:showDividers="middle">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="32.4°"
+                        android:textSize="30sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wx_sun_30d" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="Wed"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/cell_icon"
+                        android:tint="#8f8" />
+
+                </TableRow>
+
+                <TableRow
+                    android:baselineAligned="false"
+                    android:divider="@drawable/divider_vline"
+                    android:showDividers="middle">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="-2.8°"
+                        android:textSize="30sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wx_sun_32d" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:text="Thurs"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/page4_row_height"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/cell_icon"
+                        android:tint="#88f" />
+
+                </TableRow>
+            </TableLayout>
+
+            <!-- Expand group -->
+            <FrameLayout
+                android:id="@+id/page4_expander"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Last item so it is on top  -->
+            <FrameLayout
+                android:id="@+id/page4_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </ScrollView>
+
+</RelativeLayout>
