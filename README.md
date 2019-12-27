@@ -104,20 +104,25 @@ Both **TableLayout's** helper **TableRow** and **LinearLayout** support built-in
 ---  
 <a name="page4"></a>  
 ### Group Grid selection Expansion   
-Demonstrates group cell expansion by re-parenting the selected cells into a new container which is expanded. To prevent the original container from reflowing the reparented cells are replaced with Space views. The reverse is done when the expansion is cancelled. 
+Demonstrate group cell expansion by re-parenting the selected cells into a new container which is expanded. To prevent the original container from reflowing the reparented cells are replaced with Space views. The reverse is done when the expansion is cancelled. Example expanding a **column**. 
+
 ![picture](http://landenlabs.com/android/all-uitest/group-col.gif)  
   
 [To Top](#table)  
   
+Example expanding cells in a **"L"** shape. 
+
 ![picture](http://landenlabs.com/android/all-uitest/group-l.gif)  
   
 [To Top](#table)  
   
+Example expanding a **row**  
+ 
 ![picture](http://landenlabs.com/android/all-uitest/group-row.gif)  
   
 [To Top](#table)  
   
-  # Web Page  
+# Web Page  
   
 [Home web page](http://landenlabs.com/android/index.html) for more information.  
   
