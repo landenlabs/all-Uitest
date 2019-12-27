@@ -9,8 +9,8 @@ android {
         applicationId "com.landenlabs.all_uitest"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 101
-        versionName "1.01"
+        versionCode 201
+        versionName '2.01'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
     }

@@ -176,10 +176,13 @@ public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTou
 
             case R.id.page1_grow2RB:
                 expandView(createGroup(parent), parent);
-                ((RadioButton)rg.findViewById(R.id.page1_tagRB)).setChecked(true);
+                ((RadioButton)rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
                 break;
             case R.id.page1_detailsRB:
-                openDetailView(view, parent);
+                if (expander.getChildCount() != 0) {
+                    openDetailView(expander, parent);
+                }
+                ((RadioButton)rg.findViewById(R.id.page1_tagRB)).setChecked(true);
                 break;
             case R.id.page1_resetRB:
                 resetUI();

@@ -227,6 +227,7 @@
             <!-- Last item so it is on top  -->
             <FrameLayout
                 android:id="@+id/page4_overlay"
+                android:elevation="4px"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
