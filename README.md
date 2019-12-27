@@ -34,7 +34,9 @@ In addition I demonstrate an overlay dialog which uses a **BitmapShader**,  **Co
   
 ***  
   
-[Wiki link](http://landenlabs.com/android/all-uitest/index.html) for detailed information.  
+[Home webpage ](http://landenlabs.com/android/all-uitest/index.html) for detailed information.  
+
+Also see [all-colormatrix](https://github.com/landenlabs/all-colormatrix) for demo on ColorMatrix
   
 ---  
 <a name="page1"></a>  
