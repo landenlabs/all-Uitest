@@ -54,7 +54,7 @@ import utils.Translation;
  *
  * TODO - Complete implementation.
  */
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class FragExpandGroupImageDemo extends FragBottomNavBase implements View.OnTouchListener {
     private TableLayout tableLayout;
     private FrameLayout overlay;
@@ -114,6 +114,7 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase implements View.
         initUI();
     }
 
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public boolean onTouch(View view, MotionEvent event) {
 
@@ -334,6 +335,7 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase implements View.
         view.invalidate();
     }
 
+    @SuppressWarnings("unused")
     private void  openDetailView(View view, ViewGroup parent) {
         // int numCol = getNumCol(parent);
         int col = (Integer) view.getTag(R.id.tag_col);

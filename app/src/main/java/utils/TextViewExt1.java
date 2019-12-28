@@ -36,6 +36,10 @@ import com.landenlabs.all_uiTest.R;
 /**
  * Custom TextView which has a background image which can be shifted left or right.
  * Draws a shadow and adds and icon to the bottom.
+ *
+ * TODO - add view attribute to select background image which is shifted or use
+ * standard background image.
+ *
  */
 @SuppressLint("AppCompatCustomView")
 public class TextViewExt1 extends TextView {

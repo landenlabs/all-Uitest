@@ -53,23 +53,19 @@ public class Translation extends Transition {
     private static final Property<View, PointF> TRANSLATION_PROPERTY;
 
     static {
-        if (Build.VERSION.SDK_INT >= 21) {
-            TRANSLATION_PROPERTY = new Property<View, PointF>(PointF.class, "translation") {
+        TRANSLATION_PROPERTY = new Property<View, PointF>(PointF.class, "translation") {
 
-                @Override
-                public void set(@NonNull View object, @NonNull PointF value) {
-                    object.setTranslationX(value.x);
-                    object.setTranslationY(value.y);
-                }
+            @Override
+            public void set(@NonNull View object, @NonNull PointF value) {
+                object.setTranslationX(value.x);
+                object.setTranslationY(value.y);
+            }
 
-                @Override
-                public PointF get(@NonNull View object) {
-                    return new PointF(object.getTranslationX(), object.getTranslationY());
-                }
-            };
-        } else {
-            TRANSLATION_PROPERTY = null;
-        }
+            @Override
+            public PointF get(@NonNull View object) {
+                return new PointF(object.getTranslationX(), object.getTranslationY());
+            }
+        };
     }
 
     public Translation() {
@@ -102,8 +98,9 @@ public class Translation extends Transition {
 
     @Nullable
     @Override
-    public Animator createAnimator(@NonNull ViewGroup sceneRoot, @Nullable TransitionValues startValues,
-                                   @Nullable TransitionValues endValues) {
+    public Animator createAnimator(
+            @NonNull ViewGroup sceneRoot, @Nullable TransitionValues startValues,
+            @Nullable TransitionValues endValues) {
         if (startValues != null && endValues != null) {
             float startX = (float) startValues.values.get(TRANSLATION_X);
             float startY = (float) startValues.values.get(TRANSLATION_Y);
@@ -111,7 +108,8 @@ public class Translation extends Transition {
             float endY = (float) endValues.values.get(TRANSLATION_Y);
             endValues.view.setTranslationX(startX);
             endValues.view.setTranslationY(startY);
-            if (Build.VERSION.SDK_INT >= 21 && TRANSLATION_PROPERTY != null) {
+
+            if (TRANSLATION_PROPERTY != null) {
                 Path path = getPathMotion().getPath(startX, startY, endX, endY);
                 return ObjectAnimator.ofObject(endValues.view, TRANSLATION_PROPERTY, null, path);
             } else {

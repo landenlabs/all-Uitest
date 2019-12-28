@@ -45,7 +45,6 @@ public class FragBottomNavMain extends FragBottomNavBase
          implements  View.OnClickListener  {
 
     private ViewGroup root;
-    private NavController navSideController;
 
     private final boolean useRadioBottomBar = true;
     private final int LAYOUT_RES = useRadioBottomBar ? R.layout.frag_bottom_rg_nav_main : R.layout.frag_bottom_nav_main;
@@ -53,7 +52,7 @@ public class FragBottomNavMain extends FragBottomNavBase
     public View onCreateView(@NonNull LayoutInflater inflater,
     ViewGroup container, Bundle savedInstanceState) {
         root = (ViewGroup)inflater.inflate(LAYOUT_RES, container, false);
-        navSideController = Navigation.findNavController(requireActivity(), R.id.sideNavFragment);
+        // NavController navSideController = Navigation.findNavController(requireActivity(), R.id.sideNavFragment);
         return root;
     }
     @Override

@@ -77,7 +77,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         menu.clear();
         // See setHasOptionsMen(true)
     }

@@ -29,7 +29,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.GridLayout;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
 
@@ -47,7 +46,7 @@ import utils.Translation;
 /**
  * Fragment which demonstrates expanding view cells from TableLayout and custom GridLayout.
  */
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchListener {
     private ViewGroup scrollHolder;
     private TableLayout tableLayout;
@@ -249,7 +248,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
     }
 
     private void  openDetailView(View view, ViewGroup parent) {
-        int numCol = getNumCol(parent);
+        // int numCol = getNumCol(parent);
         int col = (Integer) view.getTag(R.id.tag_col);
         int row = (Integer) view.getTag(R.id.tag_row);
 
@@ -293,6 +292,8 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         detailTv.setPointer(markerCenterShiftX);
     }
 
+
+      /*
     private int getNumCol(ViewGroup parent) {
         if (parent instanceof TableLayout) {
             TableLayout tableLayout = (TableLayout) parent;
@@ -309,6 +310,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         }
         return 0;
     }
+
     private int getNumRow(View child, ViewGroup parent) {
         if (parent instanceof TableLayout) {
             TableLayout tableLayout = (TableLayout) parent;
@@ -320,7 +322,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         }
         return 0;
     }
-    /*
+
     private int getCol(View child, ViewGroup parent) {
         if (parent instanceof TableLayout) {
             TableLayout tableLayout = (TableLayout) parent;

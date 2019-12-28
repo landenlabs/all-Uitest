@@ -28,6 +28,8 @@ import com.landenlabs.all_uiTest.R;
 
 /**
  * Custom GridView which automatically provides dividers.
+ *
+ * TODO - add ui attributes to control dividers
  */
 public class GridViewExt1 extends GridView {
 

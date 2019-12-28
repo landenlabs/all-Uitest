@@ -52,7 +52,7 @@ import utils.Translation;
  * Fragment which demonstrates expanding a group of view cells by re-parenting and then using a translation
  * animation.
  */
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"unused", "SwitchStatementWithTooFewBranches"})
 public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.OnTouchListener {
     private TableLayout tableLayout;
     private FrameLayout overlay;
@@ -332,7 +332,7 @@ public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.O
     }
 
     private void  openDetailView(View view, ViewGroup parent) {
-        int numCol = getNumCol(parent);
+        // int numCol = getNumCol(parent);
         int col = (Integer) view.getTag(R.id.tag_col);
         int row = (Integer) view.getTag(R.id.tag_row);
 

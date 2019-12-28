@@ -29,12 +29,17 @@ import android.widget.GridLayout;
 import com.landenlabs.all_uiTest.R;
 
 /**
+ * Custom GridLayout which provides automatic dividers and method to lock layout to
+ * prevent layout change if children change,
+ *
+ * TODO - add ui attributes to control dividers
+ *
  * <com.landenlabs.all_UiDemo.Util.GridLayoutExt1
- * android:layout_width="match_parent"
- * android:layout_height="wrap_content"
- * app:alignmentMode="alignBounds"
- * app:columnCount="2">
- * <p>
+ *      android:layout_width="match_parent"
+ *      android:layout_height="wrap_content"
+ *      app:alignmentMode="alignBounds"
+ *      app:columnCount="2">
+ *      <p>
  * </com.landenlabs.all_UiDemo.Util.GridLayoutExt1>
  */
 @SuppressWarnings("FieldCanBeLocal")
