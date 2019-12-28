@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -110,22 +111,29 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Add or execute short cut
      */
+
     @SuppressWarnings("ConstantConditions")
     private void addOrExecuteShortcut(@NonNull ViewGroup bottomNavGroup) {
-        BottomNavigationView bottomNavigationView;
-        if (bottomNavGroup instanceof BottomNavigationView) {
-            bottomNavigationView = (BottomNavigationView)bottomNavGroup;
-        } else {
-            return;
-        }
         if (android.os.Build.VERSION.SDK_INT <android.os.Build.VERSION_CODES.N_MR1) {
             return;
         }
 
-        int menuSize = bottomNavigationView.getMenu().size();
-        Map<String, MenuItem> menus = new HashMap<>(menuSize);
+        Map<String, MenuItem> menus;
+        Menu menu;
+
+        if (bottomNavGroup instanceof BottomNavigationView) {
+            BottomNavigationView bottomNavigationView = (BottomNavigationView)bottomNavGroup;
+            menu = bottomNavigationView.getMenu();
+        } else {
+            PopupMenu popupMenu = new PopupMenu(this, bottomNavGroup.getRootView());
+            getMenuInflater().inflate(R.menu.menu_bottom, popupMenu.getMenu());
+            menu = popupMenu.getMenu();
+        }
+
+        int menuSize = menu.size();
+        menus = new HashMap<>(menuSize);
         for (int menuIdx = 0; menuIdx < menuSize; menuIdx++) {
-            MenuItem menuItem = bottomNavigationView.getMenu().getItem(menuIdx);
+            MenuItem menuItem = menu.getItem(menuIdx);
             menus.put(menuItem.getTitle().toString(), menuItem);
         }
 
