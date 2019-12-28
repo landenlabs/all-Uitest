@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Bottom Navigation Tab Bar -->
+    <!-- Bottom Navigation Tab Bar only supports 5 items, use RadioGroup for more -->
+    <!-- Same ids as nav_bottom.xml so nav controller can be used -->
     <item
         android:id="@+id/fragGridViewDemo"
         android:icon="@drawable/tab_gridview"
@@ -15,20 +17,15 @@
         android:title="@string/bottom_nav_expand"/>
 
     <item
-        android:id="@+id/fragExpandGroupDemo"
+        android:id="@+id/fragExpandGroupViewDemo"
         android:icon="@drawable/tab_table"
-        android:title="@string/bottom_nav_group"/>
-
-    <!-- Bottom menu only supports 5 items -->
-<!--
-    <item
-        android:id="@+id/bottomNavFragment4"
-        android:icon="@drawable/tab_page3"
-        android:title="@string/bottom_nav_title_4"/>
+        android:title="@string/bottom_nav_group_view"/>
 
     <item
-        android:id="@+id/bottomNavFragment5"
-        android:icon="@drawable/tab_page3"
-        android:title="@string/bottom_nav_title_5"/>
--->
+        android:id="@+id/fragExpandGroupImageDemo"
+        android:icon="@drawable/tab_table"
+        android:title="@string/bottom_nav_group_image"/>
+
+
+
 </menu>

@@ -28,7 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.core.view.MenuCompat;
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment demonstrates built-in and custom container dividers.
  */
 public class FragDividerDemo extends FragBottomNavBase {
 

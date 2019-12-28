@@ -24,7 +24,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -44,6 +46,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Main activity for All-UiTest which demonstrates cell expansion and dividers.
+ */
 @SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {
 
@@ -61,40 +66,36 @@ public class MainActivity extends AppCompatActivity {
 
         navSideController = Navigation.findNavController(this, R.id.sideNavFragment);
 
-
         // Set up ActionBar
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         NavigationUI.setupActionBarWithNavController(this, navSideController, drawerLayout);
 
-        // Set up navigation menu
-        NavigationView navigationView = findViewById(R.id.navigationView);
-        NavigationMenuView navMenuView = (NavigationMenuView) navigationView.getChildAt(0);
+        // Set up side navigation draw menu
+        NavigationView navSideView = findViewById(R.id.navSideView);
+        NavigationMenuView navMenuView = (NavigationMenuView) navSideView.getChildAt(0);
         navMenuView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL));
-        NavigationUI.setupWithNavController(navigationView, navSideController);
+        NavigationUI.setupWithNavController(navSideView, navSideController);
 
-        navigationView.post(new Runnable() {
+        // Setup shortcuts for Bottom Nav items.
+        navSideView.post(new Runnable() {
             @Override
             public void run() {
-                BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+                ViewGroup bottomNavigationView = findViewById(R.id.bottomNavigation);
                 if (bottomNavigationView != null) {
-                    addShortcut(bottomNavigationView);
+                    addOrExecuteShortcut(bottomNavigationView);
                 }
             }
         });
 
-
         intentAction = getIntent() != null ? getIntent().getAction() : null;
         Log.d(TAG, String.format(Locale.US, "indent action=%s", intentAction));
-        if (action1.equals(intentAction)) {
-            // TODO - Implement shortcut intent launching.
-        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate  menu, adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_side, menu);
         return true;
     }
@@ -106,10 +107,20 @@ public class MainActivity extends AppCompatActivity {
                 Navigation.findNavController(this, R.id.sideNavFragment), drawerLayout);
     }
 
-    private static final String action1= "action1";
-    private void addShortcut( BottomNavigationView bottomNavigationView) {
-        if (android.os.Build.VERSION.SDK_INT <android.os.Build.VERSION_CODES.N_MR1)
+    /**
+     * Add or execute short cut
+     */
+    @SuppressWarnings("ConstantConditions")
+    private void addOrExecuteShortcut(@NonNull ViewGroup bottomNavGroup) {
+        BottomNavigationView bottomNavigationView;
+        if (bottomNavGroup instanceof BottomNavigationView) {
+            bottomNavigationView = (BottomNavigationView)bottomNavGroup;
+        } else {
             return;
+        }
+        if (android.os.Build.VERSION.SDK_INT <android.os.Build.VERSION_CODES.N_MR1) {
+            return;
+        }
 
         int menuSize = bottomNavigationView.getMenu().size();
         Map<String, MenuItem> menus = new HashMap<>(menuSize);
@@ -140,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 shortcutList.add(postShortcut);
 
                 if (navDestination.getLabel().equals(intentAction)) {
+                    // Execute shortcut
                     navBotController.navigate(navDestination.getId());
                 }
             }

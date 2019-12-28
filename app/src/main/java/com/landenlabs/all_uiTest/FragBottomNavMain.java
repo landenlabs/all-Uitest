@@ -16,90 +16,96 @@ package com.landenlabs.all_uiTest;
  * limitations under the License.
  */
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.navigation.NavController;
-import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment which setups a page with bottom and side navigation.
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class FragBottomNavMain extends FragBottomNavBase
-        /* implements  View.OnClickListener */ {
+         implements  View.OnClickListener  {
 
-    protected View root;
-    protected NavController navController;
-    protected NavGraph bottomNavGraph;
+    private ViewGroup root;
+    private NavController navSideController;
+
+    private final boolean useRadioBottomBar = true;
+    private final int LAYOUT_RES = useRadioBottomBar ? R.layout.frag_bottom_rg_nav_main : R.layout.frag_bottom_nav_main;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
     ViewGroup container, Bundle savedInstanceState) {
-        root =  inflater.inflate(R.layout.frag_bottom_nav_main, container, false);
-        navController = Navigation.findNavController(requireActivity(), R.id.sideNavFragment);
-        bottomNavGraph = navController.getNavInflater().inflate(R.navigation.nav_bottom);
+        root = (ViewGroup)inflater.inflate(LAYOUT_RES, container, false);
+        navSideController = Navigation.findNavController(requireActivity(), R.id.sideNavFragment);
         return root;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (false) {
+        if (useRadioBottomBar) {
             // Setup custom bottom navigation
-            /*
             RadioGroup navBar = root.findViewById(R.id.tabHolder);
-            PopupMenu popupMenu = new PopupMenu(getContext(), null);
-            getActivitySafe().getMenuInflater().inflate(R.menu.menu_bottom, popupMenu.getMenu());
+            PopupMenu popupMenu = new PopupMenu(requireActivity(), root);
+            requireActivity().getMenuInflater().inflate(R.menu.menu_bottom, popupMenu.getMenu());
             addTabBar(navBar, popupMenu.getMenu());
-             */
         } else {
-            NavController navController = Navigation.findNavController(requireActivity(), R.id.bottomNavFragment);
-            BottomNavigationView bottomNavigation = view.findViewById(R.id.bottomNavigation);
-            NavigationUI.setupWithNavController(bottomNavigation, navController);
+            // Setup bottom navigation
+            // NavGraph bottomNavGraph = navController.getNavInflater().inflate(R.navigation.nav_bottom);
+            NavController bottomNavController = Navigation.findNavController(requireActivity(), R.id.bottomNavFragment);
+            BottomNavigationView bottomNavView = view.findViewById(R.id.bottomNavigation);
+            NavigationUI.setupWithNavController(bottomNavView, bottomNavController);
         }
     }
 
-    /*
     @Override
     public void onClick(View view) {
-        changePage(view.getId());
+        switch (view.getId()) {
+            case R.id.fragGridViewDemo:
+            case R.id.fragDividerDemo:
+            case R.id.fragExpandDemo:
+            case R.id.fragExpandGroupViewDemo:
+            case R.id.fragExpandGroupImageDemo:
+                changePage(view.getId());
+                break;
+
+            default:
+                Toast.makeText(requireContext(), "Unknown click action ", Toast.LENGTH_LONG).show();
+        }
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public boolean changePage(int id) {
-        switch (id) {
-            case R.id.bottomNavFragmentOne:
-                navController.navigate(R.id.bottomNavFragmentOne);
-                return true;
-            case R.id.bottomNavFragmentTwo:
-                navController.navigate(R.id.bottomNavFragmentTwo);
-                return true;
-            case R.id.bottomNavFragmentThree:
-                navController.navigate(R.id.bottomNavFragmentThree);
-                return true;
-        }
-
-        return false;
+    private void changePage(int id) {
+        NavController navBotController = Navigation.findNavController(requireActivity(), R.id.bottomNavFragment);
+        navBotController.navigate(id);
     }
 
     // ---------------------------------------------------------------------------------------------
     // Alternate bottom nav bar
 
-    void addTabBar(@NonNull RadioGroup tabHolder, @NonNull Menu menu) {
-        Context context = tabHolder.getContext();
+    private void addTabBar(@NonNull RadioGroup tabHolder, @NonNull Menu menu) {
         tabHolder.removeAllViews();
         RadioGroup.LayoutParams lp = new RadioGroup.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         lp.weight = 1;
 
         for (int idx = 0; idx < menu.size(); idx++) {
-            RadioButton button = (RadioButton)getLayoutInflater().inflate(R.layout.tab_btn, null);
+            RadioButton button = (RadioButton)getLayoutInflater().inflate(R.layout.tab_btn, root, false);
             MenuItem item = menu.getItem(idx);
             Drawable tabBtnIcon = null;
             try {
@@ -111,13 +117,11 @@ public class FragBottomNavMain extends FragBottomNavBase
             if (tabBtnIcon != null) {
                 button.setId(item.getItemId());
                 button.setText(item.getTitle());
-                if (tabBtnIcon != null) {
-                    button.setCompoundDrawablesWithIntrinsicBounds(null, tabBtnIcon, null, null);
-                }
+                button.setCompoundDrawablesWithIntrinsicBounds(null, tabBtnIcon, null, null);
                 button.setOnClickListener(this);
                 tabHolder.addView(button, lp);
             }
         }
     }
-     */
+
 }

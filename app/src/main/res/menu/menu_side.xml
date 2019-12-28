@@ -2,6 +2,7 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Side Navigation Draw -->
+    <!-- Same ids as nav_side.xml so nav controller can be used -->
     <item
         android:id="@+id/aboutFragment"
         android:title="@string/about_menu_title"/>
@@ -10,18 +11,4 @@
         android:id="@+id/bottomNavFragment"
         android:title="@string/bottomnav_menu_title"/>
 
-    <!--
-    <item
-        android:id="@+id/bottomNavFragmentOne"
-        android:icon="@drawable/tab_gridview"
-        android:title="@string/bottom_nav_title_home"/>
-    <item
-        android:id="@+id/bottomNavFragmentTwo"
-        android:icon="@drawable/tab_gridview"
-        android:title="@string/bottom_nav_title_two"/>
-    <item
-        android:id="@+id/bottomNavFragmentThree"
-        android:icon="@drawable/tab_page3"
-        android:title="@string/bottom_nav_title_three"/>
-    -->
 </menu>

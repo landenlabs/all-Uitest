@@ -6,14 +6,15 @@
     app:startDestination="@id/bottomNavFragment">
 
     <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.landenlabs.all_uiTest.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/frag_about" />
+
+    <fragment
         android:id="@+id/bottomNavFragment"
         android:name="com.landenlabs.all_uiTest.FragBottomNavMain"
         android:label="Home"
         tools:layout="@layout/frag_bottom_nav_main" />
 
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.landenlabs.all_uiTest.AboutFragment"
-        android:label="About"
-        tools:layout="@layout/frag_about" />
 </navigation>

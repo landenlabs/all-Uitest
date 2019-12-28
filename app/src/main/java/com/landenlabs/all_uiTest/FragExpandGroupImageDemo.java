@@ -49,10 +49,13 @@ import utils.TextViewExt1;
 import utils.Translation;
 
 /**
- * A simple [Fragment] which supports selecting a group of cells and expanding them.
+ * Fragment which expands a group of view cells making snapshot image of selected
+ * cells and expanding image.
+ *
+ * TODO - Complete implementation.
  */
 @SuppressWarnings("FieldCanBeLocal")
-public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTouchListener {
+public class FragExpandGroupImageDemo extends FragBottomNavBase implements View.OnTouchListener {
     private TableLayout tableLayout;
     private FrameLayout overlay;
     private FrameLayout expander;
@@ -85,7 +88,10 @@ public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTou
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, LAYOUT_ID);
-        setBarVisibility(View.GONE);
+        setBarTitle("NOT YET IMPLEMENTED !!");
+
+        // setBarTitle("Group expand snapshot image");
+        // setBarVisibility(View.GONE);
         initUI();
 
         return root;
@@ -110,8 +116,10 @@ public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTou
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View viewTouched;
+
             int x = (int)event.getX();
             int y = (int)event.getY();
             Rect rect = new Rect();
@@ -259,8 +267,6 @@ public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTou
         return expander;
     }
 
-
-
     private void addTaggedChildren(ViewGroup parent, ArrayList<View> childList) {
         for (int idx = 0; idx < parent.getChildCount(); idx++) {
             View child = parent.getChildAt(idx);
@@ -301,8 +307,6 @@ public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTou
         int row = (Integer)view.getTag(R.id.tag_row);
          */
 
-        ViewGroup.LayoutParams params = view.getLayoutParams();
-
         // Record layout change and animate it slowly
         TransitionSet transitionSet = new TransitionSet();
         transitionSet.setDuration(ANIM_MILLI);
@@ -331,7 +335,7 @@ public class FragExpandGroupDemo extends FragBottomNavBase implements View.OnTou
     }
 
     private void  openDetailView(View view, ViewGroup parent) {
-        int numCol = getNumCol(parent);
+        // int numCol = getNumCol(parent);
         int col = (Integer) view.getTag(R.id.tag_col);
         int row = (Integer) view.getTag(R.id.tag_row);
 

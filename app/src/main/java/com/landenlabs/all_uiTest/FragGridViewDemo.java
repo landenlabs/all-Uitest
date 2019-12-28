@@ -52,7 +52,7 @@ import utils.TextViewExt1;
 import utils.Translation;
 
 /**
- * Sample fragment demonstrate GridView with expanding cell and callouts.
+ * Fragment demonstrate GridView with expanding cell and callouts.
  */
 public class FragGridViewDemo extends FragBottomNavBase {
 
@@ -69,7 +69,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
 
         gridview = root.findViewById(R.id.page1_gridview);
         gridview.setClipChildren(false);
-        gridview.setAdapter(new Page1Adapter(getActivitySafe()));
+        gridview.setAdapter(new Page1Adapter(requireActivity()));
 
         overlay = root.findViewById(R.id.page1_overlay);
         rg = root.findViewById(R.id.page1_rg);
@@ -114,7 +114,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
                 openDetailView(view, pos);
                 break;
             case R.id.page1_resetRB:
-                gridview.setAdapter(new Page1Adapter(getActivitySafe()));
+                gridview.setAdapter(new Page1Adapter(requireActivity()));
                 gridview.requestLayout();
                 nextElevation = 0;
                 break;
