@@ -29,7 +29,7 @@
             android:id="@+id/tabHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="@color/tab_fill"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:padding="10dp"

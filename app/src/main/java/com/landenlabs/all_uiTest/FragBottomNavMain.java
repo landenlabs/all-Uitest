@@ -116,6 +116,7 @@ public class FragBottomNavMain extends FragBottomNavBase
             if (tabBtnIcon != null) {
                 button.setId(item.getItemId());
                 button.setText(item.getTitle());
+                button.setCompoundDrawableTintList();
                 button.setCompoundDrawablesWithIntrinsicBounds(null, tabBtnIcon, null, null);
                 button.setOnClickListener(this);
                 tabHolder.addView(button, lp);

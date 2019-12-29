@@ -5,6 +5,7 @@
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:foreground="@drawable/bg_ripple"
+    android:background="@drawable/bg_round_border"
 
     android:button="@null"
     android:gravity="center"
