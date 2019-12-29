@@ -30,7 +30,8 @@ In addition I demonstrate an overlay dialog which uses a **BitmapShader**,  **Co
 1. [GridView Layout - Expand cell transition animation](#page1)  
 2. [Layout Dividers - TableLayout, LinearLayout and GridLayout with automatic dividers](#page2)  
 3. [TableLayout and GridLayout - Expand cell transition animation](#page3)  
-4. [TableLayout - Group of cells expand transition animation](#page4)  
+4. [TableLayout - Animate expanding a group of view cells](#page4)  
+5. [TableLayout - Animate expanding an image of a group of view cells](#page5)  
   
 ***  
   
@@ -122,6 +123,24 @@ Example expanding a **row**
   
 [To Top](#table)  
   
+---  
+<a name="page5"></a>  
+### Group Grid selection Expanded using image snapshot  
+Demonstate animating the expansion of a group of cells using a snapshot image of them. 
+This takes less code then previous approach and includes any dividers provided by parent container. 
+
+![picture](http://landenlabs.com/android/all-uitest/page5-row.gif)  
+  
+[To Top](#table)  
+
+![picture](http://landenlabs.com/android/all-uitest/page5-col.gif)  
+  
+[To Top](#table)  
+
+![picture](http://landenlabs.com/android/all-uitest/page5-box.gif)  
+  
+[To Top](#table)  
+
 # Web Page  
   
 [Home web page](http://landenlabs.com/android/index.html) for more information.  

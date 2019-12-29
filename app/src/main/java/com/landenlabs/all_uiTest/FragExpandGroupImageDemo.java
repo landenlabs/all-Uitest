@@ -32,7 +32,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.GridLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
@@ -53,8 +52,6 @@ import utils.Translation;
 /**
  * Fragment which expands a group of view cells making snapshot image of selected
  * cells and expanding image.
- *
- * TODO - Complete implementation.
  */
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class FragExpandGroupImageDemo extends FragBottomNavBase
@@ -76,16 +73,7 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
-    private static class TagInfo {
-        int idx; // index into parth
-        Rect visRect = new Rect();
-        ViewGroup parent;
-        TagInfo(int idx, @NonNull View view) {
-            this.idx = idx;
-            view.getGlobalVisibleRect(visRect);
-            parent = (ViewGroup)view.getParent();
-        }
-    }
+
 
     private static final int LAYOUT_ID = R.layout.frag_expand_group_demo;
 
@@ -112,7 +100,6 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         ViewGroup parent = (ViewGroup)root.getParent();
         parent.removeAllViews();
         root = (ViewGroup) View.inflate(getContext(), LAYOUT_ID, parent);
-
         nextElevation = 0;
         initUI();
     }
@@ -155,6 +142,7 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
                 View child = viewGroup.getChildAt(i);
                 View viewAtPosition = findViewAtPosition(child, globalXpx, globalYpx);
                 if (viewAtPosition != null) {
+                    // Assume Table structure, view inside row container.
                     if (viewAtPosition.getTag(R.id.tag_col) == null) {
                         viewAtPosition.setTag(R.id.tag_col, i);     // Set column first in inner container
                     } else if (viewAtPosition.getTag(R.id.tag_row) == null) {
@@ -194,12 +182,20 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
                 break;
 
             case R.id.page1_grow2RB:
-                expandView(createGroup(parent), parent);
-                ((RadioButton)rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
+                if (buildExpander(parent)) {
+                    // Let expander appear in default position before expanding it.
+                    expander.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            expandView(expander, parent);
+                        }
+                    });
+                }
+                ((RadioButton) rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
                 break;
             case R.id.page1_detailsRB:
-                if (expander.getChildCount() != 0) {
-                    openDetailView(expander, parent);
+                if (groupViews.size() != 0) {
+                    openDetailView(expander);
                 }
                 ((RadioButton)rg.findViewById(R.id.page1_tagRB)).setChecked(true);
                 break;
@@ -221,15 +217,15 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         expander.setVisibility(View.INVISIBLE);
     }
 
-    @Nullable
-    private ViewGroup createGroup(@NonNull ViewGroup parent) {
-        // Collect tagged children.
+    private boolean buildExpander(@NonNull ViewGroup parent) {
 
+        // Collect tagged children.
         addTaggedChildren(parent, groupViews);
         if (groupViews.isEmpty()) {
-            return null;
+            return false;
         }
-        // Save children visible bounds and union of children bounds.
+
+        // Compute visible boundsof children.
         Rect bounds = new Rect();
         groupViews.get(0).getGlobalVisibleRect(bounds);
         for (View child : groupViews) {
@@ -238,9 +234,9 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
             bounds.union(childBnd);
         }
 
+        // Set expander minimum size to hold tagged children.
         Rect expanderRect = new Rect();
-        // TODO - use expander.getParent()
-        ((ViewGroup)tableLayout.getParent()).getGlobalVisibleRect(expanderRect);
+        ((ViewGroup)parent.getParent()).getGlobalVisibleRect(expanderRect);
 
         expander.setX(bounds.left - expanderRect.left);
         expander.setY(bounds.top - expanderRect.top);
@@ -250,6 +246,7 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         expander.setLayoutParams(lp);
         expander.setVisibility(View.VISIBLE);
 
+        // Get image of tagged children in parent container.
         Bitmap parentBM;
         parentBM = Bitmap.createBitmap(parent.getWidth(), parent.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas parentCanvas = new Canvas(parentBM);
@@ -263,24 +260,29 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         BitmapDrawable parentBD = new BitmapDrawable(getResources(), croppedBitmap);
         expander.setBackground(parentBD);
 
-        return expander;
+        return true;
     }
 
-    private void addTaggedChildren(ViewGroup parent, ArrayList<View> childList) {
+    /**
+     * Collect tagged children (view with background set)..
+     */
+    private void addTaggedChildren(@NonNull ViewGroup parent, @NonNull ArrayList<View> childList) {
         for (int idx = 0; idx < parent.getChildCount(); idx++) {
             View child = parent.getChildAt(idx);
             if (child instanceof ViewGroup) {
                 addTaggedChildren((ViewGroup)child, childList);
             } else {
                 if (child.getBackground() != null) {
-                    child.setTag(R.id.tag_info, new TagInfo(idx, child));
                     childList.add(child);
                 }
             }
         }
     }
 
-    private void  setClipChildren(ViewGroup view, boolean toClip) {
+    /**
+     * Set clip mode on parents. Used to allow child to expand over parent.
+     */
+    private void setClipChildren(@NonNull ViewGroup view, boolean toClip) {
         view.setClipChildren(toClip);
         view.setClipToPadding(toClip);
         if (view.getParent() instanceof ViewGroup) {
@@ -295,16 +297,10 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         if (view == null) {
             return;
         }
+
         View rootView = view.getRootView();
 
         setClipChildren(parent, false);
-
-        /*
-        int numCol = TestData.WxData.columns();
-        int numRow = TestData.WXDATA.length;
-        int col = (Integer)view.getTag(R.id.tag_col);
-        int row = (Integer)view.getTag(R.id.tag_row);
-         */
 
         // Record layout change and animate it slowly
         TransitionSet transitionSet = new TransitionSet();
@@ -315,8 +311,6 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         transitionSet.addTransition(new ChangeBounds());
         TransitionManager.beginDelayedTransition((ViewGroup) rootView, transitionSet);
 
-        // view.setPivotX( (col < numCol/2) ? 0 : view.getWidth());
-        // view.setPivotY( (row < numRow/2) ? 0 : view.getHeight());
         view.setPivotX(view.getX() );
         view.setPivotY(view.getY() );
 
@@ -332,11 +326,13 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         view.invalidate();
     }
 
-    @SuppressWarnings("unused")
-    private void  openDetailView(View view, ViewGroup parent) {
-        // int numCol = getNumCol(parent);
-        int col = (Integer) view.getTag(R.id.tag_col);
-        int row = (Integer) view.getTag(R.id.tag_row);
+    /**
+     * Open a dialog in overlay to show details about tapped view.
+     */
+    private void  openDetailView(@NonNull View view) {
+        View child = groupViews.get(0);
+        int col = (Integer) child.getTag(R.id.tag_col);
+        int row = (Integer) child.getTag(R.id.tag_row);
 
         Rect viewRect = new Rect();
         view.getGlobalVisibleRect(viewRect);
@@ -376,23 +372,8 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
 
         float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2f + overlayRect.left);
         detailTv.setPointer(markerCenterShiftX);
-    }
 
-    private int getNumCol(ViewGroup parent) {
-        if (parent instanceof TableLayout) {
-            TableLayout tableLayout = (TableLayout) parent;
-            // Assume first child of tableLayout is a row (TableRow or LinearLayout)
-            // and its child count is column count.
-            if (tableLayout.getChildAt(0) instanceof ViewGroup) {
-                return ((ViewGroup)tableLayout.getChildAt(0)).getChildCount();
-            }
-            return 0;
-        }
-        if (parent instanceof GridLayout) {
-            GridLayout gridLayout = (GridLayout) parent;
-            return gridLayout.getColumnCount();
-        }
-        return 0;
+        overlay.setElevation(nextElevation);
     }
 
 }
