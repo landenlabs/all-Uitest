@@ -16,6 +16,8 @@ package com.landenlabs.all_uiTest;
  * limitations under the License.
  */
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,6 +97,12 @@ public class FragBottomNavMain extends FragBottomNavBase
         navBotController.navigate(id);
     }
 
+    private ColorStateList colorGrey = new ColorStateList(
+            new int[][]{ new int[]{}},
+            new int[]{Color.GRAY }
+    );
+
+
     // ---------------------------------------------------------------------------------------------
     // Alternate bottom nav bar
 
@@ -116,7 +124,7 @@ public class FragBottomNavMain extends FragBottomNavBase
             if (tabBtnIcon != null) {
                 button.setId(item.getItemId());
                 button.setText(item.getTitle());
-                button.setCompoundDrawableTintList();
+                button.setCompoundDrawableTintList(colorGrey);
                 button.setCompoundDrawablesWithIntrinsicBounds(null, tabBtnIcon, null, null);
                 button.setOnClickListener(this);
                 tabHolder.addView(button, lp);
