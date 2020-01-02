@@ -8,5 +8,7 @@
     <dimen name="grid_v_divider_pad_top">10dp</dimen>
 
     <dimen name="pad10">10dp</dimen>
+    <dimen name="page7_shader_width">300dp</dimen>
+    <dimen name="page7_pad_side">20dp</dimen>
 
 </resources>

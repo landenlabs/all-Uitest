@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextViewExt1">
+        <!--
+        <attr name="textStyle" format="integer" />
+        <attr name="typeface" format="reference" />
+        <attr name="fontFamily" format="string" />
+        <attr name="underline" format="boolean" />
+        -->
+
+        <attr name="clipBottom" format="dimension" />
+        <attr name="shadowRadius" format="dimension" />
+        <attr name="shadowColor" format="color" />
+        <attr name="markerColor" format="color" />
+        <attr name="marker" format="reference" />
+    </declare-styleable>
+
+    <attr name="CompatSeekBar" format="reference" />
+    <declare-styleable name="SeekBarExt1">
+
+        <attr name="tickMin" format="integer" />
+        <attr name="tickMax" format="integer" />
+        <attr name="tickStep" format="integer" />
+        <attr name="tickWidth" format="integer" />
+        <attr name="showTick" format="boolean" />
+        <attr name="tickColor" format="color" />
+        <attr name="tickUnder" format="boolean" />
+
+        <!-- Warning attribute "tickMark" is already used by SeekBar so use tickMarker -->
+        <attr name="tickMarker" format="reference" />
+    </declare-styleable>
+
+</resources>

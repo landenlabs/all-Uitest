@@ -35,4 +35,16 @@
         android:name="com.landenlabs.all_uiTest.FragExpandGroupImageDemo"
         tools:layout="@layout/frag_expand_group_demo"/>
 
+    <fragment
+        android:label="@string/bottom_nav_anim_border"
+        android:id="@+id/fragAnimBorderDemo"
+        android:name="com.landenlabs.all_uiTest.FragAnimBorderDemo"
+        tools:layout="@layout/frag_anim_border"/>
+
+    <fragment
+        android:label="@string/bottom_nav_bitmapshader"
+        android:id="@+id/fragBitmapShaderDemo"
+        android:name="com.landenlabs.all_uiTest.FragBitmapShaderDemo"
+        tools:layout="@layout/frag_bitmapshader"/>
+
 </navigation>

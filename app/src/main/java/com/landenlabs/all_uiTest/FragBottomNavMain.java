@@ -84,6 +84,8 @@ public class FragBottomNavMain extends FragBottomNavBase
             case R.id.fragExpandDemo:
             case R.id.fragExpandGroupViewDemo:
             case R.id.fragExpandGroupImageDemo:
+            case R.id.fragAnimBorderDemo:
+            case R.id.fragBitmapShaderDemo:
                 changePage(view.getId());
                 break;
 

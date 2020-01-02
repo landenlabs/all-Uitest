@@ -10,7 +10,7 @@
     android:button="@null"
     android:gravity="center"
     android:padding="2dp"
-    android:textColor="@color/text_dark"
+    android:textColor="@color/tab_colors"
     android:textStyle="bold" />
 
 <!--

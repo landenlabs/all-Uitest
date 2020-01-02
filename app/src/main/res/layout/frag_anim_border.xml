@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_page"
+    android:orientation="vertical"
+    tools:context=".FragExpandGroupViewDemo">
+
+    <TextView
+        android:id="@+id/page6_btn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_round_3t"
+        android:padding="20dp"
+        android:text="Animate Border, Tap on cell"
+        android:textColor="@color/text_on_bg"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/page6_avec_image"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:src="@drawable/avec_heartbeat" />
+
+    <TableLayout
+        android:id="@+id/page6_tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_round"
+        android:divider="@drawable/divider_hline"
+        android:padding="10dp"
+        android:showDividers="middle|end">
+
+        <TableRow
+            android:baselineAligned="false"
+            android:divider="@drawable/divider_vline"
+            android:showDividers="middle">
+
+            <TextView
+                style="@style/tableText"
+                android:text="12.1°" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/wx_sun_32d" />
+
+            <TextView
+                style="@style/tableText"
+                android:text="Mon"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/cell_icon" />
+
+        </TableRow>
+
+        <TableRow
+            android:baselineAligned="false"
+            android:divider="@drawable/divider_vline"
+            android:showDividers="middle">
+
+            <TextView
+                style="@style/tableText"
+                android:text="21.2°"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/wx_sun_34d" />
+
+            <TextView
+                style="@style/tableText"
+                android:text="Tue"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/cell_icon"
+                android:tint="#f88" />
+
+        </TableRow>
+
+        <TableRow
+            android:baselineAligned="false"
+            android:divider="@drawable/divider_vline"
+            android:showDividers="middle">
+
+            <TextView
+                style="@style/tableText"
+                android:text="32.4°"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/wx_sun_30d" />
+
+            <TextView
+                style="@style/tableText"
+                android:text="Wed"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/cell_icon"
+                android:tint="#8f8" />
+
+        </TableRow>
+
+        <TableRow
+            android:baselineAligned="false"
+            android:divider="@drawable/divider_vline"
+            android:showDividers="middle">
+
+            <TextView
+                style="@style/tableText"
+                android:text="-2.8°"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/wx_sun_32d" />
+
+            <TextView
+                style="@style/tableText"
+                android:text="Thurs"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/page4_row_height"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/cell_icon"
+                android:tint="#88f" />
+
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

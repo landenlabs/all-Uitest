@@ -265,6 +265,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
                 viewRect.bottom - overlayRect.top);
 
         TextViewExt1 detailTv = new TextViewExt1(getContext());
+        detailTv.setMarker(R.drawable.bg_white_varrow);
         detailTv.setText(TestData.WXDATA[row].getDetails(col));
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
