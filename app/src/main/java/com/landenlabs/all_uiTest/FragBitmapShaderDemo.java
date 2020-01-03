@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
@@ -36,7 +37,7 @@ import utils.TextViewExt1;
  * Fragment demonstrates how BitmapShader works, shadows and blur.
  */
 public class FragBitmapShaderDemo extends FragBottomNavBase
-        implements View.OnTouchListener, SeekBar.OnSeekBarChangeListener {
+        implements View.OnTouchListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     private RadioGroup rg;
     private TextViewExt1 shaderTv;
@@ -44,6 +45,12 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
     private static final int LAYOUT_ID = R.layout.frag_bitmapshader;
     private MediaPlayer soundClick;
     private SeekBarExt1 elevSb, shadowSb, widthSb, heightSb;
+    private View controlGrid ;
+    private ImageView expandBtn;
+    private float elevF = 0f;
+    private int shadowPx = 20;
+    private int widthPx = 200;
+    private int heightPx = 200;
 
     // ---------------------------------------------------------------------------------------------
     @Override
@@ -70,6 +77,11 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
 
         slider = root.findViewById(R.id.page7_slider);
         slider.setOnSeekBarChangeListener(this);
+
+        expandBtn =  root.findViewById(R.id.page7_expand_btn);
+        expandBtn.setOnClickListener(this);
+
+        controlGrid = root.findViewById(R.id.page7_control_grid);
 
         elevSb = root.findViewById(R.id.page7_elev_sb);
         elevSb.setOnSeekBarChangeListener(this);
@@ -103,7 +115,19 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
         return false;
     }
 
-    void doAction() {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.page7_expand_btn:
+                controlGrid.setVisibility(controlGrid.getVisibility() == View.VISIBLE  ? View.GONE : View.VISIBLE);
+                expandBtn.setImageResource(
+                        controlGrid.getVisibility() == View.VISIBLE ? R.drawable.vec_expand_close :
+                                R.drawable.vec_expand_open);
+                break;
+        }
+    }
+
+    private void doAction() {
 
         // Change TextViewExt1.
         //   Try to just reset drawables, but the dimensions and padding get corrupted.
@@ -164,6 +188,7 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
      */
     private TextViewExt1 makeTextViewExt(TextViewExt1 oldTextViewExt, boolean shader) {
         TextViewExt1 textViewExt1 = new TextViewExt1(requireContext());
+        textViewExt1.setMaskerColor( 0xff4080f0);
         if (shader) {
             // Set shader
             textViewExt1.setMarker(R.drawable.bg_white_varrow);
@@ -184,7 +209,8 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
 
         ViewGroup.LayoutParams layoutParams =  oldTextViewExt.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        layoutParams.width = requireContext().getResources().getDimensionPixelSize(R.dimen.page7_shader_width);
+        layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                // requireContext().getResources().getDimensionPixelSize(R.dimen.page7_shader_width);
         textViewExt1.setLayoutParams(layoutParams);
 
         return textViewExt1;
@@ -192,7 +218,7 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
 
     void setValue(float percent) {
         shaderTv.setPointer((percent - 0.5f) * shaderTv.getWidth());    // TODO - why is this not width/2
-        shaderTv.invalidate();
+
     }
 
     /**
@@ -203,19 +229,31 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        float percent = progress / 100.0f;
         switch (seekBar.getId()) {
             case R.id.page7_slider:
-                setValue(progress / 100.0f);
+                setValue(percent);
                 break;
             case R.id.page7_elev_sb:
+                elevF = (percent - 0.5f) * 50;
+                shaderTv.setElevation(elevF);
                 break;
             case R.id.page7_shadow_sb:
+                shadowPx = Math.round(percent * 100);
+                shaderTv.setShadowSizePx(shadowPx);
                 break;
             case R.id.page7_width_sb:
+                widthPx = Math.round(percent * 1000);
+                shaderTv.setWidth(widthPx);
                 break;
             case R.id.page7_height_sb:
+                heightPx = Math.round(percent * 1000);
+                shaderTv.setHeight(heightPx);
                 break;
         }
+
+
+        shaderTv.invalidate();
     }
 
     @Override

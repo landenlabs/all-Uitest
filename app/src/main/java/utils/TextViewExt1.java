@@ -112,6 +112,10 @@ public class TextViewExt1 extends TextView {
     public void setClipBottomPx(int clipBottomPx) {
         this.clipBottomPx = clipBottomPx;
     }
+
+    public void setShadowSizePx(int shadowSizePx) {
+        this.shadowSizePx = shadowSizePx;
+    }
     /**
      * Create a clamped texture bitmap which can be shifted to fill view's background.
      */
@@ -219,7 +223,9 @@ public class TextViewExt1 extends TextView {
 
             // Draw shadow
             paint.setColorFilter(shadowColorFilter);
-            paint.setMaskFilter(new BlurMaskFilter(shadowSizePx, BlurMaskFilter.Blur.NORMAL));
+            if (shadowSizePx > 0) {
+                paint.setMaskFilter(new BlurMaskFilter(shadowSizePx, BlurMaskFilter.Blur.NORMAL));
+            }
             RectF shadowCoverage = new RectF(0, 0, getWidth(), getHeight() - clipBottomPx);
             canvas.drawRect(shadowCoverage, paint);
 
