@@ -35,7 +35,10 @@ import androidx.annotation.NonNull;
 /**
  * Fragment demonstrates animating a path around the container cells.
  *
+ * Sample animated heart pulse.
  * https://github.com/IhorKlimov/Android-Animations/blob/master/app/src/main/res/drawable/heart_rate.xml
+ *
+ * Online tool to adjust AVD
  * https://shapeshifter.design/
  *
  * https://github.com/harjot-oberai/VectorMaster

@@ -39,35 +39,49 @@ import com.landenlabs.all_uiTest.R;
 
 /**
  * Custom SeekBar
+ *
  * @see <a href="http://landenlabs.com/android"> author's web-site </a>
+ *
+ *  Custom attrivbutes:
+ *      tickMin         ; minimum percent to start showing tick marks
+ *      tickMax         ; maximjum percent to end showing tick marks
+ *      tickStep        ; step percent between tick marks
+ *      tickUnder       ; show tick under progress bar, defaults to over.
+ *      tickColor       ; tick color, defaults #c0c08080
+ *      tickWidth       ; tick width, defaults to 20px
+ *
+ *
+ *  <utils.SeekBarExt1
+ *     style="@android:style/Widget.SeekBar"
+ *     android:layout_height="20dp"
+ *     android:layout_columnWeight="1"
+ *     android:layout_gravity="center_vertical"
+ *     android:layout_margin="4dp"
+ *     android:background="#8cfc"
+ *     android:max="100"
+ *     android:padding="4dp"
+ *     android:progress="50"
+ *     app:tickMax="75"
+ *     app:tickMin="25"
+ *     app:tickStep="25"
+ *     app:tickUnder="true" />
  */
 @SuppressWarnings("unused")
 public class SeekBarExt1 extends androidx.appcompat.widget.AppCompatSeekBar {
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-
     private int mTickColor = 0xc0c08080;
     private float mMinTic = 0;
     private float mMaxTic = getMax();
     private float mTickStep = 10;
     private float mTickWidth = 20;
     private boolean mTickUnder = false;
-
     private Drawable mTickMarkDr;
-
 
     public SeekBarExt1(Context context) {
         super(context);
         initCompSeekkBar(null, 0);
     }
-
-    /*
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CompatSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initCompSeekkBar(attrs, defStyleAttr);
-    }
-    */
 
     public SeekBarExt1(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -96,13 +110,9 @@ public class SeekBarExt1 extends androidx.appcompat.widget.AppCompatSeekBar {
     @Override
     public synchronized void setProgress(int progress) {
         super.setProgress(progress);
-        // super.setSecondaryProgress(progress);
     }
 
     private void initCompSeekkBar(AttributeSet attrs, int defStyleAttr) {
-        if (isInEditMode())
-            return;
-        // mMaxTic = getMax();
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.SeekBarExt1, defStyleAttr,

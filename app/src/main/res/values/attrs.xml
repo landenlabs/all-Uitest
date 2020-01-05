@@ -31,4 +31,8 @@
         <attr name="tickMarker" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="AnimatedCells">
+        <attr name="borderId" format="reference" />
+    </declare-styleable>
+
 </resources>

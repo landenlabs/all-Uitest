@@ -45,10 +45,42 @@ import com.landenlabs.all_uiTest.R;
 
 /**
  * Custom TextView which has a background image which can be shifted left or right.
- * Draws a shadow and adds and icon to the bottom.
+ * Can draw a shadow and supports an icon on the bottom.
  *
- * TODO - add view attribute to select background image which is shifted or use
- * standard background image.
+ *   +----------------+
+ *   |          /\    |   /\ = Arrow of of marker shifted left/right
+ *   |----------  ----|   #  = Tinted fill color of marker
+ *   |################|
+ *   |##Hello World###|   Supports normal text features.
+ *   |################|
+ *   |    +-----+     |   Clipped bottom area is transparenrt
+ *   |    |  I  |     |   I = foreground icon.
+ *   +----+-----+-----+
+ *
+ *  Use foreground to attach a logo image, use foregroundGravity,
+ *  paddingBottom and clipBottom to position the logo image.
+ *
+ *  Use paddingTop, marker and markerColor to manage the Shader clamped image.
+ *  See setPointer(float xOffsetPx) to shift the marker image.
+ *
+ *  Use shadowRadius  and shadowColor to adjust the drop shadow.
+ *
+ *  <utils.TextViewExt1
+ *      android:layout_width="@dimen/page7_shader_width"
+ *      android:layout_height="wrap_content"
+ *      android:text="@string/msg"
+ *
+ *
+ *      android:foreground="@drawable/logo"
+ *      android:foregroundGravity="bottom|center_horizontal"
+ *      android:paddingBottom="80dp"
+ *      app:clipBottom="40dp"
+ *
+ *      android:paddingTop="40dp"
+ *      app:marker="@drawable/bg_white_varrow"
+ *      app:markerColor="#f48f"
+ *
+ *      app:shadowRadius="6dp" />
  *
  */
 @SuppressLint("AppCompatCustomView")
