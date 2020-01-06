@@ -40,23 +40,32 @@ import androidx.annotation.Nullable;
 import com.landenlabs.all_uiTest.R;
 
 /**
- * Custom GridLayout which provides automatic dividers and method to lock layout to
- * prevent layout change if children change,
+ * Animate border cell lines by using geometry from another container.  The border
+ * container is used to generate a path around the container and to individual view
+ * children cells.
  *
- * TODO - add ui attributes to control dividers
+ * The animation draws a glow line which runs around the outside of the border container
+ * and/or travels into the center to a selected child view.
  *
- * <com.landenlabs.all_UiDemo.Util.GridLayoutExt1
- *      android:layout_width="match_parent"
- *      android:layout_height="wrap_content"
- *      app:alignmentMode="alignBounds"
- *      app:columnCount="2">
- *      <p>
- * </com.landenlabs.all_UiDemo.Util.GridLayoutExt1>
+ * TODO - complete class implementation.
+ *
+ * <pre>
+ *  &lt;!-- AnimatedCells is over its border source -->
+ *  &lt;utils.AnimatedCells
+ *      android:layout_alignTop="@+id/page6_tableLayout"
+ *      android:layout_alignBottom="@+id/page6_tableLayout"
+ *      android:layout_alignStart="@+id/page6_tableLayout"
+ *      android:layout_alignEnd="@+id/page6_tableLayout"
+ *      android:layout_width="0dp"
+ *      android:layout_height="0dp"
+ *      app:borderId="@+id/page6_tableLayout"
+ *      />
+ *  </pre>
  */
 @SuppressWarnings("FieldCanBeLocal")
 public class AnimatedCells extends View {
 
-    // Delay between a pair of frames at a 60 FPS frame rate.
+    // Rate to update animation.
     private static final long FRAME_DELAY = 1000 / 60;
 
     private Rect selfR = new Rect();
@@ -165,7 +174,6 @@ public class AnimatedCells extends View {
         float p = percent/100f;
         paintBlur.setPathEffect(getPathEffect(p+.0f, 0.3f));
         paintColor.setPathEffect(getPathEffect(p+.0f, 0.3f));
-    //    paint3.setPathEffect(getPathEffect(p+.2f, 0.1f));
         drawborders(canvas);
 
         postInvalidateDelayed(FRAME_DELAY);
