@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ComposePathEffect;
 import android.graphics.CornerPathEffect;
 import android.graphics.DashPathEffect;
@@ -62,7 +63,7 @@ public class AnimatedCells extends View {
     private Rect  borderR = new Rect();
     private int left, top;
 
-    private Paint paint1, paint2, paint3;
+    private Paint paintBlur, paintColor;
     private BlurMaskFilter blur1 = new BlurMaskFilter(20, BlurMaskFilter.Blur.NORMAL);
     private Path path;
     private @IdRes int borderResId = -1;
@@ -103,21 +104,22 @@ public class AnimatedCells extends View {
         borderResId = a.getResourceId(R.styleable.AnimatedCells_borderId, -1);
         a.recycle();
 
-        paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint1.setColor(0xffff0000);
-        paint1.setStyle(Paint.Style.STROKE);
-        paint1.setStrokeWidth(18f);
-        paint1.setMaskFilter(blur1);
+        paintBlur = new Paint();
+    //    paintBlur.setAntiAlias(false);
+    //    paintBlur.setDither(true);
+        paintBlur.setColor(Color.argb(200, 240, 140, 75));
+        paintBlur.setStyle(Paint.Style.STROKE);
+        paintBlur.setStrokeJoin(Paint.Join.ROUND);
+        paintBlur.setStrokeCap(Paint.Cap.ROUND);
+        paintBlur.setStrokeWidth(30f);
+        paintBlur.setMaskFilter(blur1);
 
-        paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint2.setColor(0xffff0000);
-        paint2.setStyle(Paint.Style.STROKE);
-        paint2.setStrokeWidth(10f);
-
-        paint3 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint3.setColor(0xffff0000);
-        paint3.setStyle(Paint.Style.STROKE);
-        paint3.setStrokeWidth(6f);
+        paintColor = new Paint();
+        paintColor.setColor(Color.argb(248, 255, 255, 255));
+        paintColor.setStyle(Paint.Style.STROKE);
+        paintColor.setStrokeJoin(Paint.Join.ROUND);
+        paintColor.setStrokeCap(Paint.Cap.ROUND);
+        paintColor.setStrokeWidth(10f);
     }
 
     int percent = 0;
@@ -138,19 +140,6 @@ public class AnimatedCells extends View {
     //    +-----------------------------+
     //          off
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-
-        float p = percent/100f;
-        paint1.setPathEffect(getPathEffect(p+.1f, 0.1f));
-        paint2.setPathEffect(getPathEffect(p+.05f, 0.05f));
-        paint3.setPathEffect(getPathEffect(p+.0f, 0.05f));
-        drawborders(canvas);
-
-        postInvalidateDelayed(FRAME_DELAY);
-        percent = (percent+1) % 100;
-    }
 
     private PathEffect getPathEffect(float p, float lenP) {
         p %= 1f;
@@ -166,6 +155,21 @@ public class AnimatedCells extends View {
 
         DashPathEffect dashEffect = new DashPathEffect(dashParts, 0);
         return  new ComposePathEffect(roundCorner, dashEffect);
+    }
+
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+
+        float p = percent/100f;
+        paintBlur.setPathEffect(getPathEffect(p+.0f, 0.3f));
+        paintColor.setPathEffect(getPathEffect(p+.0f, 0.3f));
+    //    paint3.setPathEffect(getPathEffect(p+.2f, 0.1f));
+        drawborders(canvas);
+
+        postInvalidateDelayed(FRAME_DELAY);
+        percent = (percent+1) % 100;
     }
 
     public void animateTo(@NonNull View child, float fromPercent) {
@@ -233,9 +237,8 @@ public class AnimatedCells extends View {
             loadBorder();
         }
         if (path != null) {
-            canvas.drawPath(path, paint1);
-            canvas.drawPath(path, paint2);
-            canvas.drawPath(path, paint3);
+            canvas.drawPath(path, paintBlur);
+            canvas.drawPath(path, paintColor);
         }
     }
 
