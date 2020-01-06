@@ -27,13 +27,19 @@
         android:title="@string/bottom_nav_group_image"/>
 
     <item
+        android:id="@+id/fragBitmapShaderDemo"
+        android:icon="@drawable/tab_table"
+        android:title="@string/bottom_nav_bitmapshader"/>
+
+    <item
         android:id="@+id/fragAnimBorderDemo"
         android:icon="@drawable/tab_table"
         android:title="@string/bottom_nav_anim_border"/>
 
     <item
-        android:id="@+id/fragBitmapShaderDemo"
+        android:id="@+id/fragAnimViewDemo"
         android:icon="@drawable/tab_table"
-        android:title="@string/bottom_nav_bitmapshader"/>
+        android:title="@string/bottom_nav_anim_view"/>
+
 
 </menu>

@@ -157,10 +157,4 @@ public class FragAnimBorderDemo extends FragBottomNavBase
     private void doAction(View view, ViewGroup parent) {
     }
 
-    /*
-     * Restore children.
-     */
-    private void restoreGroup(@NonNull ViewGroup parent) {
-    }
-
 }

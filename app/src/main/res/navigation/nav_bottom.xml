@@ -47,4 +47,10 @@
         android:name="com.landenlabs.all_uiTest.FragBitmapShaderDemo"
         tools:layout="@layout/frag_bitmapshader"/>
 
+    <fragment
+        android:label="@string/bottom_nav_anim_view"
+        android:id="@+id/fragAnimViewDemo"
+        android:name="com.landenlabs.all_uiTest.FragAnimViewDemo"
+        tools:layout="@layout/frag_anim_view"/>
+
 </navigation>

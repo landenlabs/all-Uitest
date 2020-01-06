@@ -8,8 +8,9 @@
     <string name="bottom_nav_expand">Expand Table</string>
     <string name="bottom_nav_group_view">Expand Views</string>
     <string name="bottom_nav_group_image">Expand Image</string>
-    <string name="bottom_nav_anim_border">Anim Border</string>
     <string name="bottom_nav_bitmapshader">Bitmap Shader</string>
+    <string name="bottom_nav_anim_border">Anim Border</string>
+    <string name="bottom_nav_anim_view">Anim View</string>
 
     <string name="about_text">Demonstrate Layout cell scaling animation.\n\nSource code and guide at https://landenlabs.com/android\n\nCopyright Dennis Lang 2019</string>
     <string name="side_nav_header_1">All Demo</string>
