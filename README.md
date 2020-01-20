@@ -32,7 +32,9 @@ There is also a demonstration of an overlay dialog which uses a **BitmapShader**
 3. [TableLayout and GridLayout - Expand cell transition animation](#page3)  
 4. [TableLayout - Animate expanding a group of view cells](#page4)  
 5. [TableLayout - Animate expanding an image of a group of view cells](#page5)  
-  
+6. [Shader - Demo using BitmapShader verse 9 Patch for background](#page6) 
+7. [Border - Animate tracing container border](#page7) 
+8. [Arc - Animated arc](#page8) 
 ***  
   
 [Home webpage ](http://landenlabs.com/android/all-uitest/index.html) for detailed information.  
@@ -140,6 +142,33 @@ This takes less code then previous approach and includes any dividers provided b
 ![picture](http://landenlabs.com/android/all-uitest/page5-box.gif)  
   
 [To Top](#table)  
+
+---  
+<a name="page6"></a>  
+### Demonstrate using BitmapShader verses 9 Patch png for background  
+Demonstate how a bitmap shader works better to fill a background when the background is shifted. 
+
+![picture](http://landenlabs.com/android/all-uitest/page6-shader.jpg)  
+  
+[To Top](#table) 
+
+---  
+<a name="page7"></a>  
+### Demonstrate animating highlight glow of layout border
+Demonstate how to render an animated glow line around any layout.
+
+![picture](http://landenlabs.com/android/all-uitest/page7-border.gif)  
+  
+[To Top](#table) 
+
+---  
+<a name="page8"></a>  
+### Demonstrate animating an arc line
+Demonstate how to render an animate arc guage. 
+
+![picture](http://landenlabs.com/android/all-uitest/page8-arc.gif)  
+  
+[To Top](#table) 
 
 # Web Page  
   
