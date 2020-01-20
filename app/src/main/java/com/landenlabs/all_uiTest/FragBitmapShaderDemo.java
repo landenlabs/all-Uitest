@@ -197,7 +197,7 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
             textViewExt1.setBackgroundResource(R.drawable.bg_white_varrow9);
         }
         textViewExt1.setText(R.string.page7_text_msg);
-        textViewExt1.setTextColor(requireContext().getResources().getColor(R.color.text_light));
+        textViewExt1.setTextColor(requireContext().getColor(R.color.text_light));
 
         Drawable icon = textViewExt1.getContext().getDrawable(R.drawable.wx_sun_30d);
         textViewExt1.setForeground(icon);

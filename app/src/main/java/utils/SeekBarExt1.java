@@ -132,7 +132,7 @@ public class SeekBarExt1 extends androidx.appcompat.widget.AppCompatSeekBar {
         a.recycle();
 
         if (tickMark != -1) {
-            mTickMarkDr = getResources().getDrawable(tickMark);
+            mTickMarkDr = getContext().getDrawable(tickMark);
         }
     }
 
