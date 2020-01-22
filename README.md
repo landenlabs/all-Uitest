@@ -1,6 +1,6 @@
 # LanDen Labs - UI Test  
 Android UI Test  [Home website](http://landenlabs.com/android/index.html)  
-29-Dec-2019  
+20-Jan-2020
   
 ### Demonstrate Android Ui Features   
 **All-uiTest** is an Android app which contains a set of demonstration pages. The pages implement  various containers such as **GridView**, **TableLayout**, **LinearLayout** and **GridLayout**.  
@@ -10,6 +10,11 @@ The cell expansion grows the size of one or more cells without altering the pare
   
 There is also a demonstration of an overlay dialog which uses a **BitmapShader**,  **ColorMatrix**,  **ColorMatrixColorFilter**, and **Matrix**. A small  white image is translated using the matrix, is rendered on a larger   canvas using the BitmapShader **clamped** image to fill the canvas.   The **ColorMatrix** tints the white image. A clipping rectangle is   used to limit the rendering to leave a transparent band on the bottom.  [Click here to see example ](#page3_detail)
   
+[![Build status](https://travis-ci.org/landenlabs/all-uitest.svg?branch=master)](https://travis-ci.org/landenlabs/all-uitest)
+[![Known Vulnerabilities](https://snyk.io/test/github/landenlabs/all-uitest/badge.svg)](https://snyk.io/test/github/landenlabs/all-uitest)
+
+API 28, pre Android X
+
 ## Key Android features demonstrated  
 1. TransitionManager (animation)  
 2. BitmapShader  
