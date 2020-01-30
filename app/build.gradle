@@ -9,18 +9,21 @@ android {
         applicationId "com.landenlabs.all_uitest"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 202
-        versionName '2.02'
+        versionCode 20129
+        versionName '2.01.29'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Limit languages to following list.
         resConfigs "en", "es"
 
+        /*
+        // x86 required to run on emulator.
         ndk {
             // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
             abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
+         */
     }
 
     // Save app version in string so resource can be used in layouts

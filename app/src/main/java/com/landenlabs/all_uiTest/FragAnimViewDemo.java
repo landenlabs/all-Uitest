@@ -58,6 +58,7 @@ public class FragAnimViewDemo extends FragBottomNavBase implements View.OnClickL
         initUI();
     }
 
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

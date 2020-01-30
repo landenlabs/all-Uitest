@@ -10,7 +10,7 @@ buildscript {
         targetSdkVersion = 28
 
         espressoVersion = '3.1.0-alpha3'
-        gradleVersion = '3.6.0-beta05'
+        gradleVersion = '3.6.0-rc01'
         junitVersion = '4.12'
         kotlinMavigationVersion = '1.0.0-alpha11'
         navigationVersion = "1.0.0"

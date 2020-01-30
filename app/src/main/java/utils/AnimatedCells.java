@@ -150,6 +150,7 @@ public class AnimatedCells extends View {
     //          off
 
 
+    @SuppressWarnings("SameParameterValue")
     private PathEffect getPathEffect(float p, float lenP) {
         p %= 1f;
         float wrapP = Math.max(0, (p + lenP) - 1);
@@ -165,7 +166,6 @@ public class AnimatedCells extends View {
         DashPathEffect dashEffect = new DashPathEffect(dashParts, 0);
         return  new ComposePathEffect(roundCorner, dashEffect);
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {

@@ -16,8 +16,7 @@ package com.landenlabs.all_uiTest;
  * limitations under the License.
  */
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable2;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -42,19 +41,13 @@ import androidx.annotation.NonNull;
  * https://shapeshifter.design/
  *
  * https://github.com/harjot-oberai/VectorMaster
- *
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class FragAnimBorderDemo extends FragBottomNavBase
         implements View.OnTouchListener {
 
     private TableLayout tableLayout;
     private ImageView avecIV;
-
-    private ColorStateList colorGreen = new ColorStateList(
-            new int[][]{ new int[]{}},
-            new int[]{Color.GREEN }
-    );
-
     private static final int LAYOUT_ID = R.layout.frag_anim_border;
 
     // ---------------------------------------------------------------------------------------------
@@ -67,6 +60,7 @@ public class FragAnimBorderDemo extends FragBottomNavBase
         return root;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initUI() {
         tableLayout = root.findViewById(R.id.page6_tableLayout);
         avecIV = root.findViewById(R.id.page6_avec_image);
@@ -85,13 +79,8 @@ public class FragAnimBorderDemo extends FragBottomNavBase
 
         tableLayout.setOnTouchListener(this);
     }
-    private void resetUI() {
-        ViewGroup parent = (ViewGroup)root.getParent();
-        parent.removeAllViews();
-        root = (ViewGroup) View.inflate(getContext(), LAYOUT_ID, parent);
-        initUI();
-    }
 
+    @SuppressLint("ClickableViewAccessibility")
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public boolean onTouch(View view, MotionEvent event) {
@@ -154,6 +143,7 @@ public class FragAnimBorderDemo extends FragBottomNavBase
     /**
      * Execute action on touched view.
      */
+    @SuppressWarnings("unused")
     private void doAction(View view, ViewGroup parent) {
     }
 
