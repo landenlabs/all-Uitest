@@ -41,9 +41,13 @@
 
     </LinearLayout>
 
+    <!--
+       style="@style/Widget.MaterialComponents.NavigationView"
+       style="@style/Widget.MaterialComponents.BottomNavigationView"
+       -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navSideView"
-        style="@style/Widget.MaterialComponents.NavigationView"
+
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
