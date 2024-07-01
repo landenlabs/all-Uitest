@@ -38,6 +38,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.widget.TextViewCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -83,20 +84,11 @@ public class FragBottomNavMain extends FragBottomNavBase
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.fragGridViewDemo:
-            case R.id.fragDividerDemo:
-            case R.id.fragExpandDemo:
-            case R.id.fragExpandGroupViewDemo:
-            case R.id.fragExpandGroupImageDemo:
-            case R.id.fragBitmapShaderDemo:
-            case R.id.fragAnimBorderDemo:
-            case R.id.fragAnimViewDemo:
-                changePage(view.getId());
-                break;
-
-            default:
-                Toast.makeText(requireContext(), "Unknown click action ", Toast.LENGTH_LONG).show();
+        int id = view.getId();
+        if (id == R.id.fragGridViewDemo || id == R.id.fragDividerDemo || id == R.id.fragExpandDemo || id == R.id.fragExpandGroupViewDemo || id == R.id.fragExpandGroupImageDemo || id == R.id.fragBitmapShaderDemo || id == R.id.fragAnimBorderDemo || id == R.id.fragAnimViewDemo) {
+            changePage(view.getId());
+        } else {
+            Toast.makeText(requireContext(), "Unknown click action ", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -105,7 +97,7 @@ public class FragBottomNavMain extends FragBottomNavBase
         navBotController.navigate(id);
     }
 
-    private ColorStateList colorGrey = new ColorStateList(
+    private final ColorStateList colorGrey = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{Color.GRAY }
     );
@@ -132,7 +124,8 @@ public class FragBottomNavMain extends FragBottomNavBase
             if (tabBtnIcon != null) {
                 button.setId(item.getItemId());
                 button.setText(item.getTitle());
-                button.setCompoundDrawableTintList(colorGrey);
+                TextViewCompat.setCompoundDrawableTintList(button, colorGrey);
+                // button.setCompoundDrawableTintList(colorGrey);
                 button.setCompoundDrawablesWithIntrinsicBounds(null, tabBtnIcon, null, null);
                 button.setOnClickListener(this);
                 tabHolder.addView(button, lp);

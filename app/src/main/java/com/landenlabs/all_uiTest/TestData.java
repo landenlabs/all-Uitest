@@ -36,10 +36,10 @@ class TestData {
     static final int COL_RAIN = 3;
 
     static class WxData {
-        String time;
-        String temp;
-        int wxicon;
-        float rainPercent;
+        final String time;
+        final String temp;
+        final int wxicon;
+        final float rainPercent;
 
         WxData(
                 String time, String temp, int wxicon, float rainPercent) {
@@ -54,7 +54,7 @@ class TestData {
         static int columns() { return 4; }
     }
 
-    static WxData[] WXDATA = new WxData[]{
+    static final WxData[] WXDATA = new WxData[]{
             new WxData("4PM", " 2°", R.drawable.wx_sun_30d, 0),
             new WxData("5PM", "12°", R.drawable.wx_sun_31d, 10),
             new WxData("6PM", "18°", R.drawable.wx_sun_32d, 20),

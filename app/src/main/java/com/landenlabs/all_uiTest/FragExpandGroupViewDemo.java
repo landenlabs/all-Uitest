@@ -42,6 +42,7 @@ import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
 import androidx.transition.ChangeTransform;
@@ -57,7 +58,7 @@ import utils.Translation;
  * Fragment which demonstrates expanding a group of view cells by re-parenting and then using a translation
  * animation.
  */
-@SuppressWarnings({"unused", "SwitchStatementWithTooFewBranches"})
+@SuppressWarnings({"unused"})
 public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.OnTouchListener {
     private TableLayout tableLayout;
     private FrameLayout overlay;
@@ -66,11 +67,11 @@ public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.O
 
     private int nextElevation = 1;
     private static final long ANIM_MILLI = 2000;
-    private ColorStateList colorRed = new ColorStateList(
+    private final ColorStateList colorRed = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xffff0000 }    // RED
     );
-    private ColorStateList colorGreen = new ColorStateList(
+    private final ColorStateList colorGreen = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
@@ -125,14 +126,12 @@ public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.O
             x += rect.left;
             y += rect.top;
 
-            switch (view.getId()) {
-                case R.id.page4_tableLayout:
-                    viewTouched = findViewAtPosition(tableLayout, x, y);
-                    if (viewTouched != null) {
-                        doAction(viewTouched, tableLayout);
-                        return true;
-                    }
-                    break;
+            if (view.getId() == R.id.page4_tableLayout) {
+                viewTouched = findViewAtPosition(tableLayout, x, y);
+                if (viewTouched != null) {
+                    doAction(viewTouched, tableLayout);
+                    return true;
+                }
             }
         }
         return false;
@@ -167,36 +166,31 @@ public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.O
 
     private void doAction(View view, ViewGroup parent) {
         overlay.removeAllViews();
-        switch (rg.getCheckedRadioButtonId()) {
-            case R.id.page1_tagRB:
-                restoreGroup(parent);
-                if (view.getBackground() == null) {
-                    // Draw animated gradient of two possible colors.
-                    view.setBackgroundResource(R.drawable.bg_anim_gradient);
-                    view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
-                    ((AnimatedVectorDrawable) view.getBackground()).start();
-                } else {
-                    view.setBackground(null);
-                }
-                break;
-
-            case R.id.page1_grow2RB:
-                expandView(createGroup(parent), parent);
-                ((RadioButton)rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
-                break;
-            case R.id.page1_detailsRB:
-                if (expander.getChildCount() != 0) {
-                    openDetailView(expander, parent);
-                }
-                ((RadioButton)rg.findViewById(R.id.page1_tagRB)).setChecked(true);
-                break;
-            case R.id.page1_resetRB:
-                resetUI();
-                break;
+        int checkedRadioButtonId = rg.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.page1_tagRB) {
+            restoreGroup(parent);
+            if (view.getBackground() == null) {
+                // Draw animated gradient of two possible colors.
+                view.setBackgroundResource(R.drawable.bg_anim_gradient);
+                view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
+                ((AnimatedVectorDrawable) view.getBackground()).start();
+            } else {
+                view.setBackground(null);
+            }
+        } else if (checkedRadioButtonId == R.id.page1_grow2RB) {
+            expandView(createGroup(parent), parent);
+            ((RadioButton) rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
+        } else if (checkedRadioButtonId == R.id.page1_detailsRB) {
+            if (expander.getChildCount() != 0) {
+                openDetailView(expander, parent);
+            }
+            ((RadioButton) rg.findViewById(R.id.page1_tagRB)).setChecked(true);
+        } else if (checkedRadioButtonId == R.id.page1_resetRB) {
+            resetUI();
         }
     }
 
-    private ArrayList<View> groupViews = new ArrayList<>();
+    private final ArrayList<View> groupViews = new ArrayList<>();
     private void restoreGroup(@NonNull ViewGroup parent) {
         for (View child : groupViews) {
             TagInfo tagInfo = (TagInfo)child.getTag(R.id.tag_info);
@@ -359,7 +353,7 @@ public class FragExpandGroupViewDemo extends FragBottomNavBase implements View.O
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
 
-        Drawable icon = detailTv.getContext().getDrawable(R.drawable.wx_sun_30d);
+        Drawable icon = AppCompatResources.getDrawable(requireContext(), R.drawable.wx_sun_30d);
         detailTv.setForeground(icon);
         detailTv.setForegroundGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 

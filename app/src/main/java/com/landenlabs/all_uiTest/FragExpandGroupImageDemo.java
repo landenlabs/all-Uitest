@@ -43,6 +43,7 @@ import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
 import androidx.transition.ChangeTransform;
@@ -58,7 +59,7 @@ import utils.Translation;
  * Fragment which expands a group of view cells making snapshot image of selected
  * cells and expanding image.
  */
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"unused"})
 public class FragExpandGroupImageDemo extends FragBottomNavBase
         implements View.OnTouchListener {
 
@@ -66,15 +67,15 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
     private FrameLayout overlay;
     private FrameLayout expander;
     private RadioGroup rg;
-    private ArrayList<View> groupViews = new ArrayList<>();
+    private final ArrayList<View> groupViews = new ArrayList<>();
 
     private int nextElevation = 1;
     private static final long ANIM_MILLI = 2000;
-    private ColorStateList colorRed = new ColorStateList(
+    private final ColorStateList colorRed = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xffff0000 }    // RED
     );
-    private ColorStateList colorGreen = new ColorStateList(
+    private final ColorStateList colorGreen = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
@@ -109,7 +110,6 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         initUI();
     }
 
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public boolean onTouch(View view, MotionEvent event) {
 
@@ -123,14 +123,12 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
             globalXpx += rect.left;
             globalYpx += rect.top;
 
-            switch (view.getId()) {
-                case R.id.page4_tableLayout:
-                    viewTouched = findViewAtPosition(tableLayout, globalXpx, globalYpx);
-                    if (viewTouched != null) {
-                        doAction(viewTouched, tableLayout);
-                        return true;
-                    }
-                    break;
+            if (view.getId() == R.id.page4_tableLayout) {
+                viewTouched = findViewAtPosition(tableLayout, globalXpx, globalYpx);
+                if (viewTouched != null) {
+                    doAction(viewTouched, tableLayout);
+                    return true;
+                }
             }
         }
         return false;
@@ -173,40 +171,30 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
      */
     private void doAction(View view, ViewGroup parent) {
         overlay.removeAllViews();
-        switch (rg.getCheckedRadioButtonId()) {
-            case R.id.page1_tagRB:
-                restoreGroup(parent);
-                if (view.getBackground() == null) {
-                    // Draw animated gradient of two possible colors.
-                    view.setBackgroundResource(R.drawable.bg_anim_gradient);
-                    view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
-                    ((AnimatedVectorDrawable) view.getBackground()).start();
-                } else {
-                    view.setBackground(null);
-                }
-                break;
-
-            case R.id.page1_grow2RB:
-                if (buildExpander(parent)) {
-                    // Let expander appear in default position before expanding it.
-                    expander.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            expandView(expander, parent);
-                        }
-                    });
-                }
-                ((RadioButton) rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
-                break;
-            case R.id.page1_detailsRB:
-                if (groupViews.size() != 0) {
-                    openDetailView(expander);
-                }
-                ((RadioButton)rg.findViewById(R.id.page1_tagRB)).setChecked(true);
-                break;
-            case R.id.page1_resetRB:
-                resetUI();
-                break;
+        int checkedRadioButtonId = rg.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.page1_tagRB) {
+            restoreGroup(parent);
+            if (view.getBackground() == null) {
+                // Draw animated gradient of two possible colors.
+                view.setBackgroundResource(R.drawable.bg_anim_gradient);
+                view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
+                ((AnimatedVectorDrawable) view.getBackground()).start();
+            } else {
+                view.setBackground(null);
+            }
+        } else if (checkedRadioButtonId == R.id.page1_grow2RB) {
+            if (buildExpander(parent)) {
+                // Let expander appear in default position before expanding it.
+                expander.post(() -> expandView(expander, parent));
+            }
+            ((RadioButton) rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
+        } else if (checkedRadioButtonId == R.id.page1_detailsRB) {
+            if (groupViews.size() != 0) {
+                openDetailView(expander);
+            }
+            ((RadioButton) rg.findViewById(R.id.page1_tagRB)).setChecked(true);
+        } else if (checkedRadioButtonId == R.id.page1_resetRB) {
+            resetUI();
         }
     }
 
@@ -357,7 +345,7 @@ public class FragExpandGroupImageDemo extends FragBottomNavBase
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
 
-        Drawable icon = detailTv.getContext().getDrawable(R.drawable.wx_sun_30d);
+        Drawable icon = AppCompatResources.getDrawable(requireContext(), R.drawable.wx_sun_30d);
         detailTv.setForeground(icon);
         detailTv.setForegroundGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 

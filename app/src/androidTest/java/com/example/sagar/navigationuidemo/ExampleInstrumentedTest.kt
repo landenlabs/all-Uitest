@@ -1,4 +1,4 @@
-package com.landenlabs.all_uiTest
+package com.example.sagar.navigationuidemo
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

@@ -1,101 +1,94 @@
-apply plugin: 'com.android.application'
-
-// apply plugin: 'kotlin-android'
-// apply plugin: 'kotlin-android-extensions'
+// all-UiTest
+plugins {
+    id ("com.android.application")
+    id ("org.jetbrains.kotlin.android") // Prevents duplicate kotlin warnings
+}
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    compileSdk 34
+    namespace "com.landenlabs.all_uiTest"
+
     defaultConfig {
-        applicationId "com.landenlabs.all_uitest"
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
-        versionCode 21209
-        versionName '2.12.09'
+        applicationId "com.landenlabs.all_uiTest"
+        minSdkVersion 23
+        targetSdkVersion 34
+
+        versionCode 30630
+        versionName '3.6.30'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Limit languages to following list.
         resConfigs "en", "es"
 
-        /*
-        // x86 required to run on emulator.
-        ndk {
-            // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
-        }
-         */
+        buildConfigField "long", "BuildTimeMilli", System.currentTimeMillis() + "L"
+    }
+    // Save app version in string so resource can be used in layouts
+    applicationVariants.configureEach { variant ->
+        variant.resValue "string", "versionName", "v" + variant.versionName
     }
 
-    // Save app version in string so resource can be used in layouts
-    applicationVariants.all { variant ->
-        variant.resValue "string", "versionName", "version " + variant.versionName
+    signingConfigs {
+        release
+    }
+
+    // Load signing config (does not work for command line builds)
+    // println("Setting release=${rootDir}/release.properties")
+    if (file("${rootDir}/release.properties").exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(file("${rootDir}/release.properties")))
+        android.signingConfigs.release.storeFile = file(props.keyStore)
+        android.signingConfigs.release.storePassword = props.keyStorePassword
+        android.signingConfigs.release.keyAlias = props.keyAlias
+        android.signingConfigs.release.keyPassword = props.keyAliasPassword
+        println("Setting release to " + signingConfigs.release.storeFile.absolutePath )
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+            // Enables code shrinking, obfuscation, and optimization.
+            minifyEnabled true
 
-    lintOptions {
-        abortOnError false
-        disable 'DefaultLocale', 'SimpleDateFormat', 'InflateParams', 'SpUsage',
-                'UseCompoundDrawables', 'HandlerLeak', 'ViewConstructor', 'SetTextI18n',
-                'RtlSymmetry', 'RtlHardcoded', 'ContentDescription',
-                'MissingTranslation', 'ValidFragment', 'UnusedAttribute',
-                'FieldCanBeLocal', 'LocalSuppress', 'HardcodedText', 'Typos'
+            // List of resources removed at end of generated mapping file:
+            // grep unused ./app/build/outputs/mapping/demoRelease/resources.txt
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            ndk {
+                // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
     }
 
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            // Enable verbose lint reporting during build.
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                // Enable verbose lint reporting during build.
+                options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+            }
         }
-    }
-
-    productFlavors {
-    }
-
-    packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "com.google.android.material:material:1.12.0"
 
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.20"
-//    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha11"
-//    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha11"
-
-    if (true) {
-        // Crashes Navigation.findNavController, see FragBottonNavMain
-        implementation "androidx.appcompat:appcompat:1.6.1"
-        implementation "com.google.android.material:material:1.8.0"
-    } else {
-        implementation 'androidx.appcompat:appcompat:1.2.0'
-        implementation 'com.google.android.material:material:1.2.1'
-    }
-
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'
-    implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment:2.7.7'
+    implementation 'androidx.navigation:navigation-ui:2.7.7'
     // implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation "junit:junit4.13.1"
-    androidTestImplementation "androidx.test:runner:1.5.2"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+    androidTestImplementation "androidx.test:runner:1.6.1"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.6.1"
 }
 
 // Rename app
-android.applicationVariants.all { variant ->
-    variant.outputs.all {
+android.applicationVariants.configureEach { variant ->
+    variant.outputs.configureEach {
         def ourname = project.parent.name
         outputFileName = "$ourname-${variant.name}-${variant.versionName}.apk"
         println "out name= $outputFileName"

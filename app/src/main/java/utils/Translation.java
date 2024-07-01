@@ -23,11 +23,9 @@ package utils;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Path;
 import android.graphics.PointF;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
@@ -45,7 +43,6 @@ import androidx.transition.TransitionValues;
  * <p/>
  * Created by Andrey Kulikov on 13/03/16.
  */
-@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class Translation extends Transition {
 
     private static final String TRANSLATION_X = "Translation:translationX";

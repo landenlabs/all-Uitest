@@ -38,13 +38,13 @@ import androidx.annotation.NonNull;
 
 /**
  * Fragment demonstrates animating a path around the container cells.
- *
+ * <p>
  * Sample animated heart pulse.
  * https://github.com/IhorKlimov/Android-Animations/blob/master/app/src/main/res/drawable/heart_rate.xml
- *
+ * <p>
  * Online tool to adjust AVD
  * https://shapeshifter.design/
- *
+ * <p>
  * https://github.com/harjot-oberai/VectorMaster
  */
 @SuppressWarnings("FieldCanBeLocal")
@@ -86,7 +86,6 @@ public class FragAnimBorderDemo extends FragBottomNavBase
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public boolean onTouch(View view, MotionEvent event) {
 
@@ -100,14 +99,12 @@ public class FragAnimBorderDemo extends FragBottomNavBase
             globalXpx += rect.left;
             globalYpx += rect.top;
 
-            switch (view.getId()) {
-                case R.id.page6_tableLayout:
-                    viewTouched = findViewAtPosition(tableLayout, globalXpx, globalYpx);
-                    if (viewTouched != null) {
-                        doAction(viewTouched, tableLayout);
-                        return true;
-                    }
-                    break;
+            if (view.getId() == R.id.page6_tableLayout) {
+                viewTouched = findViewAtPosition(tableLayout, globalXpx, globalYpx);
+                if (viewTouched != null) {
+                    doAction(viewTouched, tableLayout);
+                    return true;
+                }
             }
         }
         return false;

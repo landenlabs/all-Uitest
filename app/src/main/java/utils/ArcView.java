@@ -43,8 +43,8 @@ public class ArcView extends View {
     private final float radius = dpToPixel(80);
     private float progress = 0;
     private float progressSecond = 100;
-    private float sweepDegrees = 270;
-    private RectF arcRectF = new RectF();
+    private final float sweepDegrees = 270;
+    private final RectF arcRectF = new RectF();
 
     private final Paint paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint paintArcFg = new Paint(Paint.ANTI_ALIAS_FLAG);

@@ -32,14 +32,16 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
+import androidx.appcompat.content.res.AppCompatResources;
+
 import com.landenlabs.all_uiTest.R;
 
 
 /**
  * Custom SeekBar
  *
- * @see <a href="http://landenlabs.com/android"> author's web-site </a>
- *
+ * @see <a href="https://landenlabs.com/android"> author's web-site </a>
+ * <p>
  *  Custom attrivbutes:
  *      tickMin         ; minimum percent to start showing tick marks
  *      tickMax         ; maximjum percent to end showing tick marks
@@ -47,7 +49,7 @@ import com.landenlabs.all_uiTest.R;
  *      tickUnder       ; show tick under progress bar, defaults to over.
  *      tickColor       ; tick color, defaults #c0c08080
  *      tickWidth       ; tick width, defaults to 20px
- *
+ * <p>
  *
  *  <utils.SeekBarExt1
  *     style="@android:style/Widget.SeekBar"
@@ -130,7 +132,7 @@ public class SeekBarExt1 extends androidx.appcompat.widget.AppCompatSeekBar {
         a.recycle();
 
         if (tickMark != -1) {
-            mTickMarkDr = getContext().getDrawable(tickMark);
+            mTickMarkDr = AppCompatResources.getDrawable(getContext(), tickMark);
         }
     }
 

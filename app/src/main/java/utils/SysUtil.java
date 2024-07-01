@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Dennis Lang (LanDen Labs) landenlabs@gmail.com
+ * Copyright (c) 2022 Dennis Lang (LanDen Labs) landenlabs@gmail.com
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
  * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -16,26 +16,30 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://LanDenLabs.com/
  */
 
-package com.landenlabs.all_uiTest;
+package utils;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.annotation.IdRes;
+import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+public class SysUtil {
 
-/**
- * Display about information.
- */
-public class AboutFragment extends Fragment {
+    // https://stackoverflow.com/questions/58320487/using-fragmentcontainerview-with-navigation-component
+    private static final boolean NAV_FRAG_BUG_WORK_AROUND = true;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_about, container, false);
+    public static NavController getNavController(FragmentActivity context, @IdRes int fragRes) {
+        if (NAV_FRAG_BUG_WORK_AROUND) {
+            NavHostFragment navFrag = (NavHostFragment) context.getSupportFragmentManager().findFragmentById(fragRes);
+            if (navFrag != null) {
+                return navFrag.getNavController();
+            }
+        }
+        return Navigation.findNavController(context, fragRes);
     }
+
 }

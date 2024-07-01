@@ -34,6 +34,7 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import utils.SeekBarExt1;
 import utils.TextViewExt1;
@@ -73,12 +74,7 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
         shaderTv = root.findViewById(R.id.page7_shaderTv);
 
         rg = root.findViewById(R.id.page7_rg);
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                doAction();
-            }
-        });
+        rg.setOnCheckedChangeListener((group, checkedId) -> doAction());
 
         slider = root.findViewById(R.id.page7_slider);
         slider.setOnSeekBarChangeListener(this);
@@ -109,7 +105,6 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
         initUI();
     }
 
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public boolean onTouch(View view, MotionEvent event) {
 
@@ -122,13 +117,11 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.page7_expand_btn:
-                controlGrid.setVisibility(controlGrid.getVisibility() == View.VISIBLE  ? View.GONE : View.VISIBLE);
-                expandBtn.setImageResource(
-                        controlGrid.getVisibility() == View.VISIBLE ? R.drawable.vec_expand_close :
-                                R.drawable.vec_expand_open);
-                break;
+        if (view.getId() == R.id.page7_expand_btn) {
+            controlGrid.setVisibility(controlGrid.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            expandBtn.setImageResource(
+                    controlGrid.getVisibility() == View.VISIBLE ? R.drawable.vec_expand_close :
+                            R.drawable.vec_expand_open);
         }
     }
 
@@ -138,20 +131,16 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
         //   Try to just reset drawables, but the dimensions and padding get corrupted.
         //   So remake TextViewExt1
         boolean shader = false;
-        switch (rg.getCheckedRadioButtonId()) {
-            case R.id.page7_9patch:
-
-                shader = false;
-                // shaderTv.setMarker(-1);
-                // shaderTv.setBackgroundResource(R.drawable.bg_white_varrow9);
-                // shaderTv.init();
-                break;
-            case R.id.page7_shader:
-                shader = true;
-                // shaderTv.setMarker(R.drawable.bg_white_varrow);
-                // shaderTv.setBackground(null);
-                // shaderTv.init();
-                break;
+        int checkedRadioButtonId = rg.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.page7_9patch) {
+            // shaderTv.setMarker(-1);
+            // shaderTv.setBackgroundResource(R.drawable.bg_white_varrow9);
+            // shaderTv.init();
+        } else if (checkedRadioButtonId == R.id.page7_shader) {
+            shader = true;
+            // shaderTv.setMarker(R.drawable.bg_white_varrow);
+            // shaderTv.setBackground(null);
+            // shaderTv.init();
         }
 
         TextViewExt1 newTextViewExt = makeTextViewExt(shaderTv, shader);
@@ -204,7 +193,7 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
         textViewExt1.setText(R.string.page7_text_msg);
         textViewExt1.setTextColor(requireContext().getColor(R.color.text_light));
 
-        Drawable icon = textViewExt1.getContext().getDrawable(R.drawable.wx_sun_30d);
+        Drawable icon = AppCompatResources.getDrawable(requireContext(), R.drawable.wx_sun_30d);
         textViewExt1.setForeground(icon);
         textViewExt1.setForegroundGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 
@@ -235,26 +224,21 @@ public class FragBitmapShaderDemo extends FragBottomNavBase
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         float percent = progress / 100.0f;
-        switch (seekBar.getId()) {
-            case R.id.page7_slider:
-                setValue(percent);
-                break;
-            case R.id.page7_elev_sb:
-                elevF = (percent - 0.5f) * 50;
-                shaderTv.setElevation(elevF);
-                break;
-            case R.id.page7_shadow_sb:
-                shadowPx = Math.round(percent * 100);
-                shaderTv.setShadowSizePx(shadowPx);
-                break;
-            case R.id.page7_width_sb:
-                widthPx = Math.round(percent * 1000);
-                shaderTv.setWidth(widthPx);
-                break;
-            case R.id.page7_height_sb:
-                heightPx = Math.round(percent * 1000);
-                shaderTv.setHeight(heightPx);
-                break;
+        int id = seekBar.getId();
+        if (id == R.id.page7_slider) {
+            setValue(percent);
+        } else if (id == R.id.page7_elev_sb) {
+            elevF = (percent - 0.5f) * 50;
+            shaderTv.setElevation(elevF);
+        } else if (id == R.id.page7_shadow_sb) {
+            shadowPx = Math.round(percent * 100);
+            shaderTv.setShadowSizePx(shadowPx);
+        } else if (id == R.id.page7_width_sb) {
+            widthPx = Math.round(percent * 1000);
+            shaderTv.setWidth(widthPx);
+        } else if (id == R.id.page7_height_sb) {
+            heightPx = Math.round(percent * 1000);
+            shaderTv.setHeight(heightPx);
         }
 
 

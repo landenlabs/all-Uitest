@@ -45,13 +45,14 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.landenlabs.all_uiTest.R;
 
 /**
  * Custom TextView which has a background image which can be shifted left or right.
  * Can draw a shadow and supports an icon on the bottom.
- *
+ * <p>
  *   +----------------+
  *   |          /\    |   /\ = Arrow of of marker shifted left/right
  *   |----------  ----|   #  = Tinted fill color of marker
@@ -61,30 +62,30 @@ import com.landenlabs.all_uiTest.R;
  *   |    +-----+     |   Clipped bottom area is transparent
  *   |    |  I  |     |   I = foreground icon.
  *   +----+-----+-----+
- *
+ * <p>
  *  Use foreground to attach a logo image, use foregroundGravity,
  *  paddingBottom and clipBottom to position the logo image.
- *
+ * <p>
  *  Use paddingTop, marker and markerColor to manage the Shader clamped image.
  *  See setPointer(float xOffsetPx) to shift the marker image.
- *
+ * <p>
  *  Use shadowRadius  and shadowColor to adjust the drop shadow.
- *
+ * <p>
  *  <utils.TextViewExt1
  *      android:layout_width="@dimen/page7_shader_width"
  *      android:layout_height="wrap_content"
  *      android:text="@string/msg"
- *
+ * <p>
  *
  *      android:foreground="@drawable/logo"
  *      android:foregroundGravity="bottom|center_horizontal"
  *      android:paddingBottom="80dp"
  *      app:clipBottom="40dp"
- *
+ * <p>
  *      android:paddingTop="40dp"
  *      app:marker="@drawable/bg_white_varrow"
  *      app:markerColor="#f48f"
- *
+ * <p>
  *      app:shadowRadius="6dp" />
  *
  */
@@ -96,7 +97,7 @@ public class TextViewExt1 extends TextView {
     private int bgHeightPx = 0;
     private int shadowSizePx = 20;
 
-    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Matrix mMatrix = new Matrix();
     private float xOffsetPx = Float.NaN;
 
@@ -203,7 +204,7 @@ public class TextViewExt1 extends TextView {
     public void init() {
         try {
             if (marker != -1) {
-                markerDrawable = getResources().getDrawable(marker, getContext().getTheme());
+                markerDrawable = ResourcesCompat.getDrawable(getResources(), marker, getContext().getTheme());
             }  else {
                 // Grab background as marker
                 markerDrawable = getBackground();

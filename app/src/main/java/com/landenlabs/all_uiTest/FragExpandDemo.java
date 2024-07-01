@@ -38,6 +38,7 @@ import android.widget.RadioGroup;
 import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
 import androidx.transition.ChangeTransform;
@@ -61,11 +62,11 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
     private RadioGroup rg;
     private int nextElevation = 1;
     private static final long ANIM_MILLI = 2000;
-    private ColorStateList colorRed = new ColorStateList(
+    private final ColorStateList colorRed = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xffff0000 }    // RED
     );
-    private ColorStateList colorGreen = new ColorStateList(
+    private final ColorStateList colorGreen = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
@@ -109,26 +110,24 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
             x += rect.left;
             y += rect.top;
 
-            switch (view.getId()) {
-                case R.id.page3_gridlayout:
-                    viewTouched = findViewAtPosition(gridLayout, x, y);
-                    if (viewTouched != null) {
-                        int cnt = (Integer)viewTouched.getTag(R.id.tag_col);
-                        int row = (cnt + gridLayout.getColumnCount()-1)/ gridLayout.getColumnCount();
-                        int col = cnt %  gridLayout.getColumnCount();
-                        viewTouched.setTag(R.id.tag_col, col);
-                        viewTouched.setTag(R.id.tag_row, row);
-                        doAction(viewTouched, gridLayout);
-                        return true;
-                    }
-                    break;
-                case R.id.page3_tableLayout:
-                    viewTouched = findViewAtPosition(tableLayout, x, y);
-                    if (viewTouched != null) {
-                        doAction(viewTouched, tableLayout);
-                        return true;
-                    }
-                    break;
+            int id = view.getId();
+            if (id == R.id.page3_gridlayout) {
+                viewTouched = findViewAtPosition(gridLayout, x, y);
+                if (viewTouched != null) {
+                    int cnt = (Integer) viewTouched.getTag(R.id.tag_col);
+                    int row = (cnt + gridLayout.getColumnCount() - 1) / gridLayout.getColumnCount();
+                    int col = cnt % gridLayout.getColumnCount();
+                    viewTouched.setTag(R.id.tag_col, col);
+                    viewTouched.setTag(R.id.tag_row, row);
+                    doAction(viewTouched, gridLayout);
+                    return true;
+                }
+            } else if (id == R.id.page3_tableLayout) {
+                viewTouched = findViewAtPosition(tableLayout, x, y);
+                if (viewTouched != null) {
+                    doAction(viewTouched, tableLayout);
+                    return true;
+                }
             }
         }
         return false;
@@ -163,29 +162,24 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
 
     private void doAction(View view, ViewGroup parent) {
         overlay.removeAllViews();
-        switch (rg.getCheckedRadioButtonId()) {
-            case R.id.page1_tagRB:
-                if (view.getBackground() == null) {
-                    // Draw animated gradient of two possible colors.
-                    view.setBackgroundResource(R.drawable.bg_anim_gradient);
-                    view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
-                    ((AnimatedVectorDrawable) view.getBackground()).start();
-                } else {
-                    view.setBackground(null);
-                }
-                break;
-            case R.id.page1_grow1RB:
-                expandView(view, parent, 1);
-                break;
-            case R.id.page1_grow2RB:
-                expandView(view, parent, 2);
-                break;
-            case R.id.page1_detailsRB:
-                openDetailView(view, parent);
-                break;
-            case R.id.page1_resetRB:
-                resetUI();
-                break;
+        int checkedRadioButtonId = rg.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.page1_tagRB) {
+            if (view.getBackground() == null) {
+                // Draw animated gradient of two possible colors.
+                view.setBackgroundResource(R.drawable.bg_anim_gradient);
+                view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
+                ((AnimatedVectorDrawable) view.getBackground()).start();
+            } else {
+                view.setBackground(null);
+            }
+        } else if (checkedRadioButtonId == R.id.page1_grow1RB) {
+            expandView(view, parent, 1);
+        } else if (checkedRadioButtonId == R.id.page1_grow2RB) {
+            expandView(view, parent, 2);
+        } else if (checkedRadioButtonId == R.id.page1_detailsRB) {
+            openDetailView(view, parent);
+        } else if (checkedRadioButtonId == R.id.page1_resetRB) {
+            resetUI();
         }
     }
 
@@ -275,7 +269,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
 
-        Drawable icon = detailTv.getContext().getDrawable(R.drawable.wx_sun_30d);
+        Drawable icon = AppCompatResources.getDrawable(requireContext(), R.drawable.wx_sun_30d);
         detailTv.setForeground(icon);
         detailTv.setForegroundGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 

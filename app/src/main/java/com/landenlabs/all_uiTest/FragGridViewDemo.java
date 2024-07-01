@@ -44,6 +44,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
@@ -87,42 +88,37 @@ public class FragGridViewDemo extends FragBottomNavBase {
         // See setHasOptionsMen(true)
     }
 
-    private ColorStateList colorRed = new ColorStateList(
+    private final ColorStateList colorRed = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xffff0000 }    // RED
     );
-    private ColorStateList colorGreen = new ColorStateList(
+    private final ColorStateList colorGreen = new ColorStateList(
             new int[][]{ new int[]{}},
             new int[]{  0xff00ff00 }    // GREEN
     );
 
     private void doAction(View view, int pos) {
         overlay.removeAllViews();
-        switch (rg.getCheckedRadioButtonId()) {
-            case R.id.page1_tagRB:
-                if (view.getBackground() == null) {
-                    // Draw animated gradient of two possible colors.
-                    view.setBackgroundResource(R.drawable.bg_anim_gradient);
-                    view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
-                    ((AnimatedVectorDrawable) view.getBackground()).start();
-                } else {
-                    view.setBackground(null);
-                }
-                break;
-            case R.id.page1_grow1RB:
-                expandView(view, pos, 1);
-                break;
-            case R.id.page1_grow2RB:
-                expandView(view, pos, 2);
-                break;
-            case R.id.page1_detailsRB:
-                openDetailView(view, pos);
-                break;
-            case R.id.page1_resetRB:
-                gridview.setAdapter(new Page1Adapter(requireActivity()));
-                gridview.requestLayout();
-                nextElevation = 0;
-                break;
+        int checkedRadioButtonId = rg.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.page1_tagRB) {
+            if (view.getBackground() == null) {
+                // Draw animated gradient of two possible colors.
+                view.setBackgroundResource(R.drawable.bg_anim_gradient);
+                view.setBackgroundTintList(Math.random() > 0.5 ? colorRed : colorGreen);
+                ((AnimatedVectorDrawable) view.getBackground()).start();
+            } else {
+                view.setBackground(null);
+            }
+        } else if (checkedRadioButtonId == R.id.page1_grow1RB) {
+            expandView(view, pos, 1);
+        } else if (checkedRadioButtonId == R.id.page1_grow2RB) {
+            expandView(view, pos, 2);
+        } else if (checkedRadioButtonId == R.id.page1_detailsRB) {
+            openDetailView(view, pos);
+        } else if (checkedRadioButtonId == R.id.page1_resetRB) {
+            gridview.setAdapter(new Page1Adapter(requireActivity()));
+            gridview.requestLayout();
+            nextElevation = 0;
         }
     }
 
@@ -200,7 +196,7 @@ public class FragGridViewDemo extends FragBottomNavBase {
         detailTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         detailTv.setTextColor(Color.WHITE);
 
-        Drawable icon = detailTv.getContext().getDrawable(R.drawable.wx_sun_30d);
+        Drawable icon = AppCompatResources.getDrawable(requireContext(), R.drawable.wx_sun_30d);
         detailTv.setForeground(icon);
         detailTv.setForegroundGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 

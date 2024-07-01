@@ -48,10 +48,10 @@ import com.landenlabs.all_uiTest.R;
  * Animate border cell lines by using geometry from another container.  The border
  * container is used to generate a path around the container and to individual view
  * children cells.
- *
+ * <p>
  * The animation draws a glow line which runs around the outside of the border container
  * and/or travels into the center to a selected child view.
- *
+ * <p>
  * TODO - complete class implementation.
  *
  * <pre>
@@ -73,19 +73,19 @@ public class AnimatedCells extends View {
     // Rate to update animation.
     private static final long FRAME_DELAY = 1000 / 60;
 
-    private Rect selfR = new Rect();
-    private Rect  borderR = new Rect();
+    private final Rect selfR = new Rect();
+    private final Rect  borderR = new Rect();
     private int left, top;
 
     private Paint paintBlur, paintColor;
-    private BlurMaskFilter blur1 = new BlurMaskFilter(20, BlurMaskFilter.Blur.NORMAL);
+    private final BlurMaskFilter blur1 = new BlurMaskFilter(20, BlurMaskFilter.Blur.NORMAL);
     private Path path;
     private @IdRes int borderResId = -1;
     private View border;
 
     private float pathLen;
-    private CornerPathEffect roundCorner = new CornerPathEffect(80);
-    float[] dashParts = new float[]{ 0f, 0f, 0f, 0f};
+    private final CornerPathEffect roundCorner = new CornerPathEffect(80);
+    final float[] dashParts = new float[]{ 0f, 0f, 0f, 0f};
 
     // ---------------------------------------------------------------------------------------------
     public AnimatedCells(Context context) {

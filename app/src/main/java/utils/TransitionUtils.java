@@ -23,8 +23,6 @@ package utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.annotation.TargetApi;
-import android.os.Build;
 
 import androidx.annotation.Nullable;
 
@@ -33,7 +31,6 @@ import androidx.annotation.Nullable;
  * https://github.com/andkulikov/Transitions-Everywhere
  * Static utility methods for Transitions.
  */
-@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 class TransitionUtils {
 
     @Nullable

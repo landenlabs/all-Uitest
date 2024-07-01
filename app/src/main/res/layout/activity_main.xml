@@ -52,7 +52,7 @@
         <!-- defaultNavHost=true, support system Back button -->
         <!-- Fragment is under bottom nav bar -->
         <!-- Fragment changed using Side menu -->
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/sideNavFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"

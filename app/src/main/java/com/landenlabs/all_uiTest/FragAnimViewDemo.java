@@ -63,13 +63,10 @@ public class FragAnimViewDemo extends FragBottomNavBase implements View.OnClickL
         initUI();
     }
 
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.page8_animBtn:
-                animateArcView(arcView);
-                break;
+        if (view.getId() == R.id.page8_animBtn) {
+            animateArcView(arcView);
         }
     }
 

@@ -36,9 +36,9 @@ import com.landenlabs.all_uiTest.R;
 /**
  * Custom GridLayout which provides automatic dividers and method to lock layout to
  * prevent layout change if children change,
- *
+ * <p>
  * TODO - add ui attributes to control dividers
- *
+ * <p>
  * <com.landenlabs.all_UiDemo.Util.GridLayoutExt1
  *      android:layout_width="match_parent"
  *      android:layout_height="wrap_content"
@@ -54,7 +54,7 @@ public class GridLayoutExt1 extends GridLayout {
     private Paint hPaint;
 
     // TODO - get from property attributes.
-    private int dividerColor = Color.WHITE;
+    private final int dividerColor = Color.WHITE;
     private float hDividerWidthPx = 1;
     private float vDividerWidthPx = 1;
     private float vOffsetTopPx = 0;
@@ -63,8 +63,8 @@ public class GridLayoutExt1 extends GridLayout {
     public static final int MID = 2;
     public static final int END = 4;
 
-    int vDividers = MID;
-    int hDividers = MID;
+    final int vDividers = MID;
+    final int hDividers = MID;
 
     boolean locked = false;
 
