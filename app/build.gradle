@@ -23,6 +23,7 @@ android {
 
         buildConfigField "long", "BuildTimeMilli", System.currentTimeMillis() + "L"
     }
+
     // Save app version in string so resource can be used in layouts
     applicationVariants.configureEach { variant ->
         variant.resValue "string", "versionName", "v" + variant.versionName
