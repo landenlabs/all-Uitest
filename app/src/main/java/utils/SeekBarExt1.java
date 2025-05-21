@@ -16,7 +16,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @author Dennis Lang
- * @see http://LanDenLabs.com/
+ * @see https://LanDenLabs.com/
  */
 
 package utils;
@@ -40,7 +40,7 @@ import com.landenlabs.all_uiTest.R;
 /**
  * Custom SeekBar
  *
- * @see <a href="https://landenlabs.com/android"> author's web-site </a>
+ * @see <a href="https://LanDenLabs.com/android"> author's web-site </a>
  * <p>
  *  Custom attrivbutes:
  *      tickMin         ; minimum percent to start showing tick marks
