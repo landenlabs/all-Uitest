@@ -1,5 +1,5 @@
 # LanDen Labs - UI Test  
-<br>18-Arp-2026
+<br>18-Apr-2026
 <br>API 36 AndroidX Java
 <br>[Home website](https://landenlabs.com/android/index.html)
 
@@ -15,6 +15,7 @@ There is also a demonstration of an overlay dialog which uses a **BitmapShader**
   
 [![Build status](https://travis-ci.org/landenlabs/all-uitest.svg?branch=master)](https://travis-ci.org/landenlabs/all-uitest)
 [![Known Vulnerabilities](https://snyk.io/test/github/landenlabs/all-uitest/badge.svg)](https://snyk.io/test/github/landenlabs/all-uitest)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 API 28, pre Android X
 
@@ -82,7 +83,7 @@ Both **TableLayout's** helper **TableRow** and **LinearLayout** support built-in
   
 [To Top](#table)  
   
-  #### Custom GridLayout built-in dividers  
+#### Custom GridLayout built-in dividers  
   
 <img src="https://landenlabs.com/android/all-uitest/page2-divider2.jpg" width="400">  
   
@@ -100,12 +101,12 @@ Both **TableLayout's** helper **TableRow** and **LinearLayout** support built-in
 [To Top](#table)  
   
 <a name="page3_expand"></a>    
-#### TableLayout and GridLayout  Cell expand animation  
+#### TableLayout and GridLayout Cell expand animation  
   
 ![picture](https://landenlabs.com/android/all-uitest/page3-expand.gif)  
   
 [To Top](#table)  
- <a name="page3_detail"></a>   
+<a name="page3_detail"></a>   
 #### TableLayout and GridLayout Cell detail floater  
   
 ![picture](https://landenlabs.com/android/all-uitest/page3-details.gif)  
@@ -136,8 +137,8 @@ Example expanding a **row**
 ---  
 <a name="page5"></a>  
 ### Group Grid selection Expanded using image snapshot  
-Demonstate animating the expansion of a group of cells using a snapshot image of them. 
-This takes less code then previous approach and includes any dividers provided by parent container. 
+Demonstrate animating the expansion of a group of cells using a snapshot image of them. 
+This takes less code than previous approach and includes any dividers provided by parent container. 
 
 ![picture](https://landenlabs.com/android/all-uitest/page5-row.gif)  
   
@@ -153,8 +154,8 @@ This takes less code then previous approach and includes any dividers provided b
 
 ---  
 <a name="page6"></a>  
-### Demonstrate using BitmapShader verses 9 Patch png for background  
-Demonstate how a bitmap shader works better to fill a background when the background is shifted. 
+### Demonstrate using BitmapShader versus 9 Patch png for background  
+Demonstrate how a bitmap shader works better to fill a background when the background is shifted. 
 
 ![picture](https://landenlabs.com/android/all-uitest/page6-shader.jpg)  
   
@@ -163,7 +164,7 @@ Demonstate how a bitmap shader works better to fill a background when the backgr
 ---  
 <a name="page7"></a>  
 ### Demonstrate animating highlight glow of layout border
-Demonstate how to render an animated glow line around any layout.
+Demonstrate how to render an animated glow line around any layout.
 
 ![picture](https://landenlabs.com/android/all-uitest/page7-border.gif)  
   
@@ -172,32 +173,33 @@ Demonstate how to render an animated glow line around any layout.
 ---  
 <a name="page8"></a>  
 ### Demonstrate animating an arc line
-Demonstate how to render an animate arc guage. 
+Demonstrate how to render an animated arc gauge. 
 
 ![picture](https://landenlabs.com/android/all-uitest/page8-arc.gif)  
   
 [To Top](#table) 
 
-# Web Page  
+## Web Page  
   
 [Home web page](https://landenlabs.com/android/index.html) for more information.  
-  
-# License  
-  
-```  
-Copyright 2019 Dennis Lang  
-  
-Licensed under the Apache License, Version 2.0 (the "License");  
-you may not use this file except in compliance with the License.  
-You may obtain a copy of the License at  
-  
- http://www.apache.org/licenses/LICENSE-2.0  
-Unless required by applicable law or agreed to in writing, software  
-distributed under the License is distributed on an "AS IS" BASIS,  
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
-See the License for the specific language governing permissions and  
-limitations under the License.  
-```   
-  
+
+### License
+
+```
+Copyright 2026 Dennis Lang (LanDen Labs)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+See [LICENSE](LICENSE) for the full license text.
+
 [To Top](#table)  
 <br>[Home website](https://landenlabs.com/android/index.html)
