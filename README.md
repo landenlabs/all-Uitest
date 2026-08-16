@@ -3,7 +3,7 @@
 <br>API 36 AndroidX Java
 <br>[Home website](https://landenlabs.com/android/index.html)
 
-<img src="screenshots/landenlabs.webp" width="300" alt="Logo">
+<img src="screens/landenlabs.webp" width="300" alt="Logo">
   
 ### Demonstrate Android Ui Features   
 **All-uiTest** is an Android app which contains a set of demonstration pages. The pages implement  various containers such as **GridView**, **TableLayout**, **LinearLayout** and **GridLayout**.  
@@ -55,21 +55,21 @@ Also see [all-colormatrix](https://github.com/landenlabs/all-colormatrix) for de
 ### GridView Layout Cell background animation  
   
  Demonstrate attaching animated vector drawable to tapped cells. The animation shifts a gradient fill.
-![picture](https://landenlabs.com/android/all-uitest/page1-tag.gif)  
+![picture](screens/page1-tag.gif)  
   
 [To Top](#table)  
   
   
 #### GridView Layout Cell expand animation  
  Demonstrate expanding (**scaling** ) tapped cell. Expanded cell has its elevation increased so it floats over its peers and parent. 
-![picture](https://landenlabs.com/android/all-uitest/page1-expand.gif)  
+![picture](screens/page1-expand.gif)  
   
 [To Top](#table)  
   
 ##### GridView Layout Cell detail floater  
  
  Demonstrate presentation of an overlay dialog which shifts a small background image to position an arrow over the center of the tapped cell, fill the dialog and include an icon image as if it spills off the bottom of the dialog. 
-<img src="https://landenlabs.com/android/all-uitest/page1-details.gif">  
+<img src="screens/page1-details.gif">  
   
 [To Top](#table)  
   
@@ -79,15 +79,15 @@ Also see [all-colormatrix](https://github.com/landenlabs/all-colormatrix) for de
   
 Both **TableLayout's** helper **TableRow** and **LinearLayout** support built-in cell dividers.  Using a **9 Patch** you can implement various divider looks.
   
-<img src="https://landenlabs.com/android/all-uitest/page2-divider1.jpg" width="400">  
+<img src="screens/page2-divider1.jpg" width="400">  
   
 [To Top](#table)  
   
 #### Custom GridLayout built-in dividers  
   
-<img src="https://landenlabs.com/android/all-uitest/page2-divider2.jpg" width="400">  
+<img src="screens/page2-divider2.jpg" width="400">  
   
-<img src="https://landenlabs.com/android/all-uitest/page2-divider3.jpg" width="400">  
+<img src="screens/page2-divider3.jpg" width="400">  
   
 [To Top](#table)  
   
@@ -96,20 +96,20 @@ Both **TableLayout's** helper **TableRow** and **LinearLayout** support built-in
 <a name="page3"></a>  
 ### TableLayout and GridLayout Cell background animation  
   
-![picture](https://landenlabs.com/android/all-uitest/page3-tag.gif)  
+![picture](screens/page3-tag.gif)  
   
 [To Top](#table)  
   
 <a name="page3_expand"></a>    
 #### TableLayout and GridLayout Cell expand animation  
   
-![picture](https://landenlabs.com/android/all-uitest/page3-expand.gif)  
+![picture](screens/page3-expand.gif)  
   
 [To Top](#table)  
 <a name="page3_detail"></a>   
 #### TableLayout and GridLayout Cell detail floater  
   
-![picture](https://landenlabs.com/android/all-uitest/page3-details.gif)  
+![picture](screens/page3-details.gif)  
   
 [To Top](#table)  
   
@@ -118,19 +118,19 @@ Both **TableLayout's** helper **TableRow** and **LinearLayout** support built-in
 ### Group Grid selection Expansion   
 Demonstrate group cell expansion by re-parenting the selected cells into a new container which is expanded. To prevent the original container from reflowing the reparented cells are replaced with Space views. The reverse is done when the expansion is cancelled. Example expanding a **column**. 
 
-![picture](https://landenlabs.com/android/all-uitest/group-col.gif)  
+![picture](screens/group-col.gif)  
   
 [To Top](#table)  
   
 Example expanding cells in a **"L"** shape. 
 
-![picture](https://landenlabs.com/android/all-uitest/group-l.gif)  
+![picture](screens/group-l.gif)  
   
 [To Top](#table)  
   
 Example expanding a **row**  
  
-![picture](https://landenlabs.com/android/all-uitest/group-row.gif)  
+![picture](screens/group-row.gif)  
   
 [To Top](#table)  
   
@@ -140,15 +140,15 @@ Example expanding a **row**
 Demonstrate animating the expansion of a group of cells using a snapshot image of them. 
 This takes less code than previous approach and includes any dividers provided by parent container. 
 
-![picture](https://landenlabs.com/android/all-uitest/page5-row.gif)  
+![picture](screens/page5-row.gif)  
   
 [To Top](#table)  
 
-![picture](https://landenlabs.com/android/all-uitest/page5-col.gif)  
+![picture](screens/page5-col.gif)  
   
 [To Top](#table)  
 
-![picture](https://landenlabs.com/android/all-uitest/page5-box.gif)  
+![picture](screens/page5-box.gif)  
   
 [To Top](#table)  
 
@@ -157,7 +157,7 @@ This takes less code than previous approach and includes any dividers provided b
 ### Demonstrate using BitmapShader versus 9 Patch png for background  
 Demonstrate how a bitmap shader works better to fill a background when the background is shifted. 
 
-![picture](https://landenlabs.com/android/all-uitest/page6-shader.jpg)  
+![picture](screens/page6-shader.jpg)  
   
 [To Top](#table) 
 
@@ -166,7 +166,7 @@ Demonstrate how a bitmap shader works better to fill a background when the backg
 ### Demonstrate animating highlight glow of layout border
 Demonstrate how to render an animated glow line around any layout.
 
-![picture](https://landenlabs.com/android/all-uitest/page7-border.gif)  
+![picture](screens/page7-border.gif)  
   
 [To Top](#table) 
 
@@ -175,7 +175,7 @@ Demonstrate how to render an animated glow line around any layout.
 ### Demonstrate animating an arc line
 Demonstrate how to render an animated arc gauge. 
 
-![picture](https://landenlabs.com/android/all-uitest/page8-arc.gif)  
+![picture](screens/page8-arc.gif)  
   
 [To Top](#table) 
 
