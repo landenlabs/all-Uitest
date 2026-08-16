@@ -29,7 +29,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.GridView;
 
-import com.landenlabs.all_uiTest.R;
+import com.landenlabs.all_UiDemo2.R;
 
 /**
  * Custom GridView which automatically provides dividers.

@@ -34,7 +34,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.content.res.AppCompatResources;
 
-import com.landenlabs.all_uiTest.R;
+import com.landenlabs.all_UiDemo2.R;
 
 
 /**

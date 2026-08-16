@@ -19,7 +19,7 @@
  * @see https://LanDenLabs.com/
  */
 
-package com.landenlabs.all_uiTest;
+package com.landenlabs.all_UiDemo2;
 
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;

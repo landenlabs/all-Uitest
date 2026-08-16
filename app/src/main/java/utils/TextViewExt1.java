@@ -47,7 +47,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.landenlabs.all_uiTest.R;
+import com.landenlabs.all_UiDemo2.R;
 
 /**
  * Custom TextView which has a background image which can be shifted left or right.

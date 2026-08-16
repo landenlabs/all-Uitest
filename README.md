@@ -1,4 +1,4 @@
-# LanDen Labs - UI Test  
+# LanDen Labs - UiDemo2  
 <br>18-Apr-2026
 <br>API 36 AndroidX Java
 <br>[Home website](https://landenlabs.com/android/index.html)
@@ -6,15 +6,15 @@
 <img src="screens/landenlabs.webp" width="300" alt="Logo">
   
 ### Demonstrate Android Ui Features   
-**All-uiTest** is an Android app which contains a set of demonstration pages. The pages implement  various containers such as **GridView**, **TableLayout**, **LinearLayout** and **GridLayout**.  
+**All-UiDemo2** is an Android app which contains a set of demonstration pages. The pages implement  various containers such as **GridView**, **TableLayout**, **LinearLayout** and **GridLayout**.  
 Each page either shows **Cell expansion transition animation** or other containers   features such as built-in **dividers**.   
   
 The cell expansion grows the size of one or more cells without altering the parent container and its other children.   
   
 There is also a demonstration of an overlay dialog which uses a **BitmapShader**,  **ColorMatrix**,  **ColorMatrixColorFilter**, and **Matrix**. A small  white image is translated using the matrix, is rendered on a larger   canvas using the BitmapShader **clamped** image to fill the canvas.   The **ColorMatrix** tints the white image. A clipping rectangle is   used to limit the rendering to leave a transparent band on the bottom.  [Click here to see example ](#page3_detail)
   
-[![Build status](https://travis-ci.org/landenlabs/all-uitest.svg?branch=master)](https://travis-ci.org/landenlabs/all-uitest)
-[![Known Vulnerabilities](https://snyk.io/test/github/landenlabs/all-uitest/badge.svg)](https://snyk.io/test/github/landenlabs/all-uitest)
+[![Build status](https://travis-ci.org/landenlabs/all-UiDemo2.svg?branch=master)](https://travis-ci.org/landenlabs/all-UiDemo2)
+[![Known Vulnerabilities](https://snyk.io/test/github/landenlabs/all-UiDemo2/badge.svg)](https://snyk.io/test/github/landenlabs/all-UiDemo2)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 API 28, pre Android X

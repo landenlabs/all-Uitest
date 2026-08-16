@@ -20,7 +20,7 @@
   -->
 
 <resources>
-    <string name="app_name">all-UiTest</string>
+    <string name="app_name">all-UiDemo2</string>
     <string name="bottomnav_menu_title">UI Test Pages</string>
     <string name="about_menu_title">About</string>
 

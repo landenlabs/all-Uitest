@@ -19,7 +19,7 @@
  * @see https://LanDenLabs.com/
  */
 
-package com.landenlabs.all_uiTest;
+package com.landenlabs.all_UiDemo2;
 
 import static utils.SysUtil.getNavController;
 
@@ -56,7 +56,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Main activity for All-UiTest which demonstrates cell expansion and dividers.
+ * Main activity for All-UiDemo2 which demonstrates cell expansion and dividers.
  */
 @SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {

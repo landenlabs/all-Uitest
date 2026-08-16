@@ -19,12 +19,15 @@
  * @see https://LanDenLabs.com/
  */
 
-package com.landenlabs.all_uiTest;
+package com.landenlabs.all_UiDemo2;
 
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -34,10 +37,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.transition.AutoTransition;
 import androidx.transition.ChangeBounds;
@@ -45,21 +50,25 @@ import androidx.transition.ChangeTransform;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 
-import utils.GridLayoutExt1;
+import java.util.ArrayList;
+
 import utils.TextViewExt1;
 import utils.Translation;
 
 /**
- * Fragment which demonstrates expanding view cells from TableLayout and custom GridLayout.
+ * Fragment which expands a group of view cells making snapshot image of selected
+ * cells and expanding image.
  */
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchListener {
-    private ViewGroup scrollHolder;
-    private TableLayout tableLayout;
-    private GridLayoutExt1 gridLayout;
+@SuppressWarnings({"unused"})
+public class FragExpandGroupImageDemo extends FragBottomNavBase
+        implements View.OnTouchListener {
 
+    private TableLayout tableLayout;
     private FrameLayout overlay;
+    private FrameLayout expander;
     private RadioGroup rg;
+    private final ArrayList<View> groupViews = new ArrayList<>();
+
     private int nextElevation = 1;
     private static final long ANIM_MILLI = 2000;
     private final ColorStateList colorRed = new ColorStateList(
@@ -71,59 +80,51 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
             new int[]{  0xff00ff00 }    // GREEN
     );
 
+
+    private static final int LAYOUT_ID = R.layout.frag_expand_group_demo;
+
+    // ---------------------------------------------------------------------------------------------
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, R.layout.frag_expand_demo);
-        setBarVisibility(View.GONE);
+        super.onCreateView(inflater, container, LAYOUT_ID);
+        setBarTitle("Group expand snapshot image");
+        // setBarVisibility(View.GONE);
         initUI();
 
         return root;
     }
 
     private void initUI() {
-        scrollHolder = root.findViewById(R.id.page3_scroll_holder);
-        tableLayout = root.findViewById(R.id.page3_tableLayout);
-        gridLayout = root.findViewById(R.id.page3_gridlayout);
-        overlay = root.findViewById(R.id.page3_overlay);
-        rg = root.findViewById(R.id.page3_rg);
+        tableLayout = root.findViewById(R.id.page4_tableLayout);
+        overlay = root.findViewById(R.id.page4_overlay);
+        expander = root.findViewById(R.id.page4_expander);
+        rg = root.findViewById(R.id.page4_rg);
 
-        gridLayout.setOnTouchListener(this);
         tableLayout.setOnTouchListener(this);
     }
     private void resetUI() {
         ViewGroup parent = (ViewGroup)root.getParent();
         parent.removeAllViews();
-        root = (ViewGroup) View.inflate(getContext(), R.layout.frag_expand_demo, parent);
-
+        root = (ViewGroup) View.inflate(getContext(), LAYOUT_ID, parent);
         nextElevation = 0;
         initUI();
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View viewTouched;
-            int x = (int)event.getX();
-            int y = (int)event.getY();
+
+            int globalXpx = (int)event.getX();
+            int globalYpx = (int)event.getY();
             Rect rect = new Rect();
             view.getGlobalVisibleRect(rect);
-            x += rect.left;
-            y += rect.top;
+            globalXpx += rect.left;
+            globalYpx += rect.top;
 
-            int id = view.getId();
-            if (id == R.id.page3_gridlayout) {
-                viewTouched = findViewAtPosition(gridLayout, x, y);
-                if (viewTouched != null) {
-                    int cnt = (Integer) viewTouched.getTag(R.id.tag_col);
-                    int row = (cnt + gridLayout.getColumnCount() - 1) / gridLayout.getColumnCount();
-                    int col = cnt % gridLayout.getColumnCount();
-                    viewTouched.setTag(R.id.tag_col, col);
-                    viewTouched.setTag(R.id.tag_row, row);
-                    doAction(viewTouched, gridLayout);
-                    return true;
-                }
-            } else if (id == R.id.page3_tableLayout) {
-                viewTouched = findViewAtPosition(tableLayout, x, y);
+            if (view.getId() == R.id.page4_tableLayout) {
+                viewTouched = findViewAtPosition(tableLayout, globalXpx, globalYpx);
                 if (viewTouched != null) {
                     doAction(viewTouched, tableLayout);
                     return true;
@@ -133,17 +134,22 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         return false;
     }
 
-    private View findViewAtPosition(View parent, int x, int y) {
+    /**
+     * Find child view hit by touch position.
+     * Set row and column in tags.
+     */
+    private View findViewAtPosition(View parent, int globalXpx, int globalYpx) {
         if (parent instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup)parent;
-            for (int i=0; i<viewGroup.getChildCount(); i++) {
+            for (int i=0; i < viewGroup.getChildCount(); i++) {
                 View child = viewGroup.getChildAt(i);
-                View viewAtPosition = findViewAtPosition(child, x, y);
+                View viewAtPosition = findViewAtPosition(child, globalXpx, globalYpx);
                 if (viewAtPosition != null) {
+                    // Assume Table structure, view inside row container.
                     if (viewAtPosition.getTag(R.id.tag_col) == null) {
-                        viewAtPosition.setTag(R.id.tag_col, i);
+                        viewAtPosition.setTag(R.id.tag_col, i);     // Set column first in inner container
                     } else if (viewAtPosition.getTag(R.id.tag_row) == null) {
-                        viewAtPosition.setTag(R.id.tag_row, i);
+                        viewAtPosition.setTag(R.id.tag_row, i);     // Set row in 2nd outer container.
                     }
                     return viewAtPosition;
                 }
@@ -152,7 +158,7 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         } else {
             Rect rect = new Rect();
             parent.getGlobalVisibleRect(rect);
-            if (rect.contains(x, y)) {
+            if (rect.contains(globalXpx, globalYpx)) {
                 return parent;
             } else {
                 return null;
@@ -160,10 +166,14 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         }
     }
 
+    /**
+     * Execute action on touched view.
+     */
     private void doAction(View view, ViewGroup parent) {
         overlay.removeAllViews();
         int checkedRadioButtonId = rg.getCheckedRadioButtonId();
         if (checkedRadioButtonId == R.id.page1_tagRB) {
+            restoreGroup(parent);
             if (view.getBackground() == null) {
                 // Draw animated gradient of two possible colors.
                 view.setBackgroundResource(R.drawable.bg_anim_gradient);
@@ -172,18 +182,100 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
             } else {
                 view.setBackground(null);
             }
-        } else if (checkedRadioButtonId == R.id.page1_grow1RB) {
-            expandView(view, parent, 1);
         } else if (checkedRadioButtonId == R.id.page1_grow2RB) {
-            expandView(view, parent, 2);
+            if (buildExpander(parent)) {
+                // Let expander appear in default position before expanding it.
+                expander.post(() -> expandView(expander, parent));
+            }
+            ((RadioButton) rg.findViewById(R.id.page1_detailsRB)).setChecked(true);
         } else if (checkedRadioButtonId == R.id.page1_detailsRB) {
-            openDetailView(view, parent);
+            if (groupViews.size() != 0) {
+                openDetailView(expander);
+            }
+            ((RadioButton) rg.findViewById(R.id.page1_tagRB)).setChecked(true);
         } else if (checkedRadioButtonId == R.id.page1_resetRB) {
             resetUI();
         }
     }
 
-    private void   setClipChildren(ViewGroup view, boolean toClip) {
+    /*
+     * Restore children.
+     */
+    private void restoreGroup(@NonNull ViewGroup parent) {
+        for (View child : groupViews) {
+            child.setTag(R.id.tag_info, null);
+            child.setBackground(null);
+        }
+        groupViews.clear();
+        expander.setVisibility(View.INVISIBLE);
+    }
+
+    private boolean buildExpander(@NonNull ViewGroup parent) {
+
+        // Collect tagged children.
+        addTaggedChildren(parent, groupViews);
+        if (groupViews.isEmpty()) {
+            return false;
+        }
+
+        // Compute visible boundsof children.
+        Rect bounds = new Rect();
+        groupViews.get(0).getGlobalVisibleRect(bounds);
+        for (View child : groupViews) {
+            Rect childBnd = new Rect();
+            child.getGlobalVisibleRect(childBnd);
+            bounds.union(childBnd);
+        }
+
+        // Set expander minimum size to hold tagged children.
+        Rect expanderRect = new Rect();
+        ((ViewGroup)parent.getParent()).getGlobalVisibleRect(expanderRect);
+
+        expander.setX(bounds.left - expanderRect.left);
+        expander.setY(bounds.top - expanderRect.top);
+        ViewGroup.LayoutParams lp =   expander.getLayoutParams();
+        lp.width = bounds.width();
+        lp.height = bounds.height();
+        expander.setLayoutParams(lp);
+        expander.setVisibility(View.VISIBLE);
+
+        // Get image of tagged children in parent container.
+        Bitmap parentBM;
+        parentBM = Bitmap.createBitmap(parent.getWidth(), parent.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas parentCanvas = new Canvas(parentBM);
+        parent.draw(parentCanvas);
+
+        Rect parentRect = new Rect();
+        parent.getGlobalVisibleRect(parentRect);
+        Bitmap croppedBitmap = Bitmap.createBitmap(parentBM,
+                bounds.left  - parentRect.left,
+                bounds.top - parentRect.top, bounds.width(), bounds.height());
+        BitmapDrawable parentBD = new BitmapDrawable(getResources(), croppedBitmap);
+        expander.setBackground(parentBD);
+
+        return true;
+    }
+
+    /**
+     * Collect tagged children (view with background set)..
+     */
+    private void addTaggedChildren(@NonNull ViewGroup parent, @NonNull ArrayList<View> childList) {
+        for (int idx = 0; idx < parent.getChildCount(); idx++) {
+            View child = parent.getChildAt(idx);
+            if (child instanceof ViewGroup) {
+                addTaggedChildren((ViewGroup)child, childList);
+            } else {
+                if (child.getBackground() != null) {
+                    childList.add(child);
+                }
+            }
+        }
+    }
+
+    /**
+     * Set clip mode on parents. Used to allow child to expand over parent.
+     */
+    private void setClipChildren(@NonNull ViewGroup view, boolean toClip) {
         view.setClipChildren(toClip);
         view.setClipToPadding(toClip);
         if (view.getParent() instanceof ViewGroup) {
@@ -194,21 +286,14 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
     /**
      * Animate expansion of tapped view cell.
      */
-    private void expandView(View view, ViewGroup parent, int expandStyle) {
+    private void expandView(@Nullable View view, @NonNull ViewGroup parent) {
+        if (view == null) {
+            return;
+        }
+
         View rootView = view.getRootView();
 
-        if (parent.getId() == gridLayout.getId()) {
-            // Prevent gridlayout from updating when children are expanded.
-            gridLayout.setLock(true);
-        }
         setClipChildren(parent, false);
-
-        int numCol = TestData.WxData.columns();
-        int numRow = TestData.WXDATA.length;
-        int col = (Integer)view.getTag(R.id.tag_col);
-        int row = (Integer)view.getTag(R.id.tag_row);
-
-        ViewGroup.LayoutParams params = view.getLayoutParams();
 
         // Record layout change and animate it slowly
         TransitionSet transitionSet = new TransitionSet();
@@ -219,26 +304,14 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         transitionSet.addTransition(new ChangeBounds());
         TransitionManager.beginDelayedTransition((ViewGroup) rootView, transitionSet);
 
-        if (expandStyle == 1) {
-            float growPercent = 1.2f;
-            params.width = Math.round(view.getWidth() * growPercent);
-            params.height = Math.round(view.getHeight() * growPercent);
-            // Change origin
-            if (col + 1 == numCol) {
-                view.setTranslationX(view.getWidth() - params.width);
-            } else if (row + 1 == numRow) {
-                view.setTranslationY(view.getHeight() - params.height);
-            }
-        } else {
-            float growPercent = 0.2f;
-            view.setPivotX( (col < numCol/2) ? 0 : view.getWidth());
-            view.setPivotY( (row < numRow/2) ? 0 : view.getHeight());
-            view.setScaleX(view.getScaleX() + growPercent);
-            view.setScaleY(view.getScaleY() + growPercent);
-        }
+        view.setPivotX(view.getX() );
+        view.setPivotY(view.getY() );
 
-        // Change color and elevation
-        view.setBackgroundResource(R.drawable.bg_red);
+        final float growPercent = 1.21f;
+        view.setScaleX(growPercent);
+        view.setScaleY(growPercent);
+
+        // Set elevation so it appears above its peers and parent.
         view.setElevation(nextElevation);
         nextElevation += 8;
 
@@ -246,10 +319,13 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
         view.invalidate();
     }
 
-    private void  openDetailView(View view, ViewGroup parent) {
-        // int numCol = getNumCol(parent);
-        int col = (Integer) view.getTag(R.id.tag_col);
-        int row = (Integer) view.getTag(R.id.tag_row);
+    /**
+     * Open a dialog in overlay to show details about tapped view.
+     */
+    private void  openDetailView(@NonNull View view) {
+        View child = groupViews.get(0);
+        int col = (Integer) child.getTag(R.id.tag_col);
+        int row = (Integer) child.getTag(R.id.tag_row);
 
         Rect viewRect = new Rect();
         view.getGlobalVisibleRect(viewRect);
@@ -290,61 +366,8 @@ public class FragExpandDemo extends FragBottomNavBase implements View.OnTouchLis
 
         float markerCenterShiftX = viewRect.centerX() - (detailLeft + detailWidthPx/2f + overlayRect.left);
         detailTv.setPointer(markerCenterShiftX);
-    }
 
-
-      /*
-    private int getNumCol(ViewGroup parent) {
-        if (parent instanceof TableLayout) {
-            TableLayout tableLayout = (TableLayout) parent;
-            // Assume first child of tableLayout is a row (TableRow or LinearLayout)
-            // and its child count is column count.
-            if (tableLayout.getChildAt(0) instanceof ViewGroup) {
-                return ((ViewGroup)tableLayout.getChildAt(0)).getChildCount();
-            }
-            return 0;
-        }
-        if (parent instanceof GridLayout) {
-            GridLayout gridLayout = (GridLayout) parent;
-            return gridLayout.getColumnCount();
-        }
-        return 0;
+        overlay.setElevation(nextElevation);
     }
-
-    private int getNumRow(View child, ViewGroup parent) {
-        if (parent instanceof TableLayout) {
-            TableLayout tableLayout = (TableLayout) parent;
-            return tableLayout.getChildCount();
-        }
-        if (parent instanceof GridLayout) {
-            GridLayout gridLayout = (GridLayout) parent;
-            return gridLayout.getRowCount();
-        }
-        return 0;
-    }
-
-    private int getCol(View child, ViewGroup parent) {
-        if (parent instanceof TableLayout) {
-            TableLayout tableLayout = (TableLayout) parent;
-            return tableLayout.getChildCount();
-        }
-        if (parent instanceof GridLayout) {
-            GridLayout gridLayout = (GridLayout) parent;
-            return gridLayout.getColumnCount();
-        }
-        return 0;
-    }
-    private int getRow(View child, ViewGroup parent) {
-        if (parent instanceof TableLayout) {
-            TableLayout tableLayout = (TableLayout) parent;
-            return tableLayout.getChildCount();
-        }
-        if (parent instanceof GridLayout) {
-            GridLayout gridLayout = (GridLayout) parent;
-            return gridLayout.getRowCount();
-        }
-        return 0;
-    }
-    */
 
 }

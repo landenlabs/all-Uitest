@@ -42,7 +42,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.landenlabs.all_uiTest.R;
+import com.landenlabs.all_UiDemo2.R;
 
 /**
  * Animate border cell lines by using geometry from another container.  The border

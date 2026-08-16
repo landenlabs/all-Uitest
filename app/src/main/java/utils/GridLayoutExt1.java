@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
-import com.landenlabs.all_uiTest.R;
+import com.landenlabs.all_UiDemo2.R;
 
 /**
  * Custom GridLayout which provides automatic dividers and method to lock layout to

@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.landenlabs.all_uiTest">
+    package="com.landenlabs.all_UiDemo2">
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning" >
 
-        <activity android:name="com.landenlabs.all_uiTest.MainActivity"
+        <activity android:name="com.landenlabs.all_UiDemo2.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

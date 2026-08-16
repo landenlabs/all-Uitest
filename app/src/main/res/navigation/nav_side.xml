@@ -30,13 +30,13 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.landenlabs.all_uiTest.AboutFragment"
+        android:name="com.landenlabs.all_UiDemo2.AboutFragment"
         android:label="About"
         tools:layout="@layout/frag_about" />
 
     <fragment
         android:id="@+id/bottomNavFragment"
-        android:name="com.landenlabs.all_uiTest.FragBottomNavMain"
+        android:name="com.landenlabs.all_UiDemo2.FragBottomNavMain"
         android:label="Home"
         tools:layout="@layout/frag_bottom_nav_main" />
 
@@ -45,48 +45,48 @@
     <fragment
         android:label="@string/bottom_nav_frag_gridview"
         android:id="@+id/fragGridViewDemo"
-        android:name="com.landenlabs.all_uiTest.FragGridViewDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragGridViewDemo"
         tools:layout="@layout/frag_gridview_demo"/>
 
     <fragment
         android:label="@string/bottom_nav_frag_divider"
         android:id="@+id/fragDividerDemo"
-        android:name="com.landenlabs.all_uiTest.FragDividerDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragDividerDemo"
         tools:layout="@layout/frag_divider_demo"/>
 
     <fragment
         android:label="@string/bottom_nav_expand"
         android:id="@+id/fragExpandDemo"
-        android:name="com.landenlabs.all_uiTest.FragExpandDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragExpandDemo"
         tools:layout="@layout/frag_expand_demo"/>
 
     <fragment
         android:label="@string/bottom_nav_group_view"
         android:id="@+id/fragExpandGroupViewDemo"
-        android:name="com.landenlabs.all_uiTest.FragExpandGroupViewDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragExpandGroupViewDemo"
         tools:layout="@layout/frag_expand_group_demo"/>
 
     <fragment
         android:label="@string/bottom_nav_group_image"
         android:id="@+id/fragExpandGroupImageDemo"
-        android:name="com.landenlabs.all_uiTest.FragExpandGroupImageDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragExpandGroupImageDemo"
         tools:layout="@layout/frag_expand_group_demo"/>
 
     <fragment
         android:label="@string/bottom_nav_anim_border"
         android:id="@+id/fragAnimBorderDemo"
-        android:name="com.landenlabs.all_uiTest.FragAnimBorderDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragAnimBorderDemo"
         tools:layout="@layout/frag_anim_border"/>
 
     <fragment
         android:label="@string/bottom_nav_bitmapshader"
         android:id="@+id/fragBitmapShaderDemo"
-        android:name="com.landenlabs.all_uiTest.FragBitmapShaderDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragBitmapShaderDemo"
         tools:layout="@layout/frag_bitmapshader"/>
 
     <fragment
         android:label="@string/bottom_nav_anim_view"
         android:id="@+id/fragAnimViewDemo"
-        android:name="com.landenlabs.all_uiTest.FragAnimViewDemo"
+        android:name="com.landenlabs.all_UiDemo2.FragAnimViewDemo"
         tools:layout="@layout/frag_anim_view"/>
 </navigation>

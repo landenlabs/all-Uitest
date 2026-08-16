@@ -1,14 +1,14 @@
-// all-UiTest
+// all-UiDemo2
 plugins {
     id "com.android.application"
 }
 
 android {
-    namespace = "com.landenlabs.all_uiTest"
+    namespace = "com.landenlabs.all_UiDemo2"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.landenlabs.all_uiTest"
+        applicationId = "com.landenlabs.all_UiDemo2"
         minSdk = 23
         targetSdk = 36
 
